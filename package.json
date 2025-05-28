@@ -1,0 +1,54 @@
+{
+	"name": "@kirick/lint",
+	"version": "0.1.0",
+	"publishConfig": {
+		"access": "public"
+	},
+	"type": "module",
+	"bin": "dist/main.js",
+	"exports": {
+		"./eslint/common": "./configs/eslint/common.js",
+		"./eslint/node": "./configs/eslint/node.js",
+		"./eslint/vue": "./configs/eslint/vue.js"
+	},
+	"engines": {
+		"node": ">=21.2"
+	},
+	"dependencies": {
+		"@stylistic/eslint-plugin": "^4.4.0",
+		"eslint": "9.27.0",
+		"eslint-plugin-jsdoc": "50.6.17",
+		"eslint-plugin-n": "^17.18.0",
+		"eslint-plugin-promise": "^7.2.1",
+		"eslint-plugin-unicorn": "59.0.1",
+		"eslint-plugin-vue": "^10.1.0",
+		"typescript-eslint": "8.32.1"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"@types/node": "^22.15.13",
+		"oxlint": "0.16.12",
+		"publint": "^0.3.12",
+		"tsdown": "^0.10.0",
+		"type-fest": "^4.41.0",
+		"typescript": "5.8.3"
+	},
+	"scripts": {
+		"build": "tsdown src/main.ts --dts=false --format esm",
+		"check": "bun run lint && bun run build && bun run test",
+		"lint": "biome format && oxlint && eslint . && tsc",
+		"test": "npm run test:vitest && bun test --coverage",
+		"test:vitest": "vitest run --no-file-parallelism"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/kirick-ts/lint.git"
+	},
+	"keywords": [],
+	"author": "Daniil Kirichenko (https://twitter.com/kirickme)",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/kirick-ts/lint/issues"
+	},
+	"homepage": "https://github.com/kirick-ts/lint#readme"
+}
