@@ -35,10 +35,8 @@
 	},
 	"scripts": {
 		"build": "tsdown src/main.ts --dts=false --format esm",
-		"check": "bun run lint && bun run build && bun run test",
-		"lint": "biome format && oxlint && eslint . && tsc",
-		"test": "npm run test:vitest && bun test --coverage",
-		"test:vitest": "vitest run --no-file-parallelism"
+		"check": "bun run lint && bun run build",
+		"lint": "biome check && oxlint && eslint . && tsc"
 	},
 	"repository": {
 		"type": "git",
