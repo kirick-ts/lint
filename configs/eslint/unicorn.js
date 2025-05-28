@@ -6,6 +6,7 @@ export const configUnicorn = [
 		rules: {
 			'unicorn/no-anonymous-default-export': 'off',
 			'unicorn/no-null': 'off',
+			'unicorn/number-literal-case': 'off',
 			'unicorn/numeric-separators-style': [
 				'warn',
 				{

@@ -1,11 +1,9 @@
 /* eslint-disable jsdoc/require-jsdoc */
-/* eslint-disable n/no-process-exit */
-/* eslint-disable unicorn/no-process-exit */
 /* oxlint-disable no-console */
 
 import fs from 'node:fs/promises';
 import nodePath from 'node:path';
-import type { Entries, TsConfigJson } from 'type-fest';
+import type { TsConfigJson } from 'type-fest';
 import { PATH } from '../utils.js';
 
 export async function createTsConfig(dir: string) {
