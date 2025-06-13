@@ -161,11 +161,11 @@ export const configStylistic = [
 					prev: 'multiline-block-like',
 					next: '*',
 				},
-				// {
-				// 	blankLine: 'never',
-				// 	prev: 'multiline-block-like',
-				// 	next: 'break',
-				// },
+				{
+					blankLine: 'never',
+					prev: 'multiline-block-like',
+					next: 'break',
+				},
 				// {
 				// 	blankLine: 'never',
 				// 	prev: 'case',

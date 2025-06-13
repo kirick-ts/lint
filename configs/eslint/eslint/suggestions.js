@@ -217,7 +217,7 @@ export const configEslintSuggestions = [
 				},
 			],
 			'no-unused-labels': 'error',
-			'no-useless-call': 'error',
+			// 'no-useless-call': 'off', // oxlint
 			'no-useless-catch': 'error',
 			'no-useless-computed-key': [
 				'error',

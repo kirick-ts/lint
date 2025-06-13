@@ -13,7 +13,9 @@ export const configUnicorn = [
 					onlyIfContainsSeparator: true,
 				},
 			],
+			'unicorn/prefer-array-find': 'off', // oxlint
 			'unicorn/prefer-ternary': 'off',
+			'unicorn/prefer-set-has': 'off', // oxlint
 			'unicorn/prevent-abbreviations': 'off',
 			'unicorn/switch-case-braces': ['warn', 'avoid'],
 		},
