@@ -8,9 +8,9 @@ export const configStylistic = [
 	},
 	{
 		rules: {
-			// '@stylistic/array-bracket-newline'
-			// '@stylistic/array-bracket-spacing'
-			// '@stylistic/array-element-newline'
+			// '@stylistic/array-bracket-newline': 'off', // biome formatter
+			// '@stylistic/array-bracket-spacing': 'off', // biome formatter
+			// '@stylistic/array-element-newline': 'off', // biome formatter
 			'@stylistic/arrow-parens': ['error', 'always'],
 			'@stylistic/arrow-spacing': [
 				'error',
@@ -20,7 +20,7 @@ export const configStylistic = [
 				},
 			],
 			'@stylistic/block-spacing': ['error', 'always'],
-			// '@stylistic/brace-style'
+			// '@stylistic/brace-style': 'off', // biome formatter
 			'@stylistic/comma-dangle': ['error', 'always-multiline'],
 			'@stylistic/comma-spacing': [
 				'error',
@@ -38,10 +38,10 @@ export const configStylistic = [
 				'consistent', // bug?
 			],
 			'@stylistic/function-call-spacing': ['error', 'never'],
-			'@stylistic/function-paren-newline': ['error', 'multiline-arguments'],
-			'@stylistic/generator-star-spacing': ['error', 'both'],
-			'@stylistic/implicit-arrow-linebreak': ['error', 'beside'],
-			// '@stylistic/indent'
+			// '@stylistic/function-paren-newline': 'off', // biome formatter
+			// '@stylistic/generator-star-spacing': 'off', // biome formatter
+			// '@stylistic/implicit-arrow-linebreak': 'off', // biome formatter
+			// '@stylistic/indent': 'off', // biome formatter
 			'@stylistic/key-spacing': [
 				'error',
 				{
@@ -111,11 +111,11 @@ export const configStylistic = [
 				},
 			],
 			'@stylistic/no-confusing-arrow': 'error',
-			// '@stylistic/no-extra-parens': 'off',
+			// '@stylistic/no-extra-parens': 'off',: 'off', // biome formatter
 			'@stylistic/no-extra-semi': 'error',
 			'@stylistic/no-floating-decimal': 'error',
 			'@stylistic/no-mixed-operators': 'error',
-			// '@stylistic/no-mixed-spaces-and-tabs'
+			// '@stylistic/no-mixed-spaces-and-tabs': 'off', // biome formatter
 			'@stylistic/no-multi-spaces': [
 				'error',
 				{
@@ -135,7 +135,7 @@ export const configStylistic = [
 			'@stylistic/no-trailing-spaces': 'warn',
 			'@stylistic/no-whitespace-before-property': 'error',
 			'@stylistic/nonblock-statement-body-position': 'error',
-			// '@stylistic/object-curly-newline'
+			// '@stylistic/object-curly-newline': 'off', // biome formatter
 			'@stylistic/object-curly-spacing': [
 				'error',
 				'always',
@@ -146,7 +146,7 @@ export const configStylistic = [
 			],
 			'@stylistic/object-property-newline': 'error',
 			'@stylistic/one-var-declaration-per-line': 'error',
-			// '@stylistic/operator-linebreak'
+			// '@stylistic/operator-linebreak': 'off', // biome formatter
 			'@stylistic/padded-blocks': [
 				'error',
 				'never',
@@ -256,7 +256,7 @@ export const configStylistic = [
 	{
 		files: ['**/*.ts'],
 		rules: {
-			// '@stylistic/member-delimiter-style'
+			// '@stylistic/member-delimiter-style': 'off', // biome formatter
 			'@stylistic/type-annotation-spacing': 'error',
 			'@stylistic/type-generic-spacing': 'error',
 			'@stylistic/type-named-tuple-spacing': 'error',
