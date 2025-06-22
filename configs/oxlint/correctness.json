@@ -1,5 +1,6 @@
 {
 	"rules": {
-		"eslint/no-unused-vars": "warn"
+		"eslint/no-unused-vars": "warn",
+		"unicorn/no-empty-file": "error"
 	}
 }
