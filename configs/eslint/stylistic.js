@@ -114,7 +114,7 @@ export const configStylistic = [
 			// '@stylistic/no-extra-parens': 'off',: 'off', // biome formatter
 			'@stylistic/no-extra-semi': 'error',
 			'@stylistic/no-floating-decimal': 'error',
-			'@stylistic/no-mixed-operators': 'error',
+			// '@stylistic/no-mixed-operators': 'off', // biome formatter
 			// '@stylistic/no-mixed-spaces-and-tabs': 'off', // biome formatter
 			'@stylistic/no-multi-spaces': [
 				'error',
