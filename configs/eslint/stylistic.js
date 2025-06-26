@@ -144,7 +144,7 @@ export const configStylistic = [
 					objectsInObjects: true,
 				},
 			],
-			'@stylistic/object-property-newline': 'error',
+			// '@stylistic/object-property-newline': 'error', // biome formatter
 			'@stylistic/one-var-declaration-per-line': 'error',
 			// '@stylistic/operator-linebreak': 'off', // biome formatter
 			'@stylistic/padded-blocks': [
