@@ -215,7 +215,7 @@ export const configStylistic = [
 					asyncArrow: 'always',
 				},
 			],
-			'@stylistic/space-in-parens': ['error', 'never'],
+			'@stylistic/space-in-parens': 'off', // biome formatter
 			'@stylistic/space-infix-ops': 'error',
 			'@stylistic/space-unary-ops': 'error',
 			'@stylistic/spaced-comment': [
