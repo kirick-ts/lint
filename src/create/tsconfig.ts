@@ -36,19 +36,40 @@ export async function createTsConfig(dir: string) {
 		);
 	}
 
-	const compilerOptions: TsConfigJson['compilerOptions'] = {};
-	for (const key of Object.keys(
-		tsconfig_lint.compilerOptions,
-	) as (keyof TsConfigJson['compilerOptions'])[]) {
-		if (key === 'lib' || key === 'isolatedDeclarations') {
-			compilerOptions[key] =
-				tsconfig_pwd.compilerOptions[key] ?? tsconfig_lint.compilerOptions[key];
-		} else {
-			compilerOptions[key] = tsconfig_lint.compilerOptions[key];
+	// Start with a copy of the lint tsconfig compiler options
+	const compiler_options_new = { ...tsconfig_lint.compilerOptions };
+
+	// Special handling for options that should be overridden from user config if available
+	const preserveUserOptions = [
+		'lib',
+		'isolatedDeclarations',
+		'paths',
+		'importHelpers',
+	] as const;
+
+	for (const key of preserveUserOptions) {
+		switch (key) {
+			case 'lib':
+				compiler_options_new[key] =
+					tsconfig_pwd.compilerOptions[key] ??
+					tsconfig_lint.compilerOptions[key];
+				break;
+			case 'isolatedDeclarations':
+				compiler_options_new[key] =
+					tsconfig_pwd.compilerOptions[key] ??
+					tsconfig_lint.compilerOptions[key];
+				break;
+			case 'paths':
+				compiler_options_new[key] = tsconfig_pwd.compilerOptions[key];
+				break;
+			case 'importHelpers':
+				compiler_options_new[key] = tsconfig_pwd.compilerOptions[key];
+				break;
+			// no default
 		}
 	}
 
-	tsconfig_pwd.compilerOptions = compilerOptions;
+	tsconfig_pwd.compilerOptions = compiler_options_new;
 
 	await writeTsconfigJson(tsconfig_pwd_path, tsconfig_pwd);
 }

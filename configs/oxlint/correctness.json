@@ -1,5 +1,8 @@
 {
 	"rules": {
+		"eslint/for-direction": "error",
+		"eslint/no-async-promise-executor": "error",
+		"eslint/no-caller": "error",
 		"eslint/no-unused-vars": "warn",
 		"unicorn/no-empty-file": "error"
 	}

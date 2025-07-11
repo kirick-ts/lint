@@ -23,7 +23,7 @@ export const configTsEslint = [
 					varsIgnorePattern: '^_',
 					ignoreRestSiblings: true,
 				},
-			],
+			], // Oxlint
 		},
 	},
 	// disable type-aware linting on JS files

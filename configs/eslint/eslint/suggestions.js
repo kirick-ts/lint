@@ -92,7 +92,7 @@ export const configEslintSuggestions = [
 			'no-alert': 'error',
 			'no-array-constructor': 'error',
 			'no-bitwise': 'error',
-			'no-caller': 'error',
+			'no-caller': 'error', // Oxlint
 			'no-case-declarations': 'error',
 			'no-console': 'warn',
 			// 'no-continue': 'off',

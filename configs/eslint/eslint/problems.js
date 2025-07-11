@@ -8,9 +8,9 @@ export const configEslintProblems = [
 				},
 			],
 			'constructor-super': 'error',
-			'for-direction': 'error',
+			'for-direction': 'error', // Oxlint
 			'getter-return': 'error',
-			'no-async-promise-executor': 'error',
+			'no-async-promise-executor': 'error', // Oxlint
 			'no-await-in-loop': 'error',
 			'no-class-assign': 'error',
 			'no-compare-neg-zero': 'error',
@@ -72,8 +72,8 @@ export const configEslintProblems = [
 				},
 			],
 			'no-unused-private-class-members': 'warn',
-			// 'no-unused-vars': 'off',
-			// 'no-use-before-define': 'off',
+			'no-unused-vars': 'warn', // Oxlint
+			// 'no-use-before-define': 'off', // ???
 			'no-useless-assignment': 'warn',
 			'no-useless-backreference': 'error',
 			'require-atomic-updates': 'error',

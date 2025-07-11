@@ -29,6 +29,7 @@ export const configCommon = [
 		],
 		rules: {
 			'no-restricted-exports': 'off',
+			'unicorn/filename-case': 'off',
 		},
 	},
 	{
