@@ -104,14 +104,9 @@ export const configStylistic = [
 			'@stylistic/multiline-comment-style': 'off',
 			'@stylistic/multiline-ternary': ['error', 'always-multiline'],
 			'@stylistic/new-parens': ['error', 'always'],
-			'@stylistic/newline-per-chained-call': [
-				'error',
-				{
-					ignoreChainWithDepth: 2,
-				},
-			],
+			// '@stylistic/newline-per-chained-call': 'off', // biome formatter
 			'@stylistic/no-confusing-arrow': 'error',
-			// '@stylistic/no-extra-parens': 'off',: 'off', // biome formatter
+			// '@stylistic/no-extra-parens': 'off', // biome formatter
 			'@stylistic/no-extra-semi': 'error',
 			'@stylistic/no-floating-decimal': 'error',
 			// '@stylistic/no-mixed-operators': 'off', // biome formatter
@@ -182,13 +177,13 @@ export const configStylistic = [
 				// 	next: '*',
 				// },
 			],
-			'@stylistic/quote-props': [
-				'error',
-				'as-needed',
-				{
-					numbers: true,
-				},
-			],
+			// '@stylistic/quote-props': [ // Duplicated keys are handled by TypeScript
+			// 	'error',
+			// 	'as-needed',
+			// 	{
+			// 		numbers: true,
+			// 	},
+			// ],
 			'@stylistic/quotes': [
 				'error',
 				'single',
@@ -215,7 +210,7 @@ export const configStylistic = [
 					asyncArrow: 'always',
 				},
 			],
-			'@stylistic/space-in-parens': 'off', // biome formatter
+			// '@stylistic/space-in-parens': 'off', // biome formatter
 			'@stylistic/space-infix-ops': 'error',
 			'@stylistic/space-unary-ops': 'error',
 			'@stylistic/spaced-comment': [

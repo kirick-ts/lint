@@ -43,10 +43,28 @@ async function createTsConfig(dir) {
 	if (!tsconfig_lint.compilerOptions) throw new TypeError("@kirick/lint: configs/tsconfig.example.json does not contain compilerOptions.");
 	if (!tsconfig_pwd) throw new TypeError("Project: tsconfig.json not found.");
 	if (!tsconfig_pwd.compilerOptions) throw new TypeError("Project: tsconfig.json does not contain compilerOptions.");
-	const compilerOptions = {};
-	for (const key of Object.keys(tsconfig_lint.compilerOptions)) if (key === "lib" || key === "isolatedDeclarations") compilerOptions[key] = tsconfig_pwd.compilerOptions[key] ?? tsconfig_lint.compilerOptions[key];
-	else compilerOptions[key] = tsconfig_lint.compilerOptions[key];
-	tsconfig_pwd.compilerOptions = compilerOptions;
+	const compiler_options_new = { ...tsconfig_lint.compilerOptions };
+	const preserveUserOptions = [
+		"lib",
+		"isolatedDeclarations",
+		"paths",
+		"importHelpers"
+	];
+	for (const key of preserveUserOptions) switch (key) {
+		case "lib":
+			compiler_options_new[key] = tsconfig_pwd.compilerOptions[key] ?? tsconfig_lint.compilerOptions[key];
+			break;
+		case "isolatedDeclarations":
+			compiler_options_new[key] = tsconfig_pwd.compilerOptions[key] ?? tsconfig_lint.compilerOptions[key];
+			break;
+		case "paths":
+			compiler_options_new[key] = tsconfig_pwd.compilerOptions[key];
+			break;
+		case "importHelpers":
+			compiler_options_new[key] = tsconfig_pwd.compilerOptions[key];
+			break;
+	}
+	tsconfig_pwd.compilerOptions = compiler_options_new;
 	await writeTsconfigJson(tsconfig_pwd_path, tsconfig_pwd);
 }
 async function readTsconfigJson(path) {

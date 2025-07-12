@@ -26,7 +26,7 @@ export const configNode = [
 			'n/no-process-exit': 'error',
 			// 'n/no-restricted-import': 'off',
 			// 'n/no-restricted-require': 'off',
-			'n/no-sync': 'error',
+			'n/no-sync': 'off', // fails with "You have used a rule which requires type information..."
 			'n/no-unpublished-bin': 'error',
 			'n/no-unpublished-import': [
 				'error',
