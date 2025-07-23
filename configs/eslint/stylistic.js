@@ -105,7 +105,7 @@ export const configStylistic = [
 			'@stylistic/multiline-ternary': ['error', 'always-multiline'],
 			'@stylistic/new-parens': ['error', 'always'],
 			// '@stylistic/newline-per-chained-call': 'off', // biome formatter
-			'@stylistic/no-confusing-arrow': 'error',
+			// '@stylistic/no-confusing-arrow': 'off', // biome formatter
 			// '@stylistic/no-extra-parens': 'off', // biome formatter
 			'@stylistic/no-extra-semi': 'error',
 			'@stylistic/no-floating-decimal': 'error',
