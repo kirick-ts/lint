@@ -144,10 +144,11 @@ if (package_json.scripts.lint) {
 await writePackageJson(PWD, package_json);
 await shell("bun", "install");
 try {
-	await fs.mkdir(nodePath.join(PWD, ".zed"));
+	await Promise.all([fs.mkdir(nodePath.join(PWD, ".zed")), fs.mkdir(nodePath.join(PWD, ".vscode"))]);
 } catch {}
 await Promise.all([
 	fs.copyFile(nodePath.join(DIR_LIB, ".zed", "settings.json"), nodePath.join(PWD, ".zed", "settings.json")),
+	fs.copyFile(nodePath.join(DIR_LIB, ".vscode", "settings.json"), nodePath.join(PWD, ".vscode", "settings.json")),
 	fs.copyFile(nodePath.join(DIR_LIB, "biome.json"), nodePath.join(PWD, "biome.json")),
 	createEslintConfig(PWD, { is_node }),
 	createTsConfig(PWD),

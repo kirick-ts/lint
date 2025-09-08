@@ -65,13 +65,20 @@ await shell('bun', 'install');
 
 // 2. Configs
 try {
-	await fs.mkdir(nodePath.join(PWD, '.zed'));
+	await Promise.all([
+		fs.mkdir(nodePath.join(PWD, '.zed')),
+		fs.mkdir(nodePath.join(PWD, '.vscode')),
+	]);
 } catch {}
 
 await Promise.all([
 	fs.copyFile(
 		nodePath.join(DIR_LIB, '.zed', 'settings.json'),
 		nodePath.join(PWD, '.zed', 'settings.json'),
+	),
+	fs.copyFile(
+		nodePath.join(DIR_LIB, '.vscode', 'settings.json'),
+		nodePath.join(PWD, '.vscode', 'settings.json'),
 	),
 	fs.copyFile(
 		nodePath.join(DIR_LIB, 'biome.json'),
