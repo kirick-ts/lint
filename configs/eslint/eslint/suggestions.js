@@ -105,7 +105,6 @@ export const configEslintSuggestions = [
 					allowEmptyCatch: true,
 				},
 			],
-			'no-empty-function': 'warn',
 			'no-empty-static-block': 'error',
 			'no-eq-null': 'error',
 			'no-eval': 'error',

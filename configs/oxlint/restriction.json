@@ -4,6 +4,9 @@
 		"eslint/default-case": "error",
 		"eslint/no-alert": "error",
 		"eslint/no-bitwise": "error",
-		"eslint/no-console": "warn"
+		"eslint/no-console": "warn",
+		"eslint/no-empty-function": "warn",
+		"typescript/no-empty-object-type": "error",
+		"typescript/no-explicit-any": "error"
 	}
 }

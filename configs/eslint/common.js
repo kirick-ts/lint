@@ -39,7 +39,6 @@ export const configCommon = [
 			'no-dupe-class-members': 'off',
 			'no-invalid-this': 'off',
 			'no-redeclare': 'off',
-			'no-unused-vars': 'off',
 		},
 	},
 	{
