@@ -8,16 +8,13 @@ export const configEslintProblems = [
 				},
 			],
 			'constructor-super': 'error',
-			'for-direction': 'error', // Oxlint
 			'getter-return': 'error',
-			'no-async-promise-executor': 'error', // Oxlint
 			'no-await-in-loop': 'error',
 			'no-class-assign': 'error',
 			'no-compare-neg-zero': 'error',
 			'no-cond-assign': 'error',
 			'no-const-assign': 'error',
 			'no-constant-binary-expression': 'error',
-			'no-constant-condition': 'error',
 			'no-constructor-return': 'error',
 			'no-control-regex': 'error',
 			'no-debugger': 'error',
@@ -30,7 +27,6 @@ export const configEslintProblems = [
 			'no-empty-character-class': 'error',
 			'no-empty-pattern': 'error',
 			'no-ex-assign': 'error',
-			'no-fallthrough': 'error',
 			'no-func-assign': 'error',
 			'no-import-assign': 'error',
 			'no-inner-declarations': 'error',
@@ -53,7 +49,7 @@ export const configEslintProblems = [
 			'no-sparse-arrays': 'error',
 			'no-template-curly-in-string': 'error',
 			'no-this-before-super': 'error',
-			// 'no-undef': 'off', // handled by TypeScript
+			// 'no-undef': 'off', // typescript
 			'no-unexpected-multiline': 'error',
 			'no-unmodified-loop-condition': 'error',
 			'no-unreachable': 'error',
@@ -72,7 +68,6 @@ export const configEslintProblems = [
 				},
 			],
 			'no-unused-private-class-members': 'warn',
-			'no-unused-vars': 'warn', // Oxlint
 			// 'no-use-before-define': 'off', // ???
 			'no-useless-assignment': 'warn',
 			'no-useless-backreference': 'error',

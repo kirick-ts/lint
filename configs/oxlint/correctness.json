@@ -3,7 +3,10 @@
 		"eslint/for-direction": "error",
 		"eslint/no-async-promise-executor": "error",
 		"eslint/no-caller": "error",
+		"eslint/no-constant-condition": "error",
 		"eslint/no-unused-vars": "warn",
+		"typescript/no-floating-promises": "off",
+		"typescript/no-wrapper-object-types": "error",
 		"unicorn/no-empty-file": "error"
 	}
 }

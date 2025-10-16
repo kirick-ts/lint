@@ -27,8 +27,8 @@ if (!package_json_lint.devDependencies) {
 }
 
 const is_node =
-	package_json_lint.devDependencies['@types/node'] !== undefined ||
-	package_json_lint.devDependencies['@types/bun'] !== undefined;
+	package_json_lint.devDependencies['@types/node'] !== undefined
+	|| package_json_lint.devDependencies['@types/bun'] !== undefined;
 
 // 1. Update package.json
 // 1.1. Dependencies

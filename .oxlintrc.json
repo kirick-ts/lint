@@ -3,7 +3,9 @@
 	"extends": [
 		"./configs/oxlint/correctness.json",
 		"./configs/oxlint/perf.json",
-		"./configs/oxlint/restriction.json"
+		"./configs/oxlint/restriction.json",
+		"./configs/oxlint/suspicious.json",
+		"./configs/oxlint/pedantic.json"
 	],
 	"ignorePatterns": ["dist"]
 }

@@ -5,7 +5,6 @@ export const configUnicorn = [
 	{
 		rules: {
 			'unicorn/no-anonymous-default-export': 'off',
-			'unicorn/no-empty-file': 'off', // oxlint
 			'unicorn/no-null': 'off',
 			'unicorn/number-literal-case': 'off',
 			'unicorn/numeric-separators-style': [
@@ -14,9 +13,7 @@ export const configUnicorn = [
 					onlyIfContainsSeparator: true,
 				},
 			],
-			'unicorn/prefer-array-find': 'off', // oxlint
 			'unicorn/prefer-ternary': 'off',
-			'unicorn/prefer-set-has': 'off', // oxlint
 			'unicorn/prevent-abbreviations': 'off',
 			'unicorn/switch-case-braces': ['warn', 'avoid'],
 		},

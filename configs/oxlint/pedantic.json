@@ -1,0 +1,7 @@
+{
+	"rules": {
+		"eslint/no-fallthrough": "error",
+		"typescript/no-misused-promises": "off",
+		"typescript/no-unsafe-function-type": "error"
+	}
+}

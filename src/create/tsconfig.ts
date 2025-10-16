@@ -51,13 +51,13 @@ export async function createTsConfig(dir: string) {
 		switch (key) {
 			case 'lib':
 				compiler_options_new[key] =
-					tsconfig_pwd.compilerOptions[key] ??
-					tsconfig_lint.compilerOptions[key];
+					tsconfig_pwd.compilerOptions[key]
+					?? tsconfig_lint.compilerOptions[key];
 				break;
 			case 'isolatedDeclarations':
 				compiler_options_new[key] =
-					tsconfig_pwd.compilerOptions[key] ??
-					tsconfig_lint.compilerOptions[key];
+					tsconfig_pwd.compilerOptions[key]
+					?? tsconfig_lint.compilerOptions[key];
 				break;
 			case 'paths':
 				compiler_options_new[key] = tsconfig_pwd.compilerOptions[key];
