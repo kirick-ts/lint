@@ -37,7 +37,7 @@ export async function writePackageJson(
 
 function sortObjectKeys<T extends Record<string, unknown>>(obj: T): T {
 	const object_sorted: Record<string, unknown> = {};
-	for (const key of Object.keys(obj).sort()) {
+	for (const key of Object.keys(obj).toSorted()) {
 		object_sorted[key] = obj[key];
 	}
 

@@ -6,18 +6,18 @@ import { spawn } from "node:child_process";
 //#region src/create/eslint.ts
 async function createEslintConfig(dir, options) {
 	const lines = [];
-	lines.push("import { configCommon } from '@kirick/lint/eslint/common';");
+	lines.push("import { configCommon } from '@kirick/lint/eslint/common';", "import { defineConfig } from 'eslint/config';");
 	if (options.is_node) lines.push("import { configNode } from '@kirick/lint/eslint/node';");
-	lines.push("", "export default [", "	...configCommon,");
+	lines.push("", "export default defineConfig([", "	...configCommon,");
 	if (options.is_node) lines.push("	...configNode,");
-	lines.push("];", "");
+	lines.push("]);", "");
 	await fs.writeFile(nodePath.join(dir, "eslint.config.js"), lines.join("\n"), "utf8");
 }
 
 //#endregion
 //#region src/create/oxlint.ts
 async function createOxlintConfig(dir) {
-	const config = {
+	await fs.writeFile(nodePath.join(dir, ".oxlintrc.json"), JSON.stringify({
 		$schema: "./node_modules/oxlint/configuration_schema.json",
 		extends: [
 			"./node_modules/@kirick/lint/configs/oxlint/correctness.json",
@@ -25,8 +25,7 @@ async function createOxlintConfig(dir) {
 			"./node_modules/@kirick/lint/configs/oxlint/restriction.json"
 		],
 		ignorePatterns: ["dist"]
-	};
-	await fs.writeFile(nodePath.join(dir, ".oxlintrc.json"), JSON.stringify(config, null, "	"), "utf8");
+	}, null, "	"), "utf8");
 }
 
 //#endregion
@@ -44,13 +43,12 @@ async function createTsConfig(dir) {
 	if (!tsconfig_pwd) throw new TypeError("Project: tsconfig.json not found.");
 	if (!tsconfig_pwd.compilerOptions) throw new TypeError("Project: tsconfig.json does not contain compilerOptions.");
 	const compiler_options_new = { ...tsconfig_lint.compilerOptions };
-	const preserveUserOptions = [
+	for (const key of [
 		"lib",
 		"isolatedDeclarations",
 		"paths",
 		"importHelpers"
-	];
-	for (const key of preserveUserOptions) switch (key) {
+	]) switch (key) {
 		case "lib":
 			compiler_options_new[key] = tsconfig_pwd.compilerOptions[key] ?? tsconfig_lint.compilerOptions[key];
 			break;
@@ -99,7 +97,7 @@ async function writePackageJson(dir, package_json$1) {
 }
 function sortObjectKeys(obj) {
 	const object_sorted = {};
-	for (const key of Object.keys(obj).sort()) object_sorted[key] = obj[key];
+	for (const key of Object.keys(obj).toSorted()) object_sorted[key] = obj[key];
 	return object_sorted;
 }
 
@@ -107,12 +105,11 @@ function sortObjectKeys(obj) {
 //#region src/shell.ts
 function shell(comamnd, ...args) {
 	return new Promise((resolve) => {
-		const ls = spawn(comamnd, args, { stdio: [
+		spawn(comamnd, args, { stdio: [
 			"pipe",
 			process.stdout,
 			process.stderr
-		] });
-		ls.on("close", (code) => {
+		] }).on("close", (code) => {
 			resolve(code);
 		});
 	});
@@ -162,3 +159,4 @@ console.log("To fix files formatting, run:");
 console.log("  bunx biome format --write");
 
 //#endregion
+export {  };
