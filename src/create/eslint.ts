@@ -9,16 +9,18 @@ export async function createEslintConfig(
 ) {
 	const lines: string[] = [];
 
-	lines.push(
-		"import { configCommon } from '@kirick/lint/eslint/common';",
-		"import { defineConfig } from 'eslint/config';",
-	);
+	lines.push("import { configCommon } from '@kirick/lint/eslint/common';");
 
 	if (options.is_node) {
 		lines.push("import { configNode } from '@kirick/lint/eslint/node';");
 	}
 
-	lines.push('', 'export default defineConfig([', '\t...configCommon,');
+	lines.push(
+		"import { defineConfig } from 'eslint/config';",
+		'',
+		'export default defineConfig([',
+		'\t...configCommon,',
+	);
 
 	if (options.is_node) {
 		lines.push('\t...configNode,');
