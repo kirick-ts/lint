@@ -1,5 +1,9 @@
 {
 	"rules": {
+		"eslint/class-methods-use-this": "warn",
+		"eslint/default-case": "error",
+		"eslint/no-alert": "error",
+		"eslint/no-bitwise": "error",
 		"eslint/no-console": "warn"
 	}
 }

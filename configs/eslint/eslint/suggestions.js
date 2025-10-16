@@ -17,12 +17,10 @@ export const configEslintSuggestions = [
 			'block-scoped-var': 'error',
 			// 'camelcase': 'off',
 			// 'capitalized-comments': 'off',
-			'class-methods-use-this': 'warn',
 			complexity: 'warn',
 			// 'consistent-return': 'off',
 			// 'consistent-this': 'off',
 			curly: 'error',
-			'default-case': 'error',
 			'default-case-last': 'error',
 			'default-param-last': 'error',
 			'dot-notation': 'error',
@@ -89,10 +87,7 @@ export const configEslintSuggestions = [
 					properties: false,
 				},
 			],
-			'no-alert': 'error',
 			'no-array-constructor': 'error',
-			'no-bitwise': 'error',
-			'no-caller': 'error', // Oxlint
 			'no-case-declarations': 'error',
 			'no-console': 'warn',
 			// 'no-continue': 'off',
@@ -217,7 +212,6 @@ export const configEslintSuggestions = [
 				},
 			],
 			'no-unused-labels': 'error',
-			// 'no-useless-call': 'off', // oxlint
 			'no-useless-catch': 'error',
 			'no-useless-computed-key': [
 				'error',

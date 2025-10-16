@@ -5,12 +5,7 @@ export const configTsEslint = [
 	{
 		files: ['**/*.ts'],
 		rules: {
-			'@typescript-eslint/max-params': [
-				'warn',
-				{
-					max: 4,
-				},
-			],
+			'@typescript-eslint/max-params': ['warn', { max: 4 }],
 			'@typescript-eslint/no-invalid-this': 'error',
 			'@typescript-eslint/no-unused-vars': [
 				'warn',
@@ -23,7 +18,7 @@ export const configTsEslint = [
 					varsIgnorePattern: '^_',
 					ignoreRestSiblings: true,
 				},
-			], // Oxlint
+			], // oxlint does not support options
 		},
 	},
 	// disable type-aware linting on JS files
