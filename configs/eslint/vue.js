@@ -14,17 +14,6 @@ export const configVue = [
 			'vue/component-definition-name-casing': ['error', 'kebab-case'],
 			'vue/html-indent': ['error', 'tab'],
 			'vue/html-self-closing': 'off',
-			'vue/max-attributes-per-line': [
-				'error',
-				{
-					singleline: {
-						max: 2,
-					},
-					multiline: {
-						max: 1,
-					},
-				},
-			],
 		},
 	},
 ];

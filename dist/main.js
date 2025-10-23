@@ -6,10 +6,12 @@ import { spawn } from "node:child_process";
 //#region src/create/eslint.ts
 async function createEslintConfig(dir, options) {
 	const lines = [];
-	lines.push("import { configCommon } from '@kirick/lint/eslint/common';", "import { defineConfig } from 'eslint/config';");
+	lines.push("import { configCommon } from '@kirick/lint/eslint/common';");
 	if (options.is_node) lines.push("import { configNode } from '@kirick/lint/eslint/node';");
-	lines.push("", "export default defineConfig([", "	...configCommon,");
+	if (options.is_vue) lines.push("import { configVue } from '@kirick/lint/eslint/vue';");
+	lines.push("import { defineConfig } from 'eslint/config';", "", "export default defineConfig([", "	...configCommon,");
 	if (options.is_node) lines.push("	...configNode,");
+	if (options.is_vue) lines.push("	...configVue,");
 	lines.push("]);", "");
 	await fs.writeFile(nodePath.join(dir, "eslint.config.js"), lines.join("\n"), "utf8");
 }
@@ -122,14 +124,16 @@ const DIR_LIB = nodePath.join(import.meta.dirname, "..");
 const [package_json, package_json_lint] = await Promise.all([readPackageJson(PWD), readPackageJson(DIR_LIB)]);
 if (!package_json_lint.dependencies) throw new TypeError("No dependencies found in @kirick/lint.");
 if (!package_json_lint.devDependencies) throw new TypeError("No devDependencies found in @kirick/lint.");
-const is_node = package_json_lint.devDependencies["@types/node"] !== void 0 || package_json_lint.devDependencies["@types/bun"] !== void 0;
 package_json.devDependencies ??= {};
+const is_node = package_json.devDependencies["@types/node"] !== void 0 || package_json.devDependencies["@types/bun"] !== void 0;
+const is_vue = package_json.devDependencies["vue-tsc"] !== void 0;
 delete package_json.devDependencies["@kirick/eslint-config"];
 for (const name of [
 	"@biomejs/biome",
 	"oxlint",
 	"typescript"
 ]) package_json.devDependencies[name] = package_json_lint.devDependencies[name];
+if (is_vue) package_json.devDependencies.prettier = package_json_lint.devDependencies.prettier;
 package_json.devDependencies.eslint = package_json_lint.dependencies.eslint;
 const script_lint = package_json_lint.scripts?.lint;
 if (!script_lint) throw new TypeError("No \"lint\" script found in @kirick/lint.");
@@ -147,7 +151,10 @@ await Promise.all([
 	fs.copyFile(nodePath.join(DIR_LIB, ".zed", "settings.json"), nodePath.join(PWD, ".zed", "settings.json")),
 	fs.copyFile(nodePath.join(DIR_LIB, ".vscode", "settings.json"), nodePath.join(PWD, ".vscode", "settings.json")),
 	fs.copyFile(nodePath.join(DIR_LIB, "biome.json"), nodePath.join(PWD, "biome.json")),
-	createEslintConfig(PWD, { is_node }),
+	createEslintConfig(PWD, {
+		is_node,
+		is_vue
+	}),
 	createTsConfig(PWD),
 	createOxlintConfig(PWD)
 ]);

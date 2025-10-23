@@ -26,18 +26,22 @@ if (!package_json_lint.devDependencies) {
 	throw new TypeError('No devDependencies found in @kirick/lint.');
 }
 
-const is_node =
-	package_json_lint.devDependencies['@types/node'] !== undefined
-	|| package_json_lint.devDependencies['@types/bun'] !== undefined;
-
-// 1. Update package.json
-// 1.1. Dependencies
 package_json.devDependencies ??= {};
+
+const is_node =
+	package_json.devDependencies['@types/node'] !== undefined
+	|| package_json.devDependencies['@types/bun'] !== undefined;
+const is_vue = package_json.devDependencies['vue-tsc'] !== undefined;
 
 delete package_json.devDependencies['@kirick/eslint-config'];
 
 for (const name of ['@biomejs/biome', 'oxlint', 'typescript']) {
 	package_json.devDependencies[name] = package_json_lint.devDependencies[name];
+}
+
+if (is_vue) {
+	package_json.devDependencies.prettier =
+		package_json_lint.devDependencies.prettier;
 }
 
 package_json.devDependencies.eslint = package_json_lint.dependencies.eslint;
@@ -84,7 +88,7 @@ await Promise.all([
 		nodePath.join(DIR_LIB, 'biome.json'),
 		nodePath.join(PWD, 'biome.json'),
 	),
-	createEslintConfig(PWD, { is_node }),
+	createEslintConfig(PWD, { is_node, is_vue }),
 	createTsConfig(PWD),
 	createOxlintConfig(PWD),
 ]);

@@ -5,7 +5,7 @@ import nodePath from 'node:path';
 
 export async function createEslintConfig(
 	dir: string,
-	options: { is_node: boolean },
+	options: { is_node: boolean; is_vue: boolean },
 ) {
 	const lines: string[] = [];
 
@@ -13,6 +13,10 @@ export async function createEslintConfig(
 
 	if (options.is_node) {
 		lines.push("import { configNode } from '@kirick/lint/eslint/node';");
+	}
+
+	if (options.is_vue) {
+		lines.push("import { configVue } from '@kirick/lint/eslint/vue';");
 	}
 
 	lines.push(
@@ -24,6 +28,10 @@ export async function createEslintConfig(
 
 	if (options.is_node) {
 		lines.push('\t...configNode,');
+	}
+
+	if (options.is_vue) {
+		lines.push('\t...configVue,');
 	}
 
 	lines.push(']);', '');
