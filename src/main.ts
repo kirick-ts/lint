@@ -58,7 +58,7 @@ if (is_vue) {
 		throw new TypeError('No "lint:prettier" script found in @kirick/lint.');
 	}
 
-	script_lint += `${script_lint_prettier} && `;
+	script_lint = `${script_lint_prettier} && ${script_lint}`;
 }
 
 package_json.scripts ??= {};
