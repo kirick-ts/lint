@@ -11,9 +11,17 @@ export const configVue = [
 		},
 		rules: {
 			'no-useless-assignment': 'off',
+			// Priority B: Strongly Recommended
 			'vue/component-definition-name-casing': ['error', 'kebab-case'],
-			'vue/html-indent': ['error', 'tab'],
+			'vue/first-attribute-linebreak': 'off',
+			'vue/html-closing-bracket-spacing': 'off',
+			'vue/html-indent': 'off',
+			'vue/html-quotes': 'off',
 			'vue/html-self-closing': 'off',
+			'vue/max-attributes-per-line': 'off',
+			'vue/multiline-html-element-content-newline': 'off',
+			'vue/prop-name-casing': ['error', 'snake_case'],
+			'vue/singleline-html-element-content-newline': 'off',
 		},
 	},
 ];
