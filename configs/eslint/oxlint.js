@@ -25,6 +25,7 @@ export const configOxlint = [
 	{
 		rules: {
 			'unicorn/no-empty-file': 'off',
+			'unicorn/no-nested-ternary': 'off',
 			'unicorn/prefer-array-find': 'off',
 			'unicorn/prefer-set-has': 'off',
 		},
