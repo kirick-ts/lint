@@ -14,6 +14,7 @@ export const configVue = [
 			// Priority B: Strongly Recommended
 			'vue/component-definition-name-casing': ['error', 'kebab-case'],
 			'vue/first-attribute-linebreak': 'off',
+			'vue/html-closing-bracket-newline': 'off',
 			'vue/html-closing-bracket-spacing': 'off',
 			'vue/html-indent': 'off',
 			'vue/html-quotes': 'off',
@@ -46,6 +47,14 @@ export const configVue = [
 			'vue/define-emits-declaration': ['error', 'type-based'],
 			'vue/define-props-declaration': ['error', 'type-based'],
 			'vue/next-tick-style': ['error', 'promise'],
+		},
+	},
+	// external rules
+	{
+		files: ['**/*.vue'],
+		rules: {
+			// import components alongside with named exports
+			'unicorn/no-named-default': 'off',
 		},
 	},
 ];
