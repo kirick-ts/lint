@@ -35,8 +35,7 @@
 			"tailwindDirectives": true
 		},
 		"formatter": {
-			"enabled": true,
-			"quoteStyle": "single"
+			"enabled": true
 		}
 	},
 	"html": {
