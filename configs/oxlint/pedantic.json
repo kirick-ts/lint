@@ -2,6 +2,7 @@
 	"rules": {
 		"eslint/no-fallthrough": "error",
 		"typescript/no-misused-promises": "off",
-		"typescript/no-unsafe-function-type": "error"
+		"typescript/no-unsafe-function-type": "error",
+		"unicorn/prefer-top-level-await": "error"
 	}
 }

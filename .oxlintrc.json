@@ -5,7 +5,8 @@
 		"./configs/oxlint/perf.json",
 		"./configs/oxlint/restriction.json",
 		"./configs/oxlint/suspicious.json",
-		"./configs/oxlint/pedantic.json"
+		"./configs/oxlint/pedantic.json",
+		"./configs/oxlint/style.json"
 	],
 	"ignorePatterns": ["dist"]
 }

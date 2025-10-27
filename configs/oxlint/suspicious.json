@@ -1,5 +1,6 @@
 {
 	"rules": {
+		"promise/always-return": "error",
 		"typescript/no-unnecessary-type-assertion": "off"
 	}
 }

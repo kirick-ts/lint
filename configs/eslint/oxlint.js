@@ -21,13 +21,11 @@ export const configOxlint = [
 			'no-useless-call': 'off',
 		},
 	},
-	// unicorn
+	// promise
 	{
 		rules: {
-			'unicorn/no-empty-file': 'off',
-			'unicorn/no-nested-ternary': 'off',
-			'unicorn/prefer-array-find': 'off',
-			'unicorn/prefer-set-has': 'off',
+			'promise/always-return': 'off',
+			'promise/no-nesting': 'off',
 		},
 	},
 	// tseslint
@@ -43,6 +41,16 @@ export const configOxlint = [
 			'@typescript-eslint/no-unsafe-function-type': 'off',
 			'@typescript-eslint/no-unused-vars': 'off',
 			'@typescript-eslint/no-wrapper-object-types': 'off',
+		},
+	},
+	// unicorn
+	{
+		rules: {
+			'unicorn/no-empty-file': 'off',
+			'unicorn/no-nested-ternary': 'off',
+			'unicorn/prefer-array-find': 'off',
+			'unicorn/prefer-set-has': 'off',
+			'unicorn/prefer-top-level-await': 'off',
 		},
 	},
 ];

@@ -1,0 +1,5 @@
+{
+	"rules": {
+		"promise/no-nesting": "warn"
+	}
+}
