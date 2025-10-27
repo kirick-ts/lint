@@ -42,7 +42,7 @@ export const configVue = [
 					},
 				},
 			],
-			'vue/component-api-style': ['error', 'script-setup'],
+			'vue/component-api-style': ['error', ['script-setup']],
 			'vue/define-emits-declaration': ['error', 'type-based'],
 			'vue/define-props-declaration': ['error', 'type-based'],
 			'vue/next-tick-style': ['error', 'promise'],
