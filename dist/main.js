@@ -156,6 +156,7 @@ await Promise.all([
 	fs.copyFile(nodePath.join(DIR_LIB, ".zed", "settings.json"), nodePath.join(PWD, ".zed", "settings.json")),
 	fs.copyFile(nodePath.join(DIR_LIB, ".vscode", "settings.json"), nodePath.join(PWD, ".vscode", "settings.json")),
 	fs.copyFile(nodePath.join(DIR_LIB, "biome.json"), nodePath.join(PWD, "biome.json")),
+	is_vue ? fs.copyFile(nodePath.join(DIR_LIB, ".prettierrc.json"), nodePath.join(PWD, ".prettierrc.json")) : null,
 	createEslintConfig(PWD, {
 		is_node,
 		is_vue
@@ -163,7 +164,7 @@ await Promise.all([
 	createTsConfig(PWD),
 	createOxlintConfig(PWD)
 ]);
-await shell("bunx", "biome", "format", "--fix", ".oxlintrc.json", "biome.json", "eslint.config.js", "package.json", "tsconfig.json");
+await shell("bunx", "biome", "format", "--fix", ".oxlintrc.json", "biome.json", "eslint.config.js", "package.json", "tsconfig.json", ...is_vue ? [".prettierrc.json"] : []);
 console.log();
 console.log("To check files formatting, run:");
 console.log("  bunx biome format");

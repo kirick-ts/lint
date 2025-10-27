@@ -1,0 +1,9 @@
+{
+	"useTabs": true,
+	"printWidth": 80,
+	"singleQuote": true,
+	"objectWrap": "collapse",
+	"vueIndentScriptAndStyle": false,
+	"singleAttributePerLine": false,
+	"experimentalOperatorPosition": "start"
+}
