@@ -6,6 +6,7 @@
 		"eslint/no-bitwise": "error",
 		"eslint/no-console": "warn",
 		"eslint/no-empty-function": "warn",
+		"promise/catch-or-return": "error",
 		"typescript/no-empty-object-type": "error",
 		"typescript/no-explicit-any": "error"
 	}

@@ -1,5 +1,7 @@
 {
 	"rules": {
-		"promise/no-nesting": "warn"
+		"promise/no-return-wrap": "error",
+		"promise/no-nesting": "warn",
+		"promise/param-names": "error"
 	}
 }

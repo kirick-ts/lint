@@ -40,7 +40,8 @@
 		"lint": "biome format && oxlint && eslint . && tsc",
 		"lint:prettier": "prettier --check **/*.vue",
 		"test": "echo 'No tests available'",
-		"# postinstall": "bun run --bun dist/main.js"
+		"# postinstall": "bun run --bun dist/main.js",
+		"rules": "eslint --print-config test/main.ts | jq -r '.rules|to_entries[]|select(.value[0]==1 or .value[0]==2)|.key'"
 	},
 	"repository": {
 		"type": "git",

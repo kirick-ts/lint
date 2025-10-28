@@ -25,7 +25,14 @@ export const configOxlint = [
 	{
 		rules: {
 			'promise/always-return': 'off',
+			'promise/catch-or-return': 'off',
+			'promise/no-callback-in-promise': 'off',
+			'promise/no-new-statics': 'off',
+			'promise/no-promise-in-callback': 'off',
+			'promise/no-return-wrap': 'off',
 			'promise/no-nesting': 'off',
+			'promise/param-names': 'off',
+			'promise/valid-params': 'off',
 		},
 	},
 	// tseslint
