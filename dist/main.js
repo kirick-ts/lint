@@ -22,8 +22,11 @@ async function createOxlintConfig(dir) {
 		$schema: "./node_modules/oxlint/configuration_schema.json",
 		extends: [
 			"./node_modules/@kirick/lint/configs/oxlint/correctness.json",
+			"./node_modules/@kirick/lint/configs/oxlint/pedantic.json",
 			"./node_modules/@kirick/lint/configs/oxlint/perf.json",
-			"./node_modules/@kirick/lint/configs/oxlint/restriction.json"
+			"./node_modules/@kirick/lint/configs/oxlint/restriction.json",
+			"./node_modules/@kirick/lint/configs/oxlint/style.json",
+			"./node_modules/@kirick/lint/configs/oxlint/suspicious.json"
 		],
 		ignorePatterns: ["dist"]
 	}, null, "	"), "utf8");
