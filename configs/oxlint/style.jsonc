@@ -33,6 +33,7 @@
 		"eslint/prefer-rest-params": "error",
 		"eslint/prefer-spread": "error",
 		"eslint/yoda": "error",
+		"node/no-exports-assign": "error",
 		"promise/no-return-wrap": "error",
 		"promise/no-nesting": "warn",
 		"promise/param-names": "error",

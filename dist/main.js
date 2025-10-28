@@ -7,11 +7,12 @@ import { spawn } from "node:child_process";
 async function createEslintConfig(dir, options) {
 	const lines = ["import { configCommon } from '@kirick/lint/eslint/common';"];
 	if (options.is_node) lines.push("import { configNode } from '@kirick/lint/eslint/node';");
+	lines.push("import { configOxlint } from '@kirick/lint/eslint/oxlint';");
 	if (options.is_vue) lines.push("import { configVue } from '@kirick/lint/eslint/vue';");
 	lines.push("import { defineConfig } from 'eslint/config';", "", "export default defineConfig([", "	...configCommon,");
 	if (options.is_node) lines.push("	...configNode,");
 	if (options.is_vue) lines.push("	...configVue,");
-	lines.push("]);", "");
+	lines.push("	...configOxlint,", "]);", "");
 	await fs.writeFile(nodePath.join(dir, "eslint.config.js"), lines.join("\n"), "utf8");
 }
 

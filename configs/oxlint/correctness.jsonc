@@ -13,6 +13,13 @@
 		"eslint/require-yield": "error",
 		"eslint/use-isnan": "error",
 		"eslint/valid-typeof": "off", // handled by typescript
+		"jsdoc/check-property-names": "error",
+		"jsdoc/check-tag-names": "error",
+		"jsdoc/no-defaults": "error",
+		"jsdoc/require-property": "error",
+		"jsdoc/require-property-description": "warn",
+		"jsdoc/require-property-name": "error",
+		"jsdoc/require-yields": "error",
 		"promise/no-callback-in-promise": "error",
 		"promise/no-new-statics": "error",
 		"promise/valid-params": "off", // handled by typescript

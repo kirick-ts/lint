@@ -9,6 +9,8 @@
 		"eslint/no-empty-function": "warn",
 		"eslint/no-var": "error",
 		"eslint/no-void": "error",
+		"jsdoc/empty-tags": "error",
+		"node/no-new-require": "error",
 		"promise/catch-or-return": "error",
 		"typescript/no-empty-object-type": "error",
 		"typescript/no-explicit-any": "error",

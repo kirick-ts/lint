@@ -15,6 +15,8 @@ export async function createEslintConfig(
 		lines.push("import { configNode } from '@kirick/lint/eslint/node';");
 	}
 
+	lines.push("import { configOxlint } from '@kirick/lint/eslint/oxlint';");
+
 	if (options.is_vue) {
 		lines.push("import { configVue } from '@kirick/lint/eslint/vue';");
 	}
@@ -34,7 +36,7 @@ export async function createEslintConfig(
 		lines.push('\t...configVue,');
 	}
 
-	lines.push(']);', '');
+	lines.push('\t...configOxlint,', ']);', '');
 
 	await fs.writeFile(
 		nodePath.join(dir, 'eslint.config.js'),

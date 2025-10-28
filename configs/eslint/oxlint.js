@@ -47,6 +47,33 @@ export const configOxlint = [
 			yoda: 'off',
 		},
 	},
+	// jsdoc
+	{
+		rules: {
+			'jsdoc/check-access': 'off',
+			'jsdoc/check-property-names': 'off',
+			'jsdoc/check-tag-names': 'off',
+			'jsdoc/empty-tags': 'off',
+			'jsdoc/implements-on-classes': 'off',
+			'jsdoc/no-defaults': 'off',
+			'jsdoc/require-param': 'off',
+			'jsdoc/require-param-description': 'off',
+			'jsdoc/require-param-name': 'off',
+			'jsdoc/require-property': 'off',
+			'jsdoc/require-property-description': 'off',
+			'jsdoc/require-property-name': 'off',
+			'jsdoc/require-returns': 'off',
+			'jsdoc/require-returns-description': 'off',
+			'jsdoc/require-yields': 'off',
+		},
+	},
+	// node
+	{
+		rules: {
+			'n/no-exports-assign': 'off',
+			'n/no-new-require': 'off',
+		},
+	},
 	// promise
 	{
 		rules: {
@@ -61,7 +88,7 @@ export const configOxlint = [
 			'promise/valid-params': 'off',
 		},
 	},
-	// tseslint
+	// typescript
 	{
 		rules: {
 			'@typescript-eslint/explicit-function-return-type': 'off',

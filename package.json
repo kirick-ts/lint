@@ -9,6 +9,7 @@
 	"exports": {
 		"./eslint/common": "./configs/eslint/common.js",
 		"./eslint/node": "./configs/eslint/node.js",
+		"./eslint/oxlint": "./configs/eslint/oxlint.js",
 		"./eslint/vue": "./configs/eslint/vue.js"
 	},
 	"engines": {
@@ -42,7 +43,7 @@
 		"lint:prettier": "prettier --check **/*.vue",
 		"test": "echo 'No tests available'",
 		"# postinstall": "bun run --bun dist/main.js",
-		"rules": "eslint --print-config test/main.ts | jq -r '.rules|to_entries[]|select(.value[0]==1 or .value[0]==2)|\"\\(.key) \\(.value[0])\"' | sort"
+		"rules": "bun test/rules.ts"
 	},
 	"repository": {
 		"type": "git",

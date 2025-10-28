@@ -10,6 +10,15 @@ const SEVERITY_CODE = [
 
 const github_response = await fetch(
 	'https://api.github.com/repos/oxc-project/oxc/git/trees/main?recursive=1',
+	{
+		headers: {
+			Authorization:
+				typeof process.env.GITHUB_TOKEN === 'string'
+					? `Bearer ${process.env.GITHUB_TOKEN}`
+					: '',
+		},
+		cache: 'force-cache',
+	},
 );
 
 const rules_supported = v.parse(
@@ -88,7 +97,7 @@ const rules = v.parse(
 			value.filter(({ oxlint_rule }) => rules_supported.has(oxlint_rule)),
 		),
 		v.transform((value) => {
-			const [filter] = process.argv[2];
+			const filter = process.argv[2];
 			if (typeof filter === 'string') {
 				return value.filter(({ oxlint_rule }) =>
 					oxlint_rule.startsWith(`${filter}/`),
