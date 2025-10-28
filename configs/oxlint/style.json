@@ -17,7 +17,7 @@
 		"unicorn/no-null": "off",
 		"unicorn/no-unreadable-array-destructuring": "error",
 		"unicorn/no-zero-fractions": "error",
-		"unicorn/number-literal-case": "warn",
+		"unicorn/number-literal-case": "off",
 		"unicorn/numeric-separators-style": [
 			"warn",
 			{ "onlyIfContainsSeparator": true }

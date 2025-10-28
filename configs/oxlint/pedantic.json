@@ -25,7 +25,7 @@
 		"unicorn/no-unreadable-iife": "error",
 		"unicorn/no-useless-promise-resolve-reject": "error",
 		"unicorn/no-useless-switch-case": "error",
-		"unicorn/no-useless-undefined": "warn",
+		"unicorn/no-useless-undefined": "off",
 		"unicorn/prefer-array-flat": "error",
 		"unicorn/prefer-array-some": "error",
 		"unicorn/prefer-at": "error",
