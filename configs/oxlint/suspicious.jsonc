@@ -1,9 +1,11 @@
 {
 	"$schema": "../../node_modules/oxlint/configuration_schema.json",
 	"rules": {
+		"eslint/no-useless-concat": "error",
+		"eslint/no-useless-constructor": "error",
 		"promise/always-return": "error",
 		"promise/no-promise-in-callback": "error",
-		"typescript/no-unnecessary-type-assertion": "off",
+		"typescript/no-unnecessary-type-assertion": "off", // TODO: requires type information
 		"unicorn/consistent-function-scoping": "error",
 		"unicorn/no-accessor-recursion": "error",
 		"unicorn/no-array-reverse": "error",

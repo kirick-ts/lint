@@ -6,10 +6,17 @@
 		"eslint/no-caller": "error",
 		"eslint/no-constant-condition": "error",
 		"eslint/no-unused-vars": "warn",
+		"eslint/no-useless-backreference": "error",
+		"eslint/no-useless-catch": "error",
+		"eslint/no-useless-escape": "error",
+		"eslint/no-useless-rename": "error",
+		"eslint/require-yield": "error",
+		"eslint/use-isnan": "error",
+		"eslint/valid-typeof": "off", // handled by typescript
 		"promise/no-callback-in-promise": "error",
 		"promise/no-new-statics": "error",
-		"promise/valid-params": "off",
-		"typescript/no-floating-promises": "off",
+		"promise/valid-params": "off", // handled by typescript
+		"typescript/no-floating-promises": "off", // TODO: requires type information
 		"typescript/no-wrapper-object-types": "error",
 		"unicorn/no-await-in-promise-methods": "error",
 		"unicorn/no-empty-file": "error",

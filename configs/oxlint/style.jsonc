@@ -1,6 +1,38 @@
 {
 	"$schema": "../../node_modules/oxlint/configuration_schema.json",
 	"rules": {
+		"eslint/no-useless-computed-key": [
+			"error",
+			{ "enforceForClassMembers": true }
+		],
+		"eslint/operator-assignment": ["error", "always"],
+		"eslint/prefer-destructuring": [
+			"error",
+			{
+				// `array` is disabled because of stupid stuff like `foo.bar = process.argv[2];`
+				"VariableDeclarator": {
+					"array": false,
+					"object": true
+				},
+				"AssignmentExpression": {
+					"array": false,
+					// Disabled because object assignment destructuring requires parens wrapping:
+					// `let foo; ({foo} = object);`
+					"object": false
+				}
+			},
+			{
+				"enforceForRenamedProperties": false
+			}
+		],
+		"eslint/prefer-exponentiation-operator": "error",
+		"eslint/prefer-numeric-literals": "error",
+		"eslint/prefer-object-has-own": "error",
+		"eslint/prefer-object-spread": "error",
+		"eslint/prefer-promise-reject-errors": "error",
+		"eslint/prefer-rest-params": "error",
+		"eslint/prefer-spread": "error",
+		"eslint/yoda": "error",
 		"promise/no-return-wrap": "error",
 		"promise/no-nesting": "warn",
 		"promise/param-names": "error",
@@ -14,10 +46,10 @@
 		"unicorn/no-await-expression-member": "error",
 		"unicorn/no-console-spaces": "error",
 		"unicorn/no-for-loop": "error",
-		"unicorn/no-null": "off",
+		"unicorn/no-null": "off", // enormous stupidity
 		"unicorn/no-unreadable-array-destructuring": "error",
 		"unicorn/no-zero-fractions": "error",
-		"unicorn/number-literal-case": "off",
+		"unicorn/number-literal-case": "off", // formatted by biome
 		"unicorn/numeric-separators-style": [
 			"warn",
 			{ "onlyIfContainsSeparator": true }

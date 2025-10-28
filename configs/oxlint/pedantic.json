@@ -2,6 +2,10 @@
 	"$schema": "../../node_modules/oxlint/configuration_schema.json",
 	"rules": {
 		"eslint/no-fallthrough": "error",
+		"eslint/no-warning-comments": "warn",
+		"eslint/radix": "error",
+		"eslint/require-await": "error",
+		"eslint/symbol-description": "error",
 		"typescript/no-misused-promises": "off",
 		"typescript/no-unsafe-function-type": "error",
 		"unicorn/consistent-assert": "error",
