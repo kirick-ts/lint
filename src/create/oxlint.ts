@@ -10,12 +10,12 @@ export async function createOxlintConfig(
 	const config = {
 		$schema: './node_modules/oxlint/configuration_schema.json',
 		extends: [
-			'./node_modules/@kirick/lint/configs/oxlint/correctness.json',
-			'./node_modules/@kirick/lint/configs/oxlint/pedantic.json',
-			'./node_modules/@kirick/lint/configs/oxlint/perf.json',
-			'./node_modules/@kirick/lint/configs/oxlint/restriction.json',
-			'./node_modules/@kirick/lint/configs/oxlint/style.json',
-			'./node_modules/@kirick/lint/configs/oxlint/suspicious.json',
+			'./node_modules/@kirick/lint/configs/oxlint/correctness.jsonc',
+			'./node_modules/@kirick/lint/configs/oxlint/pedantic.jsonc',
+			'./node_modules/@kirick/lint/configs/oxlint/perf.jsonc',
+			'./node_modules/@kirick/lint/configs/oxlint/restriction.jsonc',
+			'./node_modules/@kirick/lint/configs/oxlint/style.jsonc',
+			'./node_modules/@kirick/lint/configs/oxlint/suspicious.jsonc',
 		],
 		ignorePatterns: ['dist'],
 	};
