@@ -24,8 +24,8 @@ export const configOxlint = [
 	// promise
 	{
 		rules: {
-			'promise/always-return': 'off',
-			'promise/catch-or-return': 'off',
+			// 'promise/always-return': 'off', // bugged in oxlint
+			// 'promise/catch-or-return': 'off', // bugged in oxlint
 			'promise/no-callback-in-promise': 'off',
 			'promise/no-new-statics': 'off',
 			'promise/no-promise-in-callback': 'off',

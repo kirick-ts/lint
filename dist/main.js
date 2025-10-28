@@ -127,7 +127,7 @@ const [package_json, package_json_lint] = await Promise.all([readPackageJson(PWD
 if (!package_json_lint.dependencies) throw new TypeError("No dependencies found in @kirick/lint.");
 if (!package_json_lint.devDependencies) throw new TypeError("No devDependencies found in @kirick/lint.");
 package_json.devDependencies ??= {};
-const is_node = package_json.devDependencies["@types/node"] !== void 0 || package_json.devDependencies["@types/bun"] !== void 0;
+const is_node = (package_json.devDependencies["@types/node"] !== void 0 || package_json.devDependencies["@types/bun"] !== void 0) && package_json.devDependencies["vue-tsc"] === void 0;
 const is_vue = package_json.devDependencies["vue-tsc"] !== void 0;
 delete package_json.devDependencies["@kirick/eslint-config"];
 for (const name of [
@@ -146,8 +146,11 @@ if (is_vue) {
 }
 package_json.scripts ??= {};
 if (package_json.scripts.lint) {
-	const index = package_json.scripts.lint.indexOf("tsc");
-	if (index !== -1) package_json.scripts.lint = script_lint + package_json.scripts.lint.slice(index + 3);
+	const match = package_json.scripts.lint.match(/(?:vue-)?tsc/);
+	if (match === null) {
+		console.warn("Unexpected \"lint\" script format. Update it by hand to:");
+		console.warn(">", script_lint);
+	} else package_json.scripts.lint = script_lint + package_json.scripts.lint.slice(match.index + match[0].length);
 } else package_json.scripts.lint = script_lint;
 await writePackageJson(PWD, package_json);
 await shell("bun", "install");

@@ -29,8 +29,9 @@ if (!package_json_lint.devDependencies) {
 package_json.devDependencies ??= {};
 
 const is_node =
-	package_json.devDependencies['@types/node'] !== undefined
-	|| package_json.devDependencies['@types/bun'] !== undefined;
+	(package_json.devDependencies['@types/node'] !== undefined
+		|| package_json.devDependencies['@types/bun'] !== undefined)
+	&& package_json.devDependencies['vue-tsc'] === undefined;
 const is_vue = package_json.devDependencies['vue-tsc'] !== undefined;
 
 delete package_json.devDependencies['@kirick/eslint-config'];
@@ -63,10 +64,14 @@ if (is_vue) {
 
 package_json.scripts ??= {};
 if (package_json.scripts.lint) {
-	const index = package_json.scripts.lint.indexOf('tsc');
-	if (index !== -1) {
+	const match = package_json.scripts.lint.match(/(?:vue-)?tsc/);
+	if (match === null) {
+		console.warn('Unexpected "lint" script format. Update it by hand to:');
+		console.warn('>', script_lint);
+	} else {
 		package_json.scripts.lint =
-			script_lint + package_json.scripts.lint.slice(index + 3);
+			script_lint
+			+ package_json.scripts.lint.slice(match.index! + match[0].length);
 	}
 } else {
 	package_json.scripts.lint = script_lint;
