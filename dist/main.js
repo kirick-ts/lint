@@ -5,8 +5,7 @@ import { spawn } from "node:child_process";
 
 //#region src/create/eslint.ts
 async function createEslintConfig(dir, options) {
-	const lines = [];
-	lines.push("import { configCommon } from '@kirick/lint/eslint/common';");
+	const lines = ["import { configCommon } from '@kirick/lint/eslint/common';"];
 	if (options.is_node) lines.push("import { configNode } from '@kirick/lint/eslint/node';");
 	if (options.is_vue) lines.push("import { configVue } from '@kirick/lint/eslint/vue';");
 	lines.push("import { defineConfig } from 'eslint/config';", "", "export default defineConfig([", "	...configCommon,");

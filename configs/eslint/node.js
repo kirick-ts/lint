@@ -23,7 +23,7 @@ export const configNode = [
 			'n/no-new-require': 'error',
 			'n/no-path-concat': 'error',
 			// 'n/no-process-env': 'off',
-			'n/no-process-exit': 'error',
+			'n/no-process-exit': 'off', // using unicorn/no-process-exit
 			// 'n/no-restricted-import': 'off',
 			// 'n/no-restricted-require': 'off',
 			'n/no-sync': 'off', // fails with "You have used a rule which requires type information..."

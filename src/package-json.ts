@@ -1,7 +1,5 @@
 /* eslint-disable jsdoc/require-jsdoc */
-/* eslint-disable n/no-process-exit */
-/* eslint-disable unicorn/no-process-exit */
-/* oxlint-disable no-console */
+/* oxlint-disable no-console, unicorn/no-process-exit */
 
 import fs from 'node:fs/promises';
 import nodePath from 'node:path';

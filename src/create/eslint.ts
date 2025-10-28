@@ -7,9 +7,9 @@ export async function createEslintConfig(
 	dir: string,
 	options: { is_node: boolean; is_vue: boolean },
 ) {
-	const lines: string[] = [];
-
-	lines.push("import { configCommon } from '@kirick/lint/eslint/common';");
+	const lines: string[] = [
+		"import { configCommon } from '@kirick/lint/eslint/common';",
+	];
 
 	if (options.is_node) {
 		lines.push("import { configNode } from '@kirick/lint/eslint/node';");
