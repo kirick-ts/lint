@@ -11,12 +11,12 @@ export const configOxlint = [
 			'default-param-last': 'off',
 			eqeqeq: 'off',
 			'for-direction': 'off',
-			// 'func-names': 'off',
+			// 'func-names': 'off', // bugged in oxlint
 			'func-style': 'off',
 			'grouped-accessor-pairs': 'off',
 			'guard-for-in': 'off',
 			'max-depth': 'off',
-			'max-lines': 'off',
+			// 'max-lines': 'off', // turn off for all except .vue
 			'max-lines-per-function': 'off',
 			'max-nested-callbacks': 'off',
 			'new-cap': 'off',
@@ -118,6 +118,13 @@ export const configOxlint = [
 			'use-isnan': 'off',
 			'valid-typeof': 'off',
 			yoda: 'off',
+		},
+	},
+	{
+		ignores: ['**/*.vue'],
+		rules: {
+			// oxlint does not report for vue files
+			'max-lines': 'off',
 		},
 	},
 	// jsdoc
