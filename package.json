@@ -15,22 +15,22 @@
 		"node": ">=22.16"
 	},
 	"dependencies": {
-		"@stylistic/eslint-plugin": "5.4.0",
-		"eslint": "9.37.0",
-		"eslint-plugin-jsdoc": "61.1.4",
+		"@stylistic/eslint-plugin": "5.5.0",
+		"eslint": "9.38.0",
+		"eslint-plugin-jsdoc": "61.1.9",
 		"eslint-plugin-n": "17.23.1",
 		"eslint-plugin-promise": "7.2.1",
-		"eslint-plugin-unicorn": "61.0.2",
+		"eslint-plugin-unicorn": "62.0.0",
 		"eslint-plugin-vue": "10.5.1",
-		"typescript-eslint": "8.46.1"
+		"typescript-eslint": "8.46.2"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.3.1",
-		"@types/node": "24.7.2",
-		"oxlint": "1.23.0",
+		"@types/node": "^24",
+		"oxlint": "1.24.0",
 		"prettier": "3.6.2",
-		"publint": "0.3.14",
-		"tsdown": "0.15.7",
+		"publint": "0.3.15",
+		"tsdown": "0.15.11",
 		"type-fest": "5.1.0",
 		"typescript": "5.9.3"
 	},
