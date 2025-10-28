@@ -9,11 +9,21 @@
 		"eslint/no-empty-function": "warn",
 		"eslint/no-var": "error",
 		"eslint/no-void": "error",
+
 		"jsdoc/empty-tags": "error",
+
 		"node/no-new-require": "error",
+
+		"oxc/bad-bitwise-operator": "error",
+		"oxc/no-const-enum": "error",
+
 		"promise/catch-or-return": "error",
+
 		"typescript/no-empty-object-type": "error",
 		"typescript/no-explicit-any": "error",
+		"typescript/no-namespace": "error",
+		"typescript/no-require-imports": "error",
+
 		"unicorn/no-abusive-eslint-disable": "error",
 		"unicorn/no-anonymous-default-export": "error",
 		"unicorn/no-array-for-each": "error",

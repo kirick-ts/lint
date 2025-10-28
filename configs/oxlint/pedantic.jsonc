@@ -6,13 +6,17 @@
 		"eslint/radix": "error",
 		"eslint/require-await": "error",
 		"eslint/symbol-description": "error",
+
 		"jsdoc/require-param": "error",
 		"jsdoc/require-param-description": "warn",
 		"jsdoc/require-param-name": "warn",
 		"jsdoc/require-returns": "error",
 		"jsdoc/require-returns-description": "warn",
-		"typescript/no-misused-promises": "off",
+
+		"typescript/ban-ts-comment": "error",
+		"typescript/no-misused-promises": "off", // TODO: requires type information
 		"typescript/no-unsafe-function-type": "error",
+
 		"unicorn/consistent-assert": "error",
 		"unicorn/consistent-empty-array-spread": "error",
 		"unicorn/escape-case": "error",

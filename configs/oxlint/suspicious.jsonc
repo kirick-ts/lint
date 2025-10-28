@@ -3,9 +3,15 @@
 	"rules": {
 		"eslint/no-useless-concat": "error",
 		"eslint/no-useless-constructor": "error",
+
+		"oxc/misrefactored-assign-op": "error",
+
 		"promise/always-return": "error",
 		"promise/no-promise-in-callback": "error",
+
 		"typescript/no-unnecessary-type-assertion": "off", // TODO: requires type information
+		"typescript/no-unnecessary-type-constraint": "error",
+
 		"unicorn/consistent-function-scoping": "error",
 		"unicorn/no-accessor-recursion": "error",
 		"unicorn/no-array-reverse": "error",
