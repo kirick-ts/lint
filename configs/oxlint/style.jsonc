@@ -5,7 +5,7 @@
 		"eslint/curly": ["error", "all"],
 		"eslint/default-case-last": "error",
 		"eslint/default-param-last": "off", // passing undefined as default parameter is good actually?
-		"eslint/func-names": ["error", "never"],
+		"eslint/func-names": "off", // ["error", "never"], // bugged in oxlint (triggers on overloads)
 		"eslint/func-style": ["error", "declaration"],
 		"eslint/grouped-accessor-pairs": ["error", "getBeforeSet"],
 		"eslint/guard-for-in": "error",
@@ -21,10 +21,7 @@
 		"eslint/no-return-assign": "error",
 		"eslint/no-script-url": "error",
 		"eslint/no-template-curly-in-string": "error",
-		"eslint/no-useless-computed-key": [
-			"error",
-			{ "enforceForClassMembers": true }
-		],
+		"eslint/no-useless-computed-key": "off", // sometimes it's useful when setting number type to key
 		"eslint/operator-assignment": ["error", "always"],
 		"eslint/prefer-destructuring": [
 			"error",

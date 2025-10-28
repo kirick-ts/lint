@@ -11,7 +11,7 @@ export const configOxlint = [
 			'default-param-last': 'off',
 			eqeqeq: 'off',
 			'for-direction': 'off',
-			'func-names': 'off',
+			// 'func-names': 'off',
 			'func-style': 'off',
 			'grouped-accessor-pairs': 'off',
 			'guard-for-in': 'off',
