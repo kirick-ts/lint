@@ -70,7 +70,7 @@ if (package_json.scripts.lint) {
 		console.warn('>', script_lint);
 	} else {
 		package_json.scripts.lint =
-			script_lint
+			script_lint.replace(/tsc$/, match[0])
 			+ package_json.scripts.lint.slice(match.index! + match[0].length);
 	}
 } else {
