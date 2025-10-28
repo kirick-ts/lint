@@ -1,7 +1,37 @@
 {
 	"$schema": "../../node_modules/oxlint/configuration_schema.json",
 	"rules": {
+		"eslint/eqeqeq": ["error", "always"],
+		"eslint/max-depth": "warn",
+		"eslint/max-lines": [
+			"warn",
+			{
+				"max": 300,
+				"skipBlankLines": true,
+				"skipComments": true
+			}
+		],
+		"eslint/max-lines-per-function": [
+			"warn",
+			{
+				"max": 100,
+				"skipBlankLines": true,
+				"skipComments": true,
+				"IIFEs": true
+			}
+		],
+		"eslint/max-nested-callbacks": ["error", 3],
+		"eslint/no-case-declarations": "error",
+		"eslint/no-constructor-return": "error",
 		"eslint/no-fallthrough": "error",
+		"eslint/no-else-return": ["error", { "allowElseIf": false }],
+		"eslint/no-inner-declarations": "error",
+		"eslint/no-lonely-if": "error",
+		"eslint/no-new-wrappers": "error",
+		"eslint/no-object-constructor": "error",
+		"eslint/no-prototype-builtins": "error",
+		"eslint/no-self-compare": "error",
+		"eslint/no-throw-literal": "error",
 		"eslint/no-warning-comments": "warn",
 		"eslint/radix": "error",
 		"eslint/require-await": "error",

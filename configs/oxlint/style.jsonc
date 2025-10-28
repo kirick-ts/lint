@@ -1,6 +1,26 @@
 {
 	"$schema": "../../node_modules/oxlint/configuration_schema.json",
 	"rules": {
+		"eslint/arrow-body-style": ["error", "as-needed"],
+		"eslint/curly": ["error", "all"],
+		"eslint/default-case-last": "error",
+		"eslint/default-param-last": "off", // passing undefined as default parameter is good actually?
+		"eslint/func-names": ["error", "never"],
+		"eslint/func-style": ["error", "declaration"],
+		"eslint/grouped-accessor-pairs": ["error", "getBeforeSet"],
+		"eslint/guard-for-in": "error",
+		"eslint/new-cap": "error",
+		"eslint/no-duplicate-imports": "off", // formatted by biome
+		"eslint/no-extra-label": "error",
+		"eslint/no-label-var": "error",
+		"eslint/no-labels": "error",
+		"eslint/no-lone-blocks": "error",
+		"eslint/no-multi-assign": "error",
+		"eslint/no-multi-str": "error",
+		"eslint/no-new-func": "error",
+		"eslint/no-return-assign": "error",
+		"eslint/no-script-url": "error",
+		"eslint/no-template-curly-in-string": "error",
 		"eslint/no-useless-computed-key": [
 			"error",
 			{ "enforceForClassMembers": true }

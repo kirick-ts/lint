@@ -7,6 +7,12 @@
 		"eslint/no-bitwise": "error",
 		"eslint/no-console": "warn",
 		"eslint/no-empty-function": "warn",
+		"eslint/no-empty": ["error", { "allowEmptyCatch": true }],
+		"eslint/no-eq-null": "off", // duplicate of eslint/eqeqeq
+		"eslint/no-iterator": "error",
+		"eslint/no-proto": "error",
+		"eslint/no-regex-spaces": "error",
+		"eslint/no-restricted-imports": "error",
 		"eslint/no-var": "error",
 		"eslint/no-void": "error",
 

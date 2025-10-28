@@ -1,6 +1,12 @@
 {
 	"$schema": "../../node_modules/oxlint/configuration_schema.json",
 	"rules": {
+		"eslint/block-scoped-var": "off", // var is disabled
+		"eslint/no-extend-native": "error",
+		"eslint/no-extra-bind": "error",
+		"eslint/no-new": "error",
+		"eslint/no-unexpected-multiline": "off", // formatted by biome
+		"eslint/no-unneeded-ternary": "error",
 		"eslint/no-useless-concat": "error",
 		"eslint/no-useless-constructor": "error",
 
