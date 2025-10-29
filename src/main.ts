@@ -123,7 +123,9 @@ await shell(
 	'eslint.config.js',
 	'package.json',
 	'tsconfig.json',
-	'tsconfig.*.json',
+	...((await Bun.file(nodePath.join(PWD, 'tsconfig.base.json')).exists())
+		? ['tsconfig.base.json']
+		: []),
 	...(is_vue ? ['.prettierrc.json'] : []),
 );
 

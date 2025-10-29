@@ -40,10 +40,11 @@ const PATH = nodePath.join(import.meta.dirname, "..");
 //#endregion
 //#region src/create/tsconfig.ts
 const PRESERVE_USER_OPTIONS = [
-	"lib",
+	"importHelpers",
 	"isolatedDeclarations",
+	"lib",
 	"paths",
-	"importHelpers"
+	"tsBuildInfoFile"
 ];
 async function createTsConfig(dir) {
 	const tsconfig_lint = await readTsconfigJson(nodePath.join(PATH, "configs", "tsconfig.example.json"));
@@ -68,6 +69,9 @@ async function createTsConfig(dir) {
 			compiler_options_new[key] = tsconfig_pwd.compilerOptions?.[key];
 			break;
 		case "importHelpers":
+			compiler_options_new[key] = tsconfig_pwd.compilerOptions?.[key];
+			break;
+		case "tsBuildInfoFile":
 			compiler_options_new[key] = tsconfig_pwd.compilerOptions?.[key];
 			break;
 	}
@@ -174,7 +178,7 @@ await Promise.all([
 	createTsConfig(PWD),
 	createOxlintConfig(PWD)
 ]);
-await shell("bunx", "biome", "format", "--fix", ".oxlintrc.json", "biome.json", "eslint.config.js", "package.json", "tsconfig.json", "tsconfig.*.json", ...is_vue ? [".prettierrc.json"] : []);
+await shell("bunx", "biome", "format", "--fix", ".oxlintrc.json", "biome.json", "eslint.config.js", "package.json", "tsconfig.json", ...await Bun.file(nodePath.join(PWD, "tsconfig.base.json")).exists() ? ["tsconfig.base.json"] : [], ...is_vue ? [".prettierrc.json"] : []);
 console.log();
 console.log("To check files formatting, run:");
 console.log("  bunx biome format");

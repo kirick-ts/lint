@@ -8,10 +8,11 @@ import { PATH } from '../utils.js';
 
 // Special handling for options that should be overridden from user config if available
 const PRESERVE_USER_OPTIONS = [
-	'lib',
-	'isolatedDeclarations',
-	'paths',
 	'importHelpers',
+	'isolatedDeclarations',
+	'lib',
+	'paths',
+	'tsBuildInfoFile',
 ] as const;
 
 export async function createTsConfig(dir: string) {
@@ -62,6 +63,9 @@ export async function createTsConfig(dir: string) {
 				compiler_options_new[key] = tsconfig_pwd.compilerOptions?.[key];
 				break;
 			case 'importHelpers':
+				compiler_options_new[key] = tsconfig_pwd.compilerOptions?.[key];
+				break;
+			case 'tsBuildInfoFile':
 				compiler_options_new[key] = tsconfig_pwd.compilerOptions?.[key];
 				break;
 			// no default
