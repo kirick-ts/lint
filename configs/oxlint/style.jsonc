@@ -1,7 +1,13 @@
 {
 	"$schema": "../../node_modules/oxlint/configuration_schema.json",
 	"rules": {
-		"eslint/arrow-body-style": ["error", "as-needed"],
+		"eslint/arrow-body-style": [
+			"error",
+			"as-needed",
+			{
+				"requireReturnForObjectLiteral": true
+			}
+		],
 		"eslint/curly": ["error", "all"],
 		"eslint/default-case-last": "error",
 		"eslint/default-param-last": "off", // passing undefined as default parameter is good actually?
