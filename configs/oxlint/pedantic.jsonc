@@ -21,6 +21,7 @@
 			}
 		],
 		"eslint/max-nested-callbacks": ["error", 3],
+		"eslint/no-array-constructor": "error",
 		"eslint/no-case-declarations": "error",
 		"eslint/no-constructor-return": "error",
 		"eslint/no-fallthrough": "error",
