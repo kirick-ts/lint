@@ -174,7 +174,7 @@ await Promise.all([
 	createTsConfig(PWD),
 	createOxlintConfig(PWD)
 ]);
-await shell("bunx", "biome", "format", "--fix", ".oxlintrc.json", "biome.json", "eslint.config.js", "package.json", "tsconfig.json", ...is_vue ? [".prettierrc.json"] : []);
+await shell("bunx", "biome", "format", "--fix", ".oxlintrc.json", "biome.json", "eslint.config.js", "package.json", "tsconfig.json", "tsconfig.*.json", ...is_vue ? [".prettierrc.json"] : []);
 console.log();
 console.log("To check files formatting, run:");
 console.log("  bunx biome format");

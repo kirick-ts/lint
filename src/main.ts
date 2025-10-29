@@ -123,6 +123,7 @@ await shell(
 	'eslint.config.js',
 	'package.json',
 	'tsconfig.json',
+	'tsconfig.*.json',
 	...(is_vue ? ['.prettierrc.json'] : []),
 );
 
