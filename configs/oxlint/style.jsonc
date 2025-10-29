@@ -15,7 +15,7 @@
 		"eslint/func-style": ["error", "declaration"],
 		"eslint/grouped-accessor-pairs": ["error", "getBeforeSet"],
 		"eslint/guard-for-in": "error",
-		"eslint/new-cap": "error",
+		"eslint/new-cap": "off", // we know better what to call
 		"eslint/no-duplicate-imports": "off", // formatted by biome
 		"eslint/no-extra-label": "error",
 		"eslint/no-label-var": "error",
@@ -70,7 +70,7 @@
 		"unicorn/consistent-existence-index-check": "error",
 		"unicorn/empty-brace-spaces": "error",
 		"unicorn/error-message": "error",
-		"unicorn/filename-case": "error",
+		"unicorn/filename-case": "off",
 		"unicorn/no-array-method-this-argument": "error",
 		"unicorn/no-await-expression-member": "error",
 		"unicorn/no-console-spaces": "error",
