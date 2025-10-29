@@ -6,10 +6,15 @@ import nodePath from 'node:path';
 import type { TsConfigJson } from 'type-fest';
 import { PATH } from '../utils.js';
 
-export async function createTsConfig(dir: string) {
-	const tsconfig_pwd_path = nodePath.join(dir, 'tsconfig.json');
-	const tsconfig_pwd = await readTsconfigJson(tsconfig_pwd_path);
+// Special handling for options that should be overridden from user config if available
+const PRESERVE_USER_OPTIONS = [
+	'lib',
+	'isolatedDeclarations',
+	'paths',
+	'importHelpers',
+] as const;
 
+export async function createTsConfig(dir: string) {
 	const tsconfig_lint = await readTsconfigJson(
 		nodePath.join(PATH, 'configs', 'tsconfig.example.json'),
 	);
@@ -25,45 +30,39 @@ export async function createTsConfig(dir: string) {
 		);
 	}
 
-	if (!tsconfig_pwd) {
-		// TODO: create tsconfig.json with default values
-		throw new TypeError('Project: tsconfig.json not found.');
-	}
-
-	if (!tsconfig_pwd.compilerOptions) {
-		throw new TypeError(
-			'Project: tsconfig.json does not contain compilerOptions.',
-		);
-	}
-
 	// Start with a copy of the lint tsconfig compiler options
 	const compiler_options_new = { ...tsconfig_lint.compilerOptions };
 
-	// Special handling for options that should be overridden from user config if available
-	const preserveUserOptions = [
-		'lib',
-		'isolatedDeclarations',
-		'paths',
-		'importHelpers',
-	] as const;
+	let tsconfig_pwd_path = nodePath.join(dir, 'tsconfig.base.json');
+	let tsconfig_pwd = await readTsconfigJson(tsconfig_pwd_path);
 
-	for (const key of preserveUserOptions) {
+	if (tsconfig_pwd === null) {
+		tsconfig_pwd_path = nodePath.join(dir, 'tsconfig.json');
+		tsconfig_pwd = await readTsconfigJson(tsconfig_pwd_path);
+
+		if (tsconfig_pwd === null) {
+			// TODO: create tsconfig.json with default values
+			throw new TypeError('Project: tsconfig.json not found.');
+		}
+	}
+
+	for (const key of PRESERVE_USER_OPTIONS) {
 		switch (key) {
 			case 'lib':
 				compiler_options_new[key] =
-					tsconfig_pwd.compilerOptions[key]
+					tsconfig_pwd.compilerOptions?.[key]
 					?? tsconfig_lint.compilerOptions[key];
 				break;
 			case 'isolatedDeclarations':
 				compiler_options_new[key] =
-					tsconfig_pwd.compilerOptions[key]
+					tsconfig_pwd.compilerOptions?.[key]
 					?? tsconfig_lint.compilerOptions[key];
 				break;
 			case 'paths':
-				compiler_options_new[key] = tsconfig_pwd.compilerOptions[key];
+				compiler_options_new[key] = tsconfig_pwd.compilerOptions?.[key];
 				break;
 			case 'importHelpers':
-				compiler_options_new[key] = tsconfig_pwd.compilerOptions[key];
+				compiler_options_new[key] = tsconfig_pwd.compilerOptions?.[key];
 				break;
 			// no default
 		}

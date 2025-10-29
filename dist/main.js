@@ -39,32 +39,36 @@ const PATH = nodePath.join(import.meta.dirname, "..");
 
 //#endregion
 //#region src/create/tsconfig.ts
+const PRESERVE_USER_OPTIONS = [
+	"lib",
+	"isolatedDeclarations",
+	"paths",
+	"importHelpers"
+];
 async function createTsConfig(dir) {
-	const tsconfig_pwd_path = nodePath.join(dir, "tsconfig.json");
-	const tsconfig_pwd = await readTsconfigJson(tsconfig_pwd_path);
 	const tsconfig_lint = await readTsconfigJson(nodePath.join(PATH, "configs", "tsconfig.example.json"));
 	if (!tsconfig_lint) throw new TypeError("@kirick/lint: configs/tsconfig.example.json not found.");
 	if (!tsconfig_lint.compilerOptions) throw new TypeError("@kirick/lint: configs/tsconfig.example.json does not contain compilerOptions.");
-	if (!tsconfig_pwd) throw new TypeError("Project: tsconfig.json not found.");
-	if (!tsconfig_pwd.compilerOptions) throw new TypeError("Project: tsconfig.json does not contain compilerOptions.");
 	const compiler_options_new = { ...tsconfig_lint.compilerOptions };
-	for (const key of [
-		"lib",
-		"isolatedDeclarations",
-		"paths",
-		"importHelpers"
-	]) switch (key) {
+	let tsconfig_pwd_path = nodePath.join(dir, "tsconfig.base.json");
+	let tsconfig_pwd = await readTsconfigJson(tsconfig_pwd_path);
+	if (tsconfig_pwd === null) {
+		tsconfig_pwd_path = nodePath.join(dir, "tsconfig.json");
+		tsconfig_pwd = await readTsconfigJson(tsconfig_pwd_path);
+		if (tsconfig_pwd === null) throw new TypeError("Project: tsconfig.json not found.");
+	}
+	for (const key of PRESERVE_USER_OPTIONS) switch (key) {
 		case "lib":
-			compiler_options_new[key] = tsconfig_pwd.compilerOptions[key] ?? tsconfig_lint.compilerOptions[key];
+			compiler_options_new[key] = tsconfig_pwd.compilerOptions?.[key] ?? tsconfig_lint.compilerOptions[key];
 			break;
 		case "isolatedDeclarations":
-			compiler_options_new[key] = tsconfig_pwd.compilerOptions[key] ?? tsconfig_lint.compilerOptions[key];
+			compiler_options_new[key] = tsconfig_pwd.compilerOptions?.[key] ?? tsconfig_lint.compilerOptions[key];
 			break;
 		case "paths":
-			compiler_options_new[key] = tsconfig_pwd.compilerOptions[key];
+			compiler_options_new[key] = tsconfig_pwd.compilerOptions?.[key];
 			break;
 		case "importHelpers":
-			compiler_options_new[key] = tsconfig_pwd.compilerOptions[key];
+			compiler_options_new[key] = tsconfig_pwd.compilerOptions?.[key];
 			break;
 	}
 	tsconfig_pwd.compilerOptions = compiler_options_new;
