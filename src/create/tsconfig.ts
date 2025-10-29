@@ -4,7 +4,7 @@
 import fs from 'node:fs/promises';
 import nodePath from 'node:path';
 import type { TsConfigJson } from 'type-fest';
-import { PATH } from '../utils.js';
+import { isFileExists, PATH } from '../utils.js';
 
 // Special handling for options that should be overridden from user config if available
 const PRESERVE_USER_OPTIONS = [
@@ -78,9 +78,8 @@ export async function createTsConfig(dir: string) {
 }
 
 async function readTsconfigJson(path: string): Promise<TsConfigJson | null> {
-	try {
-		await fs.stat(path);
-	} catch {
+	const exists = await isFileExists(path);
+	if (!exists) {
 		return null;
 	}
 

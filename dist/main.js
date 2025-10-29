@@ -36,6 +36,18 @@ async function createOxlintConfig(dir) {
 //#endregion
 //#region src/utils.ts
 const PATH = nodePath.join(import.meta.dirname, "..");
+/**
+* Check if a file exists at the given path.
+* @param path - The path to check.
+* @returns A promise that resolves to true if the file exists, false otherwise.
+*/
+async function isFileExists(path) {
+	try {
+		return (await fs.stat(path)).isFile();
+	} catch {
+		return false;
+	}
+}
 
 //#endregion
 //#region src/create/tsconfig.ts
@@ -79,11 +91,7 @@ async function createTsConfig(dir) {
 	await writeTsconfigJson(tsconfig_pwd_path, tsconfig_pwd);
 }
 async function readTsconfigJson(path) {
-	try {
-		await fs.stat(path);
-	} catch {
-		return null;
-	}
+	if (!await isFileExists(path)) return null;
 	return JSON.parse(await fs.readFile(path, "utf8"));
 }
 async function writeTsconfigJson(path, data) {
@@ -178,7 +186,7 @@ await Promise.all([
 	createTsConfig(PWD),
 	createOxlintConfig(PWD)
 ]);
-await shell("bunx", "biome", "format", "--fix", ".oxlintrc.json", "biome.json", "eslint.config.js", "package.json", "tsconfig.json", ...await fs.exists(nodePath.join(PWD, "tsconfig.base.json")) ? ["tsconfig.base.json"] : [], ...is_vue ? [".prettierrc.json"] : []);
+await shell("bunx", "biome", "format", "--fix", ".oxlintrc.json", "biome.json", "eslint.config.js", "package.json", "tsconfig.json", ...await isFileExists(nodePath.join(PWD, "tsconfig.base.json")) ? ["tsconfig.base.json"] : [], ...is_vue ? [".prettierrc.json"] : []);
 console.log();
 console.log("To check files formatting, run:");
 console.log("  bunx biome format");

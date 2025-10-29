@@ -9,6 +9,7 @@ import { createOxlintConfig } from './create/oxlint.js';
 import { createTsConfig } from './create/tsconfig.js';
 import { readPackageJson, writePackageJson } from './package-json.js';
 import { shell } from './shell.js';
+import { isFileExists } from './utils.js';
 
 const PWD = process.cwd();
 const DIR_LIB = nodePath.join(import.meta.dirname, '..');
@@ -123,7 +124,7 @@ await shell(
 	'eslint.config.js',
 	'package.json',
 	'tsconfig.json',
-	...((await fs.exists(nodePath.join(PWD, 'tsconfig.base.json')))
+	...((await isFileExists(nodePath.join(PWD, 'tsconfig.base.json')))
 		? ['tsconfig.base.json']
 		: []),
 	...(is_vue ? ['.prettierrc.json'] : []),
