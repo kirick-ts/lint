@@ -29,6 +29,7 @@
 		"typescript/no-explicit-any": "error",
 		"typescript/no-namespace": "error",
 		"typescript/no-require-imports": "error",
+		"typescript/no-unused-expressions": "error",
 
 		"unicorn/no-abusive-eslint-disable": "error",
 		"unicorn/no-anonymous-default-export": "error",

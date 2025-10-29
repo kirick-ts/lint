@@ -168,34 +168,6 @@ export const configOxlint = [
 			'promise/valid-params': 'off',
 		},
 	},
-	// typescript
-	{
-		rules: {
-			'@typescript-eslint/ban-ts-comment': 'off',
-			'@typescript-eslint/explicit-function-return-type': 'off',
-			'@typescript-eslint/no-duplicate-enum-values': 'off',
-			'@typescript-eslint/no-empty-object-type': 'off',
-			'@typescript-eslint/no-explicit-any': 'off',
-			'@typescript-eslint/no-extra-non-null-assertion': 'off',
-			'@typescript-eslint/no-floating-promises': 'off', // FIXME: wait for oxlint to enable type-aware linting by default
-			'@typescript-eslint/no-misused-new': 'off',
-			'@typescript-eslint/no-misused-promises': 'off', // FIXME: wait for oxlint to enable type-aware linting by default
-			'@typescript-eslint/no-namespace': 'off',
-			'@typescript-eslint/no-non-null-asserted-optional-chain': 'off',
-			'@typescript-eslint/no-require-imports': 'off',
-			'@typescript-eslint/no-restricted-types': 'off',
-			'@typescript-eslint/no-this-alias': 'off',
-			'@typescript-eslint/no-unnecessary-type-assertion': 'off', // FIXME: wait for oxlint to enable type-aware linting by default
-			'@typescript-eslint/no-unnecessary-type-constraint': 'off',
-			'@typescript-eslint/no-unsafe-declaration-merging': 'off',
-			'@typescript-eslint/no-unsafe-function-type': 'off',
-			'@typescript-eslint/no-unused-vars': 'off',
-			'@typescript-eslint/no-wrapper-object-types': 'off',
-			'@typescript-eslint/prefer-as-const': 'off',
-			'@typescript-eslint/prefer-namespace-keyword': 'off',
-			'@typescript-eslint/triple-slash-reference': 'off',
-		},
-	},
 	// unicorn
 	{
 		rules: {

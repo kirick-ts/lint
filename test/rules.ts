@@ -8,8 +8,12 @@ const SEVERITY_CODE = [
 	'\u001B[1m\u001B[37m\u001B[41m ERR  \u001B[0m',
 ];
 
+const filter = process.argv[2]?.startsWith('--') ? undefined : process.argv[2];
+const show_all = process.argv.includes('--all');
+const show_unsupported = process.argv.includes('--unsupported');
+
 const github_response = await fetch(
-	'https://api.github.com/repos/oxc-project/oxc/git/trees/main?recursive=1',
+	`https://api.github.com/repos/oxc-project/oxc/git/trees/oxlint_v1.24.0?recursive=1`,
 	{
 		headers: {
 			Authorization:
@@ -87,17 +91,21 @@ const rules = v.parse(
 						params,
 					};
 				})
-				.sort((a, b) => a.rule.localeCompare(b.rule)),
+				.sort((a, b) => a.oxlint_rule.localeCompare(b.oxlint_rule)),
 		),
 		v.transform((value) => value.filter(({ severity }) => severity !== 0)),
 		// v.transform((value) =>
 		// 	value.filter(({ rule }) => rules_supported.has(ruleToOxlint(rule))),
 		// ),
 		v.transform((value) =>
-			value.filter(({ oxlint_rule }) => rules_supported.has(oxlint_rule)),
+			show_all
+				? value
+				: value.filter(
+						({ oxlint_rule }) =>
+							rules_supported.has(oxlint_rule) !== show_unsupported,
+					),
 		),
 		v.transform((value) => {
-			const filter = process.argv[2];
 			if (typeof filter === 'string') {
 				return value.filter(({ oxlint_rule }) =>
 					oxlint_rule.startsWith(`${filter}/`),
@@ -114,26 +122,32 @@ for (const element of rules) {
 	// oxlint-disable-next-line no-console
 	console.log(
 		SEVERITY_CODE[element.severity],
-		`\u001B]8;;https://oxc.rs/docs/guide/usage/linter/rules/${element.oxlint_rule}.html\u0007(link)\u001B]8;;\u0007`,
+		rules_supported.has(element.oxlint_rule)
+			? `\u001B]8;;https://oxc.rs/docs/guide/usage/linter/rules/${element.oxlint_rule}.html\u0007(link)\u001B]8;;\u0007`
+			: 'unsup!',
 		element.oxlint_rule,
 		element.params ? JSON.stringify(element.params) : '',
 	);
 }
 
+const message_parts = [`\n${rules.length}`];
+if (typeof filter === 'string') {
+	message_parts.push(`"${filter}"`);
+}
+
+message_parts.push('rules');
+
+if (show_all) {
+	message_parts.push('exists.');
+} else {
+	message_parts.push('can');
+
+	if (show_unsupported) {
+		message_parts.push('NOT');
+	}
+
+	message_parts.push('be ported to oxlint.');
+}
+
 // oxlint-disable-next-line no-console
-console.log(`\n${rules.length} rules can be ported to oxlint.`);
-
-// for (const [rule, [severity, settings]] of Object.entries(rules)) {
-// 	let string = `${PREFIX[severity]} ${rule}`;
-// 	if (settings !== undefined) {
-// 		string += ` ${JSON.stringify(settings)}`;
-// 	}
-
-// 	if (severity === 1) {
-// 		// oxlint-disable-next-line no-console
-// 		console.warn(string);
-// 	} else if (severity === 2) {
-// 		// oxlint-disable-next-line no-console
-// 		console.error(string);
-// 	}
-// }
+console.log(message_parts.join(' '));
