@@ -35,6 +35,38 @@
 		"CSS": {
 			"format_on_save": "on",
 			"formatter": [{ "language_server": { "name": "biome" } }]
+		},
+		"HTML": {
+			"format_on_save": "on",
+			"formatter": [
+				{
+					"external": {
+						"command": "bunx",
+						"arguments": [
+							"--bun",
+							"prettier",
+							"--stdin-filepath",
+							"{buffer_path}"
+						]
+					}
+				}
+			]
+		},
+		"Vue.js": {
+			"format_on_save": "on",
+			"formatter": [
+				{
+					"external": {
+						"command": "bunx",
+						"arguments": [
+							"--bun",
+							"prettier",
+							"--stdin-filepath",
+							"{buffer_path}"
+						]
+					}
+				}
+			]
 		}
 	}
 }

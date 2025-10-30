@@ -1,0 +1,46 @@
+{
+	"$schema": "../../node_modules/oxlint/configuration_schema.json",
+	"rules": {
+		"eslint/class-methods-use-this": "warn",
+		"eslint/default-case": "error",
+		"eslint/no-alert": "error",
+		"eslint/no-bitwise": "error",
+		"eslint/no-console": "warn",
+		"eslint/no-empty-function": "warn",
+		"eslint/no-empty": ["error", { "allowEmptyCatch": true }],
+		"eslint/no-eq-null": "off", // duplicate of eslint/eqeqeq
+		"eslint/no-iterator": "error",
+		"eslint/no-proto": "error",
+		"eslint/no-regex-spaces": "error",
+		"eslint/no-restricted-imports": "error",
+		"eslint/no-var": "error",
+		"eslint/no-void": "error",
+
+		"jsdoc/empty-tags": "error",
+
+		"node/no-new-require": "error",
+
+		"oxc/bad-bitwise-operator": "error",
+		"oxc/no-const-enum": "error",
+
+		"promise/catch-or-return": "error",
+
+		"typescript/no-empty-object-type": "error",
+		"typescript/no-explicit-any": "error",
+		"typescript/no-namespace": "error",
+		"typescript/no-require-imports": "error",
+		"typescript/no-unused-expressions": "error",
+
+		"unicorn/no-abusive-eslint-disable": "error",
+		"unicorn/no-anonymous-default-export": "error",
+		"unicorn/no-array-for-each": "error",
+		"unicorn/no-array-reduce": "error",
+		"unicorn/no-document-cookie": "error",
+		"unicorn/no-magic-array-flat-depth": "error",
+		"unicorn/no-process-exit": "error",
+		"unicorn/no-useless-error-capture-stack-trace": "error",
+		"unicorn/prefer-modern-math-apis": "error",
+		"unicorn/prefer-node-protocol": "error",
+		"unicorn/prefer-number-properties": "error"
+	}
+}

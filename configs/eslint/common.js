@@ -17,7 +17,7 @@ export const configCommon = [
 	...configEslintSuggestions,
 	// exceptions
 	{
-		files: ['eslint.config.{,m,c}{js,ts}'],
+		files: ['**/eslint.config.{,m,c}{js,ts}'],
 		rules: {
 			'no-restricted-exports': 'off',
 		},

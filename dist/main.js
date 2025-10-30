@@ -5,12 +5,14 @@ import { spawn } from "node:child_process";
 
 //#region src/create/eslint.ts
 async function createEslintConfig(dir, options) {
-	const lines = [];
-	lines.push("import { configCommon } from '@kirick/lint/eslint/common';", "import { defineConfig } from 'eslint/config';");
+	const lines = ["import { configCommon } from '@kirick/lint/eslint/common';"];
 	if (options.is_node) lines.push("import { configNode } from '@kirick/lint/eslint/node';");
-	lines.push("", "export default defineConfig([", "	...configCommon,");
+	lines.push("import { configOxlint } from '@kirick/lint/eslint/oxlint';");
+	if (options.is_vue) lines.push("import { configVue } from '@kirick/lint/eslint/vue';");
+	lines.push("import { defineConfig } from 'eslint/config';", "", "export default defineConfig([", "	...configCommon,");
 	if (options.is_node) lines.push("	...configNode,");
-	lines.push("]);", "");
+	if (options.is_vue) lines.push("	...configVue,");
+	lines.push("	...configOxlint,", "]);", "");
 	await fs.writeFile(nodePath.join(dir, "eslint.config.js"), lines.join("\n"), "utf8");
 }
 
@@ -20,9 +22,12 @@ async function createOxlintConfig(dir) {
 	await fs.writeFile(nodePath.join(dir, ".oxlintrc.json"), JSON.stringify({
 		$schema: "./node_modules/oxlint/configuration_schema.json",
 		extends: [
-			"./node_modules/@kirick/lint/configs/oxlint/correctness.json",
-			"./node_modules/@kirick/lint/configs/oxlint/perf.json",
-			"./node_modules/@kirick/lint/configs/oxlint/restriction.json"
+			"./node_modules/@kirick/lint/configs/oxlint/correctness.jsonc",
+			"./node_modules/@kirick/lint/configs/oxlint/pedantic.jsonc",
+			"./node_modules/@kirick/lint/configs/oxlint/perf.jsonc",
+			"./node_modules/@kirick/lint/configs/oxlint/restriction.jsonc",
+			"./node_modules/@kirick/lint/configs/oxlint/style.jsonc",
+			"./node_modules/@kirick/lint/configs/oxlint/suspicious.jsonc"
 		],
 		ignorePatterns: ["dist"]
 	}, null, "	"), "utf8");
@@ -31,46 +36,62 @@ async function createOxlintConfig(dir) {
 //#endregion
 //#region src/utils.ts
 const PATH = nodePath.join(import.meta.dirname, "..");
+/**
+* Check if a file exists at the given path.
+* @param path - The path to check.
+* @returns A promise that resolves to true if the file exists, false otherwise.
+*/
+async function isFileExists(path) {
+	try {
+		return (await fs.stat(path)).isFile();
+	} catch {
+		return false;
+	}
+}
 
 //#endregion
 //#region src/create/tsconfig.ts
+const PRESERVE_USER_OPTIONS = [
+	"importHelpers",
+	"isolatedDeclarations",
+	"lib",
+	"paths",
+	"tsBuildInfoFile"
+];
 async function createTsConfig(dir) {
-	const tsconfig_pwd_path = nodePath.join(dir, "tsconfig.json");
-	const tsconfig_pwd = await readTsconfigJson(tsconfig_pwd_path);
 	const tsconfig_lint = await readTsconfigJson(nodePath.join(PATH, "configs", "tsconfig.example.json"));
 	if (!tsconfig_lint) throw new TypeError("@kirick/lint: configs/tsconfig.example.json not found.");
 	if (!tsconfig_lint.compilerOptions) throw new TypeError("@kirick/lint: configs/tsconfig.example.json does not contain compilerOptions.");
-	if (!tsconfig_pwd) throw new TypeError("Project: tsconfig.json not found.");
-	if (!tsconfig_pwd.compilerOptions) throw new TypeError("Project: tsconfig.json does not contain compilerOptions.");
 	const compiler_options_new = { ...tsconfig_lint.compilerOptions };
-	for (const key of [
-		"lib",
-		"isolatedDeclarations",
-		"paths",
-		"importHelpers"
-	]) switch (key) {
+	let tsconfig_pwd_path = nodePath.join(dir, "tsconfig.base.json");
+	let tsconfig_pwd = await readTsconfigJson(tsconfig_pwd_path);
+	if (tsconfig_pwd === null) {
+		tsconfig_pwd_path = nodePath.join(dir, "tsconfig.json");
+		tsconfig_pwd = await readTsconfigJson(tsconfig_pwd_path);
+		if (tsconfig_pwd === null) throw new TypeError("Project: tsconfig.json not found.");
+	}
+	for (const key of PRESERVE_USER_OPTIONS) switch (key) {
 		case "lib":
-			compiler_options_new[key] = tsconfig_pwd.compilerOptions[key] ?? tsconfig_lint.compilerOptions[key];
+			compiler_options_new[key] = tsconfig_pwd.compilerOptions?.[key] ?? tsconfig_lint.compilerOptions[key];
 			break;
 		case "isolatedDeclarations":
-			compiler_options_new[key] = tsconfig_pwd.compilerOptions[key] ?? tsconfig_lint.compilerOptions[key];
+			compiler_options_new[key] = tsconfig_pwd.compilerOptions?.[key] ?? tsconfig_lint.compilerOptions[key];
 			break;
 		case "paths":
-			compiler_options_new[key] = tsconfig_pwd.compilerOptions[key];
+			compiler_options_new[key] = tsconfig_pwd.compilerOptions?.[key];
 			break;
 		case "importHelpers":
-			compiler_options_new[key] = tsconfig_pwd.compilerOptions[key];
+			compiler_options_new[key] = tsconfig_pwd.compilerOptions?.[key];
+			break;
+		case "tsBuildInfoFile":
+			compiler_options_new[key] = tsconfig_pwd.compilerOptions?.[key];
 			break;
 	}
 	tsconfig_pwd.compilerOptions = compiler_options_new;
 	await writeTsconfigJson(tsconfig_pwd_path, tsconfig_pwd);
 }
 async function readTsconfigJson(path) {
-	try {
-		await fs.stat(path);
-	} catch {
-		return null;
-	}
+	if (!await isFileExists(path)) return null;
 	return JSON.parse(await fs.readFile(path, "utf8"));
 }
 async function writeTsconfigJson(path, data) {
@@ -122,21 +143,31 @@ const DIR_LIB = nodePath.join(import.meta.dirname, "..");
 const [package_json, package_json_lint] = await Promise.all([readPackageJson(PWD), readPackageJson(DIR_LIB)]);
 if (!package_json_lint.dependencies) throw new TypeError("No dependencies found in @kirick/lint.");
 if (!package_json_lint.devDependencies) throw new TypeError("No devDependencies found in @kirick/lint.");
-const is_node = package_json_lint.devDependencies["@types/node"] !== void 0 || package_json_lint.devDependencies["@types/bun"] !== void 0;
 package_json.devDependencies ??= {};
+const is_node = (package_json.devDependencies["@types/node"] !== void 0 || package_json.devDependencies["@types/bun"] !== void 0) && package_json.devDependencies["vue-tsc"] === void 0;
+const is_vue = package_json.devDependencies["vue-tsc"] !== void 0;
 delete package_json.devDependencies["@kirick/eslint-config"];
 for (const name of [
 	"@biomejs/biome",
 	"oxlint",
 	"typescript"
 ]) package_json.devDependencies[name] = package_json_lint.devDependencies[name];
+if (is_vue) package_json.devDependencies.prettier = package_json_lint.devDependencies.prettier;
 package_json.devDependencies.eslint = package_json_lint.dependencies.eslint;
-const script_lint = package_json_lint.scripts?.lint;
+let script_lint = package_json_lint.scripts?.lint;
 if (!script_lint) throw new TypeError("No \"lint\" script found in @kirick/lint.");
+if (is_vue) {
+	const script_lint_prettier = package_json_lint.scripts?.["lint:prettier"];
+	if (!script_lint_prettier) throw new TypeError("No \"lint:prettier\" script found in @kirick/lint.");
+	script_lint = `${script_lint_prettier} && ${script_lint}`;
+}
 package_json.scripts ??= {};
 if (package_json.scripts.lint) {
-	const index = package_json.scripts.lint.indexOf("tsc");
-	if (index !== -1) package_json.scripts.lint = script_lint + package_json.scripts.lint.slice(index + 3);
+	const match = package_json.scripts.lint.match(/(?:vue-)?tsc/);
+	if (match === null) {
+		console.warn("Unexpected \"lint\" script format. Update it by hand to:");
+		console.warn(">", script_lint);
+	} else package_json.scripts.lint = script_lint.replace(/tsc$/, match[0]) + package_json.scripts.lint.slice(match.index + match[0].length);
 } else package_json.scripts.lint = script_lint;
 await writePackageJson(PWD, package_json);
 await shell("bun", "install");
@@ -147,11 +178,15 @@ await Promise.all([
 	fs.copyFile(nodePath.join(DIR_LIB, ".zed", "settings.json"), nodePath.join(PWD, ".zed", "settings.json")),
 	fs.copyFile(nodePath.join(DIR_LIB, ".vscode", "settings.json"), nodePath.join(PWD, ".vscode", "settings.json")),
 	fs.copyFile(nodePath.join(DIR_LIB, "biome.json"), nodePath.join(PWD, "biome.json")),
-	createEslintConfig(PWD, { is_node }),
+	is_vue ? fs.copyFile(nodePath.join(DIR_LIB, ".prettierrc.json"), nodePath.join(PWD, ".prettierrc.json")) : null,
+	createEslintConfig(PWD, {
+		is_node,
+		is_vue
+	}),
 	createTsConfig(PWD),
 	createOxlintConfig(PWD)
 ]);
-await shell("bunx", "biome", "format", "--fix", ".oxlintrc.json", "biome.json", "eslint.config.js", "package.json", "tsconfig.json");
+await shell("bunx", "biome", "format", "--fix", ".oxlintrc.json", "biome.json", "eslint.config.js", "package.json", "tsconfig.json", ...await isFileExists(nodePath.join(PWD, "tsconfig.base.json")) ? ["tsconfig.base.json"] : [], ...is_vue ? [".prettierrc.json"] : []);
 console.log();
 console.log("To check files formatting, run:");
 console.log("  bunx biome format");

@@ -1,0 +1,29 @@
+{
+	"$schema": "../../node_modules/oxlint/configuration_schema.json",
+	"rules": {
+		"eslint/block-scoped-var": "off", // var is disabled
+		"eslint/no-extend-native": "error",
+		"eslint/no-extra-bind": "error",
+		"eslint/no-new": "error",
+		"eslint/no-unexpected-multiline": "off", // formatted by biome
+		"eslint/no-unneeded-ternary": "error",
+		"eslint/no-useless-concat": "error",
+		"eslint/no-useless-constructor": "error",
+
+		"oxc/misrefactored-assign-op": "error",
+
+		"promise/always-return": "error",
+		"promise/no-promise-in-callback": "error",
+
+		"typescript/no-unnecessary-type-assertion": "off", // TODO: requires type information
+		"typescript/no-unnecessary-type-constraint": "error",
+
+		"unicorn/consistent-function-scoping": "error",
+		"unicorn/no-accessor-recursion": "error",
+		"unicorn/no-array-reverse": "error",
+		"unicorn/no-array-sort": "error",
+		"unicorn/no-instanceof-builtins": "error",
+		"unicorn/prefer-add-event-listener": "error",
+		"unicorn/require-module-specifiers": "error"
+	}
+}

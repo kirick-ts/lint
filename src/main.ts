@@ -9,6 +9,7 @@ import { createOxlintConfig } from './create/oxlint.js';
 import { createTsConfig } from './create/tsconfig.js';
 import { readPackageJson, writePackageJson } from './package-json.js';
 import { shell } from './shell.js';
+import { isFileExists } from './utils.js';
 
 const PWD = process.cwd();
 const DIR_LIB = nodePath.join(import.meta.dirname, '..');
@@ -26,13 +27,13 @@ if (!package_json_lint.devDependencies) {
 	throw new TypeError('No devDependencies found in @kirick/lint.');
 }
 
-const is_node =
-	package_json_lint.devDependencies['@types/node'] !== undefined
-	|| package_json_lint.devDependencies['@types/bun'] !== undefined;
-
-// 1. Update package.json
-// 1.1. Dependencies
 package_json.devDependencies ??= {};
+
+const is_node =
+	(package_json.devDependencies['@types/node'] !== undefined
+		|| package_json.devDependencies['@types/bun'] !== undefined)
+	&& package_json.devDependencies['vue-tsc'] === undefined;
+const is_vue = package_json.devDependencies['vue-tsc'] !== undefined;
 
 delete package_json.devDependencies['@kirick/eslint-config'];
 
@@ -40,20 +41,38 @@ for (const name of ['@biomejs/biome', 'oxlint', 'typescript']) {
 	package_json.devDependencies[name] = package_json_lint.devDependencies[name];
 }
 
+if (is_vue) {
+	package_json.devDependencies.prettier =
+		package_json_lint.devDependencies.prettier;
+}
+
 package_json.devDependencies.eslint = package_json_lint.dependencies.eslint;
 
 // 1.2. Scripts
-const script_lint = package_json_lint.scripts?.lint;
+let script_lint = package_json_lint.scripts?.lint;
 if (!script_lint) {
 	throw new TypeError('No "lint" script found in @kirick/lint.');
 }
 
+if (is_vue) {
+	const script_lint_prettier = package_json_lint.scripts?.['lint:prettier'];
+	if (!script_lint_prettier) {
+		throw new TypeError('No "lint:prettier" script found in @kirick/lint.');
+	}
+
+	script_lint = `${script_lint_prettier} && ${script_lint}`;
+}
+
 package_json.scripts ??= {};
 if (package_json.scripts.lint) {
-	const index = package_json.scripts.lint.indexOf('tsc');
-	if (index !== -1) {
+	const match = package_json.scripts.lint.match(/(?:vue-)?tsc/);
+	if (match === null) {
+		console.warn('Unexpected "lint" script format. Update it by hand to:');
+		console.warn('>', script_lint);
+	} else {
 		package_json.scripts.lint =
-			script_lint + package_json.scripts.lint.slice(index + 3);
+			script_lint.replace(/tsc$/, match[0])
+			+ package_json.scripts.lint.slice(match.index! + match[0].length);
 	}
 } else {
 	package_json.scripts.lint = script_lint;
@@ -84,7 +103,13 @@ await Promise.all([
 		nodePath.join(DIR_LIB, 'biome.json'),
 		nodePath.join(PWD, 'biome.json'),
 	),
-	createEslintConfig(PWD, { is_node }),
+	is_vue
+		? fs.copyFile(
+				nodePath.join(DIR_LIB, '.prettierrc.json'),
+				nodePath.join(PWD, '.prettierrc.json'),
+			)
+		: null,
+	createEslintConfig(PWD, { is_node, is_vue }),
 	createTsConfig(PWD),
 	createOxlintConfig(PWD),
 ]);
@@ -99,6 +124,10 @@ await shell(
 	'eslint.config.js',
 	'package.json',
 	'tsconfig.json',
+	...((await isFileExists(nodePath.join(PWD, 'tsconfig.base.json')))
+		? ['tsconfig.base.json']
+		: []),
+	...(is_vue ? ['.prettierrc.json'] : []),
 );
 
 // 3. Print note

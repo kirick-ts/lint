@@ -1,18 +1,11 @@
 export const configEslintSuggestions = [
 	{
 		rules: {
-			'accessor-pairs': [
-				'error',
-				{
-					enforceForClassMembers: true,
-				},
-			],
+			'accessor-pairs': ['error', { enforceForClassMembers: true }],
 			'arrow-body-style': [
 				'error',
 				'as-needed',
-				{
-					requireReturnForObjectLiteral: true,
-				},
+				{ requireReturnForObjectLiteral: true },
 			],
 			'block-scoped-var': 'error',
 			// 'camelcase': 'off',
@@ -25,12 +18,7 @@ export const configEslintSuggestions = [
 			'default-param-last': 'error',
 			'dot-notation': 'error',
 			eqeqeq: 'error',
-			'func-name-matching': [
-				'error',
-				{
-					considerPropertyDescriptor: true,
-				},
-			],
+			'func-name-matching': ['error', { considerPropertyDescriptor: true }],
 			'func-names': ['error', 'never'],
 			'func-style': [
 				'error',
@@ -48,9 +36,7 @@ export const configEslintSuggestions = [
 			'logical-assignment-operators': [
 				'error',
 				'always',
-				{
-					enforceForIfStatements: true,
-				},
+				{ enforceForIfStatements: true },
 			],
 			// 'max-classes-per-file': 'off',
 			'max-depth': 'warn',
@@ -72,12 +58,7 @@ export const configEslintSuggestions = [
 				},
 			],
 			'max-nested-callbacks': ['error', 4],
-			'max-params': [
-				'warn',
-				{
-					max: 4,
-				},
-			],
+			'max-params': ['warn', { max: 4 }],
 			'max-statements': ['warn', 35],
 			'new-cap': [
 				'error',
@@ -93,18 +74,8 @@ export const configEslintSuggestions = [
 			// 'no-continue': 'off',
 			'no-delete-var': 'error',
 			// 'no-div-regex': 'off',
-			'no-else-return': [
-				'error',
-				{
-					allowElseIf: false,
-				},
-			],
-			'no-empty': [
-				'error',
-				{
-					allowEmptyCatch: true,
-				},
-			],
+			'no-else-return': ['error', { allowElseIf: false }],
+			'no-empty': ['error', { allowEmptyCatch: true }],
 			'no-empty-static-block': 'error',
 			'no-eq-null': 'error',
 			'no-eval': 'error',
@@ -196,28 +167,18 @@ export const configEslintSuggestions = [
 			'no-return-assign': ['error', 'always'],
 			'no-script-url': 'error',
 			'no-sequences': 'error',
-			'no-shadow': 'warn', // TODO: Look into enabling this.
+			'no-shadow': 'warn',
 			'no-shadow-restricted-names': 'error',
 			// 'no-ternary': 'off',
 			'no-throw-literal': 'error',
 			'no-undef-init': 'error',
 			// 'no-undefined': 'off',
-			// 'no-underscore-dangle': 'off', // TODO: Look into enabling this.
+			// 'no-underscore-dangle': 'off',
 			'no-unneeded-ternary': 'error',
-			'no-unused-expressions': [
-				'error',
-				{
-					enforceForJSX: true,
-				},
-			],
+			'no-unused-expressions': ['error', { enforceForJSX: true }],
 			'no-unused-labels': 'error',
 			'no-useless-catch': 'error',
-			'no-useless-computed-key': [
-				'error',
-				{
-					enforceForClassMembers: true,
-				},
-			],
+			'no-useless-computed-key': ['error', { enforceForClassMembers: true }],
 			'no-useless-concat': 'error',
 			'no-useless-constructor': 'error',
 			'no-useless-escape': 'error',
@@ -230,24 +191,12 @@ export const configEslintSuggestions = [
 			'object-shorthand': [
 				'error',
 				'always',
-				{
-					avoidExplicitReturnArrows: true,
-				},
+				{ avoidExplicitReturnArrows: true },
 			],
 			'one-var': ['error', 'never'],
 			'operator-assignment': ['error', 'always'],
-			'prefer-arrow-callback': [
-				'error',
-				{
-					allowNamedFunctions: true,
-				},
-			],
-			'prefer-const': [
-				'error',
-				{
-					destructuring: 'all',
-				},
-			],
+			'prefer-arrow-callback': ['error', { allowNamedFunctions: true }],
+			'prefer-const': ['error', { destructuring: 'all' }],
 			'prefer-destructuring': [
 				'error',
 				{
@@ -264,9 +213,7 @@ export const configEslintSuggestions = [
 						object: false,
 					},
 				},
-				{
-					enforceForRenamedProperties: false,
-				},
+				{ enforceForRenamedProperties: false },
 			],
 			'prefer-exponentiation-operator': 'error',
 			// FIXME:
@@ -275,18 +222,8 @@ export const configEslintSuggestions = [
 			'prefer-numeric-literals': 'error',
 			'prefer-object-has-own': 'error',
 			'prefer-object-spread': 'error',
-			'prefer-promise-reject-errors': [
-				'error',
-				{
-					allowEmptyReject: true,
-				},
-			],
-			'prefer-regex-literals': [
-				'error',
-				{
-					disallowRedundantWrapping: true,
-				},
-			],
+			'prefer-promise-reject-errors': ['error', { allowEmptyReject: true }],
+			'prefer-regex-literals': ['error', { disallowRedundantWrapping: true }],
 			'prefer-rest-params': 'error',
 			'prefer-spread': 'error',
 			'prefer-template': 'off',
