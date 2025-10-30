@@ -173,16 +173,7 @@ export const configEslintSuggestions = [
 			'no-throw-literal': 'error',
 			'no-undef-init': 'error',
 			// 'no-undefined': 'off',
-			'no-underscore-dangle': [
-				'error',
-				{
-					enforceInMethodNames: true,
-					enforceInClassFields: true,
-					allowInArrayDestructuring: false,
-					allowInObjectDestructuring: false,
-					allowFunctionParams: false,
-				},
-			],
+			// 'no-underscore-dangle': 'off',
 			'no-unneeded-ternary': 'error',
 			'no-unused-expressions': ['error', { enforceForJSX: true }],
 			'no-unused-labels': 'error',
