@@ -39,17 +39,33 @@
 		"HTML": {
 			"format_on_save": "on",
 			"formatter": [
-				{ "language_server": { "name": "biome" } },
-				{ "code_action": "source.organizeImports.biome" },
-				{ "code_action": "source.fixAll.biome" }
+				{
+					"external": {
+						"command": "bunx",
+						"arguments": [
+							"--bun",
+							"prettier",
+							"--stdin-filepath",
+							"{buffer_path}"
+						]
+					}
+				}
 			]
 		},
 		"Vue.js": {
 			"format_on_save": "on",
 			"formatter": [
-				{ "language_server": { "name": "biome" } },
-				{ "code_action": "source.organizeImports.biome" },
-				{ "code_action": "source.fixAll.biome" }
+				{
+					"external": {
+						"command": "bunx",
+						"arguments": [
+							"--bun",
+							"prettier",
+							"--stdin-filepath",
+							"{buffer_path}"
+						]
+					}
+				}
 			]
 		}
 	}
