@@ -57,14 +57,6 @@
 		"eslint/prefer-spread": "error",
 		"eslint/yoda": "error",
 
-		"node/no-exports-assign": "error",
-
-		"promise/no-return-wrap": "error",
-		"promise/no-nesting": "warn",
-		"promise/param-names": "error",
-
-		"typescript/prefer-namespace-keyword": "error",
-
 		"unicorn/catch-error-name": "error",
 		"unicorn/consistent-date-clone": "error",
 		"unicorn/consistent-existence-index-check": "error",
@@ -74,9 +66,9 @@
 		"unicorn/no-array-method-this-argument": "error",
 		"unicorn/no-await-expression-member": "error",
 		"unicorn/no-console-spaces": "error",
-		"unicorn/no-for-loop": "error",
 		"unicorn/no-null": "off", // enormous stupidity
 		"unicorn/no-unreadable-array-destructuring": "error",
+		"unicorn/no-useless-collection-argument": "error",
 		"unicorn/no-zero-fractions": "error",
 		"unicorn/number-literal-case": "off", // formatted by biome
 		"unicorn/numeric-separators-style": [
@@ -84,22 +76,28 @@
 			{ "onlyIfContainsSeparator": true }
 		],
 		"unicorn/prefer-array-index-of": "error",
+		"unicorn/prefer-bigint-literals": "error",
 		"unicorn/prefer-class-fields": "error",
 		"unicorn/prefer-classlist-toggle": "error",
+		"unicorn/prefer-default-parameters": "error",
 		"unicorn/prefer-dom-node-text-content": "error",
 		"unicorn/prefer-global-this": "error",
 		"unicorn/prefer-includes": "error",
+		"unicorn/prefer-keyboard-event-key": "error",
 		"unicorn/prefer-logical-operator-over-ternary": "error",
 		"unicorn/prefer-modern-dom-apis": "error",
 		"unicorn/prefer-negative-index": "error",
 		"unicorn/prefer-object-from-entries": "error",
 		"unicorn/prefer-optional-catch-binding": "error",
 		"unicorn/prefer-reflect-apply": "error",
+		"unicorn/prefer-response-static-json": "error",
 		"unicorn/prefer-spread": "error",
 		"unicorn/prefer-string-raw": "error",
 		"unicorn/prefer-string-trim-start-end": "error",
 		"unicorn/prefer-structured-clone": "error",
+		"unicorn/relative-url-style": ["error", "never"],
 		"unicorn/require-array-join-separator": "error",
+		"unicorn/require-module-attributes": "error",
 		"unicorn/switch-case-braces": ["warn", "avoid"],
 		"unicorn/text-encoding-identifier-case": "error",
 		"unicorn/throw-new-error": "error"

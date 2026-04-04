@@ -130,7 +130,8 @@ export const configEslintSuggestions = [
 				// TODO: Enable this in 2025.
 				// {
 				// 	name: 'Buffer',
-				// 	message: 'Use Uint8Array instead. See: https://sindresorhus.com/blog/goodbye-nodejs-buffer',
+				// 	message:
+				// 		'Use Uint8Array instead. See: https://sindresorhus.com/blog/goodbye-nodejs-buffer',
 				// },
 				{
 					name: 'atob',
@@ -152,15 +153,16 @@ export const configEslintSuggestions = [
 				'sys',
 				'querystring',
 				'colors',
-				// TODO: Enable this in 2025.
-				// {
-				// 	name: 'buffer',
-				// 	message: 'Use Uint8Array instead. See: https://sindresorhus.com/blog/goodbye-nodejs-buffer',
-				// },
-				// {
-				// 	name: 'node:buffer',
-				// 	message: 'Use Uint8Array instead. See: https://sindresorhus.com/blog/goodbye-nodejs-buffer',
-				// },
+				{
+					name: 'buffer',
+					message:
+						'Use Uint8Array instead. See: https://sindresorhus.com/blog/goodbye-nodejs-buffer',
+				},
+				{
+					name: 'node:buffer',
+					message:
+						'Use Uint8Array instead. See: https://sindresorhus.com/blog/goodbye-nodejs-buffer',
+				},
 			],
 			// 'no-restricted-properties': 'off',
 			// 'no-restricted-syntax': 'off',

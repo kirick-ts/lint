@@ -1,0 +1,21 @@
+{
+	"$schema": "../../node_modules/oxlint/configuration_schema.json",
+	"rules": {
+		"jsdoc/check-property-names": "error",
+		"jsdoc/check-tag-names": "error",
+		"jsdoc/empty-tags": "error",
+		"jsdoc/no-defaults": "error",
+		"jsdoc/require-param": "error",
+		"jsdoc/require-param-description": "warn",
+		"jsdoc/require-param-name": "warn",
+		"jsdoc/require-param-type": "off", // types are defined in typescript code
+		"jsdoc/require-property": "error",
+		"jsdoc/require-property-description": "warn",
+		"jsdoc/require-property-name": "error",
+		"jsdoc/require-property-type": "off", // types are defined in typescript code
+		"jsdoc/require-returns": "error",
+		"jsdoc/require-returns-description": "warn",
+		"jsdoc/require-returns-type": "off", // types are defined in typescript code
+		"jsdoc/require-yields": "error"
+	}
+}

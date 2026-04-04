@@ -1,0 +1,118 @@
+{
+	"$schema": "../../node_modules/oxlint/configuration_schema.json",
+	"rules": {
+		"typescript/adjacent-overload-signatures": "error",
+		"typescript/array-type": ["error", { "default": "array" }],
+		// "typescript/await-thenable" // type-aware; in general, typescript flags this with blue
+		"typescript/ban-ts-comment": "error",
+		"typescript/ban-tslint-comment": "error",
+		"typescript/class-literal-property-style": "error",
+		"typescript/consistent-generic-constructors": "error",
+		"typescript/consistent-indexed-object-style": ["error", "record"],
+		// "typescript/consistent-return" // nursery, type-aware; cant believe typescript does not handle this
+		"typescript/consistent-type-assertions": [
+			"error",
+			{ "assertionStyle": "as" }
+		],
+		// "typescript/consistent-type-definitions" // interface and types behave differently, so we need both from time to time
+		// "typescript/consistent-type-exports" // type-aware; too strict
+		// "typescript/consistent-type-imports" // too strict
+		// "typescript/dot-notation" // type-aware; handled by formatter
+		// "typescript/explicit-function-return-type" // not always possible to do, especially with valibot schemas, handled by typescript config
+		// "typescript/explicit-module-boundary-types" // not always possible to do, especially with valibot schemas, handled by typescript config
+		// TODO: "typescript/no-array-delete": "error", // type-aware
+		// TODO: "typescript/no-base-to-string": "error", // type-aware
+		// "typescript/no-confusing-non-null-assertion": "error", // handled by formatter and "eqeqeq" rule
+		// "typescript/no-confusing-void-expression" // type-aware; handled by "no-void" rule
+		// TODO: "typescript/no-deprecated": "warn", // type-aware
+		"typescript/no-duplicate-enum-values": "error",
+		// TODO: "typescript/no-duplicate-type-constituents": "error", // type-aware
+		"typescript/no-dynamic-delete": "error",
+		"typescript/no-empty-interface": "error",
+		"typescript/no-empty-object-type": "error",
+		"typescript/no-explicit-any": "error",
+		"typescript/no-extra-non-null-assertion": "error",
+		"typescript/no-extraneous-class": "error",
+		// TODO: "typescript/no-floating-promises": "error", // type-aware
+		// TODO: "typescript/no-for-in-array": "error", // type-aware, partially handled by "guard-for-in" rule
+		// "typescript/no-implied-eval" // type-aware; handled by "no-eval" rule
+		"typescript/no-import-type-side-effects": "error",
+		"typescript/no-inferrable-types": "warn",
+		"typescript/no-invalid-void-type": "error",
+		// "typescript/no-meaningless-void-operator" // type-aware; handled by "no-void" rule
+		"typescript/no-misused-new": "error",
+		// TODO: "typescript/no-misused-promises": "error", // type-aware
+		// TODO: "typescript/no-misused-spread": "error", // type-aware
+		// TODO: "typescript/no-mixed-enums": "error", // type-aware
+		"typescript/no-namespace": "error",
+		"typescript/no-non-null-asserted-nullish-coalescing": "error",
+		"typescript/no-non-null-asserted-optional-chain": "error",
+		// "typescript/no-non-null-assertion" // too strict
+		// TODO: "typescript/no-redundant-type-constituents": "error", // type-aware
+		"typescript/no-require-imports": "error",
+		// "typescript/no-restricted-types" // configurable rule, but we have nothing to ban
+		"typescript/no-this-alias": "error",
+		// TODO: "typescript/no-unnecessary-boolean-literal-compare": "error", // type-aware
+		// TODO: "typescript/no-unnecessary-condition": "error", // type-aware
+		"typescript/no-unnecessary-parameter-property-assignment": "error",
+		// "typescript/no-unnecessary-qualifier" // nursery, type-aware
+		// TODO: "typescript/no-unnecessary-template-expression": "error", // type-aware
+		// TODO: "typescript/no-unnecessary-type-arguments": "error", // type-aware
+		// TODO: "typescript/no-unnecessary-type-assertion": "error", // type-aware
+		"typescript/no-unnecessary-type-constraint": "error",
+		// TODO: "typescript/no-unnecessary-type-conversion": "error", // type-aware
+		// TODO: "typescript/no-unnecessary-type-parameters": "error", // type-aware
+		// TODO: "typescript/no-unsafe-argument": "error", // type-aware
+		// TODO: "typescript/no-unsafe-assignment": "error", // type-aware
+		// TODO: "typescript/no-unsafe-call": "error", // type-aware
+		"typescript/no-unsafe-declaration-merging": "error",
+		// TODO: "typescript/no-unsafe-enum-comparison": "error", // type-aware
+		"typescript/no-unsafe-function-type": "error",
+		// TODO: "typescript/no-unsafe-member-access": "error", // type-aware
+		// TODO: "typescript/no-unsafe-return": "error", // type-aware
+		// TODO: "typescript/no-unsafe-type-assertion": "error", // type-aware
+		// TODO: "typescript/no-unsafe-unary-minus": "error", // type-aware
+		// TODO: "typescript/no-useless-default-assignment": "error", // type-aware
+		"typescript/no-useless-empty-export": "error",
+		// "typescript/no-var-requires" // deprecated "require" syntax
+		"typescript/no-wrapper-object-types": "error",
+		// TODO: "typescript/non-nullable-type-assertion-style": "error", // type-aware
+		// TODO: "typescript/only-throw-error": "error", // type-aware
+		"typescript/parameter-properties": [
+			"error",
+			{ "prefer": "parameter-property" }
+		],
+		"typescript/prefer-as-const": "error",
+		"typescript/prefer-enum-initializers": "error",
+		// TODO: "typescript/prefer-find": "error", // type-aware; partially handled by unicorn?
+		"typescript/prefer-for-of": "error",
+		"typescript/prefer-function-type": "error",
+		// TODO: "typescript/prefer-includes": "error", // type-aware
+		"typescript/prefer-literal-enum-member": "error",
+		// "typescript/prefer-namespace-keyword" // deprecated
+		// TODO: "typescript/prefer-nullish-coalescing": "error", // type-aware
+		// TODO: "typescript/prefer-optional-chain": "error", // type-aware
+		// TODO: "typescript/prefer-promise-reject-errors": "error", // type-aware
+		// TODO: "typescript/prefer-readonly": "error", // type-aware
+		// "typescript/prefer-readonly-parameter-types" // type-aware; too strict
+		// "typescript/prefer-reduce-type-parameter" // type-aware; "reduce" is prohibited by "unicorn/no-array-reduce" rule
+		// TODO: "typescript/prefer-regexp-exec": "error", // type-aware
+		// "typescript/prefer-return-this-type" // type-aware; rule looks strange
+		// TODO: "typescript/prefer-string-starts-ends-with": "error", // type-aware
+		"typescript/prefer-ts-expect-error": "error",
+		// TODO: "typescript/promise-function-async": "error", // type-aware
+		// "typescript/related-getter-setter-pairs" // type-aware
+		// TODO: "typescript/require-array-sort-compare": "error", // type-aware
+		// "typescript/require-await" // type-aware; handled by "require-await" rule
+		// TODO: "typescript/restrict-plus-operands": "error", // type-aware
+		// TODO: "typescript/restrict-template-expressions": "error", // type-aware
+		// TODO: "typescript/return-await": ["error", "in-try-catch"], // type-aware
+		// TODO: "typescript/strict-boolean-expressions": "error", // type-aware
+		// TODO: "typescript/strict-void-return": "error", // type-aware
+		// TODO: "typescript/switch-exhaustiveness-check": "error", // type-aware
+		"typescript/triple-slash-reference": "error",
+		// TODO: "typescript/unbound-method": "error", // type-aware
+		"typescript/unified-signatures": "error"
+		// "typescript/use-unknown-in-catch-callback-variable" // type-aware; handled by typescript strict mode
+	}
+}
