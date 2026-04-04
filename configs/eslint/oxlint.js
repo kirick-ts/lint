@@ -7,7 +7,7 @@ export const configOxlint = [
 			'accessor-pairs': 'off',
 			'arrow-body-style': 'off',
 			'block-scoped-var': 'off',
-			'class-methods-use-this': 'off',
+			// 'class-methods-use-this': 'off',
 			complexity: 'off',
 			'constructor-super': 'off',
 			curly: 'off',

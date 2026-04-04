@@ -2,7 +2,7 @@
 	"$schema": "../../node_modules/oxlint/configuration_schema.json",
 	"rules": {
 		"eslint/complexity": ["warn", 20],
-		"eslint/class-methods-use-this": "warn",
+		// "eslint/class-methods-use-this": "warn", // does not work
 		"eslint/default-case": "error",
 		"eslint/no-alert": "error",
 		"eslint/no-bitwise": "error",
