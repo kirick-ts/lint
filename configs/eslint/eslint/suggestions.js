@@ -218,9 +218,7 @@ export const configEslintSuggestions = [
 				{ enforceForRenamedProperties: false },
 			],
 			'prefer-exponentiation-operator': 'error',
-			// FIXME:
-			// Disabled for now as Firefox doesn't support named capture groups
-			// 'prefer-named-capture-group': 'error',
+			'prefer-named-capture-group': 'warn', // TODO: change to "error"
 			'prefer-numeric-literals': 'error',
 			'prefer-object-has-own': 'error',
 			'prefer-object-spread': 'error',
@@ -231,11 +229,7 @@ export const configEslintSuggestions = [
 			'prefer-template': 'off',
 			radix: ['warn', 'as-needed'],
 			'require-await': 'error',
-			// FIXME:
-			// XO maintainer disabled it because ESLint 7.24.0 doesn't have a fixer.
-			// But ESLint 9 has a fixer, so I give it a try.
-			// UPDATE: I dont want to use this rule for now.
-			// 'require-unicode-regexp': 'error',
+			'require-unicode-regexp': 'warn', // TODO: change to "error"
 			'require-yield': 'error',
 			// 'sort-imports': 'off',
 			// 'sort-keys': 'off',

@@ -65,13 +65,13 @@ if (is_vue) {
 
 package_json.scripts ??= {};
 if (package_json.scripts.lint) {
-	const match = package_json.scripts.lint.match(/(?:vue-)?tsc/);
+	const match = package_json.scripts.lint.match(/(?:vue-)?tsc/u);
 	if (match === null) {
 		console.warn('Unexpected "lint" script format. Update it by hand to:');
 		console.warn('>', script_lint);
 	} else {
 		package_json.scripts.lint =
-			script_lint.replace(/tsc$/, match[0])
+			script_lint.replace(/tsc$/u, match[0])
 			+ package_json.scripts.lint.slice(match.index! + match[0].length);
 	}
 } else {

@@ -2,7 +2,6 @@
 import fs from "node:fs/promises";
 import nodePath from "node:path";
 import { spawn } from "node:child_process";
-
 //#region src/create/eslint.ts
 async function createEslintConfig(dir, options) {
 	const lines = ["import { configCommon } from '@kirick/lint/eslint/common';"];
@@ -15,7 +14,6 @@ async function createEslintConfig(dir, options) {
 	lines.push("	...configOxlint,", "]);", "");
 	await fs.writeFile(nodePath.join(dir, "eslint.config.js"), lines.join("\n"), "utf8");
 }
-
 //#endregion
 //#region src/create/oxlint.ts
 async function createOxlintConfig(dir) {
@@ -23,16 +21,20 @@ async function createOxlintConfig(dir) {
 		$schema: "./node_modules/oxlint/configuration_schema.json",
 		extends: [
 			"./node_modules/@kirick/lint/configs/oxlint/correctness.jsonc",
+			"./node_modules/@kirick/lint/configs/oxlint/eslint.jsonc",
+			"./node_modules/@kirick/lint/configs/oxlint/jsdoc.jsonc",
+			"./node_modules/@kirick/lint/configs/oxlint/node.jsonc",
 			"./node_modules/@kirick/lint/configs/oxlint/pedantic.jsonc",
 			"./node_modules/@kirick/lint/configs/oxlint/perf.jsonc",
+			"./node_modules/@kirick/lint/configs/oxlint/promise.jsonc",
 			"./node_modules/@kirick/lint/configs/oxlint/restriction.jsonc",
 			"./node_modules/@kirick/lint/configs/oxlint/style.jsonc",
-			"./node_modules/@kirick/lint/configs/oxlint/suspicious.jsonc"
+			"./node_modules/@kirick/lint/configs/oxlint/suspicious.jsonc",
+			"./node_modules/@kirick/lint/configs/oxlint/typescript.jsonc"
 		],
 		ignorePatterns: ["dist"]
 	}, null, "	"), "utf8");
 }
-
 //#endregion
 //#region src/utils.ts
 const PATH = nodePath.join(import.meta.dirname, "..");
@@ -48,7 +50,6 @@ async function isFileExists(path) {
 		return false;
 	}
 }
-
 //#endregion
 //#region src/create/tsconfig.ts
 const PRESERVE_USER_OPTIONS = [
@@ -97,7 +98,6 @@ async function readTsconfigJson(path) {
 async function writeTsconfigJson(path, data) {
 	await fs.writeFile(path, JSON.stringify(data, null, "	"), "utf8");
 }
-
 //#endregion
 //#region src/package-json.ts
 async function readPackageJson(dir) {
@@ -110,18 +110,17 @@ async function readPackageJson(dir) {
 	}
 	return JSON.parse(await fs.readFile(package_json_path, "utf8"));
 }
-async function writePackageJson(dir, package_json$1) {
+async function writePackageJson(dir, package_json) {
 	const package_json_path = nodePath.join(dir, "package.json");
-	package_json$1.dependencies &&= sortObjectKeys(package_json$1.dependencies);
-	package_json$1.devDependencies &&= sortObjectKeys(package_json$1.devDependencies);
-	await fs.writeFile(package_json_path, JSON.stringify(package_json$1, null, "	") + "\n");
+	package_json.dependencies &&= sortObjectKeys(package_json.dependencies);
+	package_json.devDependencies &&= sortObjectKeys(package_json.devDependencies);
+	await fs.writeFile(package_json_path, JSON.stringify(package_json, null, "	") + "\n");
 }
 function sortObjectKeys(obj) {
 	const object_sorted = {};
 	for (const key of Object.keys(obj).toSorted()) object_sorted[key] = obj[key];
 	return object_sorted;
 }
-
 //#endregion
 //#region src/shell.ts
 function shell(comamnd, ...args) {
@@ -135,7 +134,6 @@ function shell(comamnd, ...args) {
 		});
 	});
 }
-
 //#endregion
 //#region src/main.ts
 const PWD = process.cwd();
@@ -163,11 +161,11 @@ if (is_vue) {
 }
 package_json.scripts ??= {};
 if (package_json.scripts.lint) {
-	const match = package_json.scripts.lint.match(/(?:vue-)?tsc/);
+	const match = package_json.scripts.lint.match(/(?:vue-)?tsc/u);
 	if (match === null) {
 		console.warn("Unexpected \"lint\" script format. Update it by hand to:");
 		console.warn(">", script_lint);
-	} else package_json.scripts.lint = script_lint.replace(/tsc$/, match[0]) + package_json.scripts.lint.slice(match.index + match[0].length);
+	} else package_json.scripts.lint = script_lint.replace(/tsc$/u, match[0]) + package_json.scripts.lint.slice(match.index + match[0].length);
 } else package_json.scripts.lint = script_lint;
 await writePackageJson(PWD, package_json);
 await shell("bun", "install");
@@ -192,6 +190,5 @@ console.log("To check files formatting, run:");
 console.log("  bunx biome format");
 console.log("To fix files formatting, run:");
 console.log("  bunx biome format --write");
-
 //#endregion
-export {  };
+export {};
