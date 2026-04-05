@@ -217,7 +217,7 @@
 		"eslint/prefer-promise-reject-errors": "error",
 		"eslint/prefer-rest-params": "error",
 		"eslint/prefer-spread": "error",
-		"eslint/prefer-template": "warn", // TODO: change to "error"
+		"eslint/prefer-template": "off", // WHY: too annoying
 		"eslint/preserve-caught-error": "off", // WHY: I will throw any shit I want as long as it's an instance of Error
 		"eslint/radix": "error",
 		"eslint/require-await": "error",

@@ -110,7 +110,7 @@ async function writePackageJson(dir, package_json) {
 	const package_json_path = nodePath.join(dir, "package.json");
 	package_json.dependencies &&= sortObjectKeys(package_json.dependencies);
 	package_json.devDependencies &&= sortObjectKeys(package_json.devDependencies);
-	await fs.writeFile(package_json_path, `${JSON.stringify(package_json, null, "	")}\n`);
+	await fs.writeFile(package_json_path, JSON.stringify(package_json, null, "	") + "\n");
 }
 function sortObjectKeys(obj) {
 	const object_sorted = {};
