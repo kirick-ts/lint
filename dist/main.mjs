@@ -154,11 +154,6 @@ if (is_vue) package_json.devDependencies.prettier = package_json_lint.devDepende
 package_json.devDependencies.eslint = package_json_lint.dependencies.eslint;
 let script_lint = package_json_lint.scripts?.lint;
 if (!script_lint) throw new TypeError("No \"lint\" script found in @kirick/lint.");
-if (is_vue) {
-	const script_lint_prettier = package_json_lint.scripts?.["lint:prettier"];
-	if (!script_lint_prettier) throw new TypeError("No \"lint:prettier\" script found in @kirick/lint.");
-	script_lint = `${script_lint_prettier} && ${script_lint}`;
-}
 package_json.scripts ??= {};
 if (package_json.scripts.lint) {
 	const match = package_json.scripts.lint.match(/(?:vue-)?tsc/u);
