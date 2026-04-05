@@ -13,7 +13,7 @@ const show_all = process.argv.includes('--all');
 const show_unsupported = process.argv.includes('--unsupported');
 
 const github_response = await fetch(
-	`https://api.github.com/repos/oxc-project/oxc/git/trees/oxlint_v1.24.0?recursive=1`,
+	`https://api.github.com/repos/oxc-project/oxc/git/trees/oxlint_v1.58.0?recursive=1`,
 	{
 		headers: {
 			Authorization:

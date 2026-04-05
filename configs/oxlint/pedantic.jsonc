@@ -1,6 +1,15 @@
 {
 	"$schema": "../../node_modules/oxlint/configuration_schema.json",
 	"rules": {
+		"eslint/accessor-pairs": [
+			"error",
+			{
+				"enforceForTSTypes": false,
+				"enforceForClassMembers": true,
+				"getWithoutSet": false,
+				"setWithoutGet": true
+			}
+		],
 		"eslint/eqeqeq": ["error", "always"],
 		"eslint/max-depth": "warn",
 		"eslint/max-lines": [
@@ -38,16 +47,6 @@
 		"eslint/require-await": "error",
 		"eslint/symbol-description": "error",
 
-		"jsdoc/require-param": "error",
-		"jsdoc/require-param-description": "warn",
-		"jsdoc/require-param-name": "warn",
-		"jsdoc/require-returns": "error",
-		"jsdoc/require-returns-description": "warn",
-
-		"typescript/ban-ts-comment": "error",
-		"typescript/no-misused-promises": "off", // TODO: requires type information
-		"typescript/no-unsafe-function-type": "error",
-
 		"unicorn/consistent-assert": "error",
 		"unicorn/consistent-empty-array-spread": "error",
 		"unicorn/escape-case": "error",
@@ -55,6 +54,7 @@
 		"unicorn/new-for-builtins": "error",
 		"unicorn/no-array-callback-reference": "error",
 		"unicorn/no-hex-escape": "error",
+		"unicorn/no-immediate-mutation": "error",
 		"unicorn/no-lonely-if": "error",
 		"unicorn/no-negated-condition": "error",
 		"unicorn/no-negation-in-equality-check": "error",

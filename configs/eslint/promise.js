@@ -6,7 +6,7 @@ export const configPromise = [
 	{
 		files: ['**/*.ts'],
 		rules: {
-			'promise/no-return-in-finally': 'off',
+			'promise/no-return-in-finally': 'error',
 		},
 	},
 ];

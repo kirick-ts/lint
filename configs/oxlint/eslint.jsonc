@@ -1,0 +1,28 @@
+{
+	"$schema": "../../node_modules/oxlint/configuration_schema.json",
+	"rules": {
+		// "eslint/getter-return": ["error", { "allowImplicit": false }] // nursery
+		"eslint/max-statements": ["warn", 35],
+		"eslint/no-implicit-coercion": [
+			"warn",
+			{
+				"allow": [],
+				"boolean": true,
+				"disallowTemplateShorthand": false,
+				"number": true,
+				"string": true
+			}
+		],
+		"eslint/no-loop-func": "error",
+		"eslint/no-misleading-character-class": ["error", { "allowEscape": false }],
+		"eslint/no-promise-executor-return": ["error", { "allowVoid": false }],
+		"eslint/no-sequences": ["error", { "allowInParentheses": true }],
+		"eslint/no-unmodified-loop-condition": "error",
+		"eslint/no-unreachable": "error",
+		"eslint/no-useless-return": "error",
+		"eslint/prefer-const": [
+			"error",
+			{ "destructuring": "all", "ignoreReadBeforeAssign": false }
+		]
+	}
+}

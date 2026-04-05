@@ -9,13 +9,14 @@ export const configJsdoc = [
 		},
 	},
 	// typescript
-	// {
-	// 	files: ['**/*.ts'],
-	// 	rules: {
-	// 		'jsdoc/require-param-type': 'off',
-	// 		'jsdoc/require-returns-type': 'off',
-	// 	},
-	// },
+	{
+		files: ['**/*.ts'],
+		rules: {
+			// 'jsdoc/require-param-type': 'off',
+			// 'jsdoc/require-returns-type': 'off',
+			'jsdoc/require-yields-type': 'off',
+		},
+	},
 	// exceptions
 	{
 		files: ['test/', '**/*.test.*'],
