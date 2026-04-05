@@ -40,10 +40,17 @@ const rules_supported = v.parse(
 			const rules = new Set<string>();
 
 			for (const { path } of value.tree) {
-				if (path.startsWith(GITHUB_FILE_PREFIX) && path.endsWith('.rs')) {
-					rules.add(
-						path.slice(GITHUB_FILE_PREFIX.length, -3).replaceAll('_', '-'),
-					);
+				if (
+					path.startsWith(GITHUB_FILE_PREFIX)
+					&& (path.endsWith('.rs') || path.endsWith('/mod.rs'))
+				) {
+					const [namespace, rule] = path
+						.slice(GITHUB_FILE_PREFIX.length)
+						.replace(/\.rs$/, '')
+						.replaceAll('_', '-')
+						.split('/');
+
+					rules.add(`${namespace}/${rule}`);
 				}
 			}
 

@@ -20,17 +20,13 @@ async function createOxlintConfig(dir) {
 	await fs.writeFile(nodePath.join(dir, ".oxlintrc.json"), JSON.stringify({
 		$schema: "./node_modules/oxlint/configuration_schema.json",
 		extends: [
-			"./node_modules/@kirick/lint/configs/oxlint/correctness.jsonc",
 			"./node_modules/@kirick/lint/configs/oxlint/eslint.jsonc",
 			"./node_modules/@kirick/lint/configs/oxlint/jsdoc.jsonc",
 			"./node_modules/@kirick/lint/configs/oxlint/node.jsonc",
-			"./node_modules/@kirick/lint/configs/oxlint/pedantic.jsonc",
-			"./node_modules/@kirick/lint/configs/oxlint/perf.jsonc",
+			"./node_modules/@kirick/lint/configs/oxlint/oxc.jsonc",
 			"./node_modules/@kirick/lint/configs/oxlint/promise.jsonc",
-			"./node_modules/@kirick/lint/configs/oxlint/restriction.jsonc",
-			"./node_modules/@kirick/lint/configs/oxlint/style.jsonc",
-			"./node_modules/@kirick/lint/configs/oxlint/suspicious.jsonc",
-			"./node_modules/@kirick/lint/configs/oxlint/typescript.jsonc"
+			"./node_modules/@kirick/lint/configs/oxlint/typescript.jsonc",
+			"./node_modules/@kirick/lint/configs/oxlint/unicorn.jsonc"
 		],
 		ignorePatterns: ["dist"]
 	}, null, "	"), "utf8");
@@ -114,7 +110,7 @@ async function writePackageJson(dir, package_json) {
 	const package_json_path = nodePath.join(dir, "package.json");
 	package_json.dependencies &&= sortObjectKeys(package_json.dependencies);
 	package_json.devDependencies &&= sortObjectKeys(package_json.devDependencies);
-	await fs.writeFile(package_json_path, JSON.stringify(package_json, null, "	") + "\n");
+	await fs.writeFile(package_json_path, `${JSON.stringify(package_json, null, "	")}\n`);
 }
 function sortObjectKeys(obj) {
 	const object_sorted = {};
@@ -152,7 +148,7 @@ for (const name of [
 ]) package_json.devDependencies[name] = package_json_lint.devDependencies[name];
 if (is_vue) package_json.devDependencies.prettier = package_json_lint.devDependencies.prettier;
 package_json.devDependencies.eslint = package_json_lint.dependencies.eslint;
-let script_lint = package_json_lint.scripts?.lint;
+const script_lint = package_json_lint.scripts?.lint;
 if (!script_lint) throw new TypeError("No \"lint\" script found in @kirick/lint.");
 package_json.scripts ??= {};
 if (package_json.scripts.lint) {

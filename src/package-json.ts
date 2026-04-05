@@ -29,7 +29,7 @@ export async function writePackageJson(
 
 	await fs.writeFile(
 		package_json_path,
-		JSON.stringify(package_json, null, '\t') + '\n',
+		`${JSON.stringify(package_json, null, '\t')}\n`,
 	);
 }
 

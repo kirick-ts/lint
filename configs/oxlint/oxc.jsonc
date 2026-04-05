@@ -1,0 +1,31 @@
+{
+	"$schema": "../../node_modules/oxlint/configuration_schema.json",
+	"rules": {
+		"oxc/approx-constant": "error",
+		"oxc/bad-array-method-on-arguments": "off", // WHY: we never use "arguments"
+		"oxc/bad-bitwise-operator": "error",
+		"oxc/bad-char-at-comparison": "error",
+		"oxc/bad-comparison-sequence": "error",
+		"oxc/bad-min-max-func": "error",
+		"oxc/bad-object-literal-comparison": "error",
+		"oxc/bad-replace-all-arg": "error",
+		"oxc/branches-sharing-code": "warn", // TODO: change to "error"
+		"oxc/const-comparisons": "error",
+		"oxc/double-comparisons": "error",
+		"oxc/erasing-op": "error",
+		"oxc/misrefactored-assign-op": "error",
+		"oxc/missing-throw": "error",
+		"oxc/no-accumulating-spread": "error",
+		"oxc/no-async-await": "off", // WHY: U MAD BRO??
+		"oxc/no-async-endpoint-handlers": "off", // WHY: fuck off Express
+		"oxc/no-barrel-file": "warn", // NOTE: experimental
+		"oxc/no-const-enum": "error",
+		"oxc/no-map-spread": "off", // WHY: odd
+		"oxc/no-optional-chaining": "off", // WHY: oh god
+		"oxc/no-rest-spread-properties": "off", // WHY: U MAD BRO??
+		"oxc/no-this-in-exported-function": "warn", // NOTE: experimental; TODO: change to "error"
+		"oxc/number-arg-out-of-range": "error",
+		"oxc/only-used-in-recursion": "error",
+		"oxc/uninvoked-array-callback": "error"
+	}
+}

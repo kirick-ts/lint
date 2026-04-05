@@ -49,7 +49,7 @@ if (is_vue) {
 package_json.devDependencies.eslint = package_json_lint.dependencies.eslint;
 
 // 1.2. Scripts
-let script_lint = package_json_lint.scripts?.lint;
+const script_lint = package_json_lint.scripts?.lint;
 if (!script_lint) {
 	throw new TypeError('No "lint" script found in @kirick/lint.');
 }

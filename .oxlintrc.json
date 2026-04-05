@@ -1,12 +1,13 @@
 {
 	"$schema": "./node_modules/oxlint/configuration_schema.json",
 	"extends": [
-		"./configs/oxlint/correctness.jsonc",
-		"./configs/oxlint/perf.jsonc",
-		"./configs/oxlint/restriction.jsonc",
-		"./configs/oxlint/suspicious.jsonc",
-		"./configs/oxlint/pedantic.jsonc",
-		"./configs/oxlint/style.jsonc"
+		"./configs/oxlint/eslint.jsonc",
+		"./configs/oxlint/jsdoc.jsonc",
+		"./configs/oxlint/node.jsonc",
+		"./configs/oxlint/oxc.jsonc",
+		"./configs/oxlint/promise.jsonc",
+		"./configs/oxlint/typescript.jsonc",
+		"./configs/oxlint/unicorn.jsonc"
 	],
 	"ignorePatterns": ["dist"]
 }
