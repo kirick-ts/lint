@@ -38,11 +38,6 @@ export const configStylistic = [
 					prev: 'multiline-block-like',
 					next: '*',
 				},
-				{
-					blankLine: 'never',
-					prev: 'multiline-block-like',
-					next: 'break',
-				},
 			],
 			'@stylistic/spaced-comment': [
 				'error',
