@@ -112,7 +112,13 @@
 		// TODO: "typescript/switch-exhaustiveness-check": "error", // type-aware
 		"typescript/triple-slash-reference": "error",
 		// TODO: "typescript/unbound-method": "error", // type-aware
-		"typescript/unified-signatures": "error"
+		"typescript/unified-signatures": [
+			"error",
+			{
+				"ignoreDifferentlyNamedParameters": true,
+				"ignoreOverloadsWithDifferentJSDoc": true
+			}
+		]
 		// "typescript/use-unknown-in-catch-callback-variable" // type-aware; handled by typescript strict mode
 	}
 }
