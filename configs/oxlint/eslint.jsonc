@@ -34,14 +34,7 @@
 		"eslint/getter-return": "off", // ["error", { "allowImplicit": false }] // TODO: nursery
 		"eslint/grouped-accessor-pairs": ["error", "getBeforeSet"],
 		"eslint/guard-for-in": "error",
-		"eslint/id-length": [
-			"warn",
-			{
-				"checkGeneric": false,
-				"exceptions": ["a", "b", "v"],
-				"properties": "never"
-			}
-		], // TODO: experimental; change to "error"
+		"eslint/id-length": "off",
 		"eslint/init-declarations": "off", // WHY: u mad? handled by typescript
 		"eslint/max-classes-per-file": "off",
 		"eslint/max-depth": "warn",
