@@ -13,6 +13,7 @@ const PRESERVE_USER_OPTIONS = [
 	'lib',
 	'paths',
 	'tsBuildInfoFile',
+	'types',
 ] as const;
 
 export async function createTsConfig(dir: string) {
@@ -66,6 +67,9 @@ export async function createTsConfig(dir: string) {
 				compiler_options_new[key] = tsconfig_pwd.compilerOptions?.[key];
 				break;
 			case 'tsBuildInfoFile':
+				compiler_options_new[key] = tsconfig_pwd.compilerOptions?.[key];
+				break;
+			case 'types':
 				compiler_options_new[key] = tsconfig_pwd.compilerOptions?.[key];
 				break;
 			// no default

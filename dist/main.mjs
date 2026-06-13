@@ -53,7 +53,8 @@ const PRESERVE_USER_OPTIONS = [
 	"isolatedDeclarations",
 	"lib",
 	"paths",
-	"tsBuildInfoFile"
+	"tsBuildInfoFile",
+	"types"
 ];
 async function createTsConfig(dir) {
 	const tsconfig_lint = await readTsconfigJson(nodePath.join(PATH, "configs", "tsconfig.example.json"));
@@ -81,6 +82,9 @@ async function createTsConfig(dir) {
 			compiler_options_new[key] = tsconfig_pwd.compilerOptions?.[key];
 			break;
 		case "tsBuildInfoFile":
+			compiler_options_new[key] = tsconfig_pwd.compilerOptions?.[key];
+			break;
+		case "types":
 			compiler_options_new[key] = tsconfig_pwd.compilerOptions?.[key];
 			break;
 	}
@@ -167,7 +171,6 @@ await Promise.all([
 	fs.copyFile(nodePath.join(DIR_LIB, ".zed", "settings.json"), nodePath.join(PWD, ".zed", "settings.json")),
 	fs.copyFile(nodePath.join(DIR_LIB, ".vscode", "settings.json"), nodePath.join(PWD, ".vscode", "settings.json")),
 	fs.copyFile(nodePath.join(DIR_LIB, "biome.json"), nodePath.join(PWD, "biome.json")),
-	is_vue ? fs.copyFile(nodePath.join(DIR_LIB, ".prettierrc.json"), nodePath.join(PWD, ".prettierrc.json")) : null,
 	createEslintConfig(PWD, {
 		is_node,
 		is_vue
