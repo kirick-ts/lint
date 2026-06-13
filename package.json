@@ -1,6 +1,6 @@
 {
 	"name": "@kirick/lint",
-	"version": "0.3.2",
+	"version": "0.3.3",
 	"publishConfig": {
 		"access": "public"
 	},
@@ -37,11 +37,10 @@
 	},
 	"scripts": {
 		"build": "tsdown src/main.ts --dts=false --format esm",
-		"check": "bun run lint && bun run build && bun run test",
+		"check": "bun run lint && bun run build",
 		"lint": "biome format && oxlint && eslint . && tsc",
 		"# lint:prettier": "prettier --check **/*.vue",
-		"test": "echo 'No tests available'",
-		"# postinstall": "bun run --bun dist/main.js",
+		"# postinstall": "bun run --bun dist/main.mjs",
 		"rules": "bun test/rules.ts"
 	},
 	"repository": {

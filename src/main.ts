@@ -103,12 +103,12 @@ await Promise.all([
 		nodePath.join(DIR_LIB, 'biome.json'),
 		nodePath.join(PWD, 'biome.json'),
 	),
-	is_vue
-		? fs.copyFile(
-				nodePath.join(DIR_LIB, '.prettierrc.json'),
-				nodePath.join(PWD, '.prettierrc.json'),
-			)
-		: null,
+	// is_vue
+	// 	? fs.copyFile(
+	// 			nodePath.join(DIR_LIB, '.prettierrc.json'),
+	// 			nodePath.join(PWD, '.prettierrc.json'),
+	// 		)
+	// 	: null,
 	createEslintConfig(PWD, { is_node, is_vue }),
 	createTsConfig(PWD),
 	createOxlintConfig(PWD),
