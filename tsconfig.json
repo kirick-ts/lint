@@ -1,11 +1,11 @@
 {
-	"extends": "./configs/tsconfig.example.json",
+	"extends": "./configs/tsconfig.base.json",
 	"compilerOptions": {
 		"allowJs": true,
 		"checkJs": true,
 		"types": ["node"],
-		"lib": ["es2025"],
 		"isolatedDeclarations": false
 	},
-	"include": ["src/"]
+	"include": ["src/"],
+	"exclude": ["dist/", "node_modules/"]
 }

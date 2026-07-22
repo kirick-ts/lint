@@ -1,5 +1,7 @@
+// @ts-check
 // oxlint-disable max-lines
 
+/** @type {Parameters<typeof import('eslint/config').defineConfig>} */
 export const configOxlint = [
 	// eslint
 	{
@@ -16,6 +18,7 @@ export const configOxlint = [
 			'default-param-last': 'off',
 			eqeqeq: 'off',
 			'for-direction': 'off',
+			'func-name-matching': 'off',
 			// 'func-names': 'off', // bugged in oxlint
 			'func-style': 'off',
 			// 'getter-return': 'off', // nursery
@@ -191,8 +194,8 @@ export const configOxlint = [
 	// promise
 	{
 		rules: {
-			// 'promise/always-return': 'off', // bugged in oxlint
-			// 'promise/catch-or-return': 'off', // bugged in oxlint
+			'promise/always-return': 'off',
+			'promise/catch-or-return': 'off',
 			'promise/no-callback-in-promise': 'off',
 			'promise/no-new-statics': 'off',
 			'promise/no-promise-in-callback': 'off',
@@ -327,6 +330,47 @@ export const configOxlint = [
 			'unicorn/switch-case-braces': 'off',
 			'unicorn/text-encoding-identifier-case': 'off',
 			'unicorn/throw-new-error': 'off',
+		},
+	},
+	// vue
+	{
+		rules: {
+			'vue/component-definition-name-casing': 'off',
+			'vue/no-arrow-functions-in-watch': 'off',
+			'vue/no-async-in-computed-properties': 'off',
+			'vue/no-computed-properties-in-data': 'off',
+			'vue/no-deprecated-data-object-declaration': 'off',
+			'vue/no-deprecated-delete-set': 'off',
+			'vue/no-deprecated-destroyed-lifecycle': 'off',
+			'vue/no-deprecated-events-api': 'off',
+			'vue/no-deprecated-model-definition': 'off',
+			'vue/no-deprecated-props-default-this': 'off',
+			'vue/no-deprecated-vue-config-keycodes': 'off',
+			'vue/no-dupe-keys': 'off',
+			'vue/no-export-in-script-setup': 'off',
+			'vue/no-expose-after-await': 'off',
+			'vue/no-lifecycle-after-await': 'off',
+			'vue/no-multiple-slot-args': 'off',
+			'vue/no-required-prop-with-default': 'off',
+			'vue/no-reserved-component-names': 'off',
+			'vue/no-reserved-keys': 'off',
+			'vue/no-reserved-props': 'off',
+			'vue/no-shared-component-data': 'off',
+			'vue/no-side-effects-in-computed-properties': 'off',
+			'vue/no-watch-after-await': 'off',
+			'vue/prefer-import-from-vue': 'off',
+			'vue/prop-name-casing': 'off',
+			'vue/require-default-prop': 'off',
+			'vue/require-prop-type-constructor': 'off',
+			'vue/require-prop-types': 'off',
+			'vue/require-slots-as-functions': 'off',
+			'vue/require-render-return': 'off',
+			'vue/return-in-computed-property': 'off',
+			'vue/return-in-emits-validator': 'off',
+			'vue/valid-define-emits': 'off',
+			'vue/valid-define-options': 'off',
+			'vue/valid-define-props': 'off',
+			'vue/valid-next-tick': 'off',
 		},
 	},
 ];

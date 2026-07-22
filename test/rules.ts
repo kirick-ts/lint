@@ -1,3 +1,6 @@
+// oxlint-disable no-console
+
+import fs from 'node:fs';
 import { $ } from 'bun';
 import * as v from 'valibot';
 
@@ -12,8 +15,10 @@ const filter = process.argv[2]?.startsWith('--') ? undefined : process.argv[2];
 const show_all = process.argv.includes('--all');
 const show_unsupported = process.argv.includes('--unsupported');
 
+const version = JSON.parse(fs.readFileSync('./package.json', 'utf8'))
+	.peerDependencies.oxlint;
 const github_response = await fetch(
-	`https://api.github.com/repos/oxc-project/oxc/git/trees/oxlint_v1.58.0?recursive=1`,
+	`https://api.github.com/repos/oxc-project/oxc/git/trees/oxlint_v${version}?recursive=1`,
 	{
 		headers: {
 			Authorization:
@@ -101,17 +106,6 @@ const rules = v.parse(
 				.sort((a, b) => a.oxlint_rule.localeCompare(b.oxlint_rule)),
 		),
 		v.transform((value) => value.filter(({ severity }) => severity !== 0)),
-		// v.transform((value) =>
-		// 	value.filter(({ rule }) => rules_supported.has(ruleToOxlint(rule))),
-		// ),
-		v.transform((value) =>
-			show_all
-				? value
-				: value.filter(
-						({ oxlint_rule }) =>
-							rules_supported.has(oxlint_rule) !== show_unsupported,
-					),
-		),
 		v.transform((value) => {
 			if (typeof filter === 'string') {
 				return value.filter(({ oxlint_rule }) =>
@@ -125,19 +119,35 @@ const rules = v.parse(
 	await $`bunx eslint --print-config ${import.meta.file}`.json(),
 );
 
-for (const element of rules) {
-	// oxlint-disable-next-line no-console
-	console.log(
-		SEVERITY_CODE[element.severity],
-		rules_supported.has(element.oxlint_rule)
-			? `\u001B]8;;https://oxc.rs/docs/guide/usage/linter/rules/${element.oxlint_rule}.html\u0007(link)\u001B]8;;\u0007`
-			: 'unsup!',
-		element.oxlint_rule,
-		element.params ? JSON.stringify(element.params) : '',
-	);
+let counter = 0;
+const unsupported_rules_by_categories = new Map<string, number>();
+for (const rule of rules) {
+	const category = rule.oxlint_rule.split('/')[0];
+	if (!unsupported_rules_by_categories.has(category)) {
+		unsupported_rules_by_categories.set(category, 0);
+	}
+
+	if (rules_supported.has(rule.oxlint_rule) !== true) {
+		unsupported_rules_by_categories.set(
+			category,
+			(unsupported_rules_by_categories.get(category) ?? 0) + 1,
+		);
+	}
+
+	if (show_all || rules_supported.has(rule.oxlint_rule) !== show_unsupported) {
+		counter++;
+		console.log(
+			SEVERITY_CODE[rule.severity],
+			rules_supported.has(rule.oxlint_rule)
+				? `\u001B]8;;https://oxc.rs/docs/guide/usage/linter/rules/${rule.oxlint_rule}.html\u0007(link)\u001B]8;;\u0007`
+				: 'unsup!',
+			rule.oxlint_rule,
+			rule.params ? JSON.stringify(rule.params) : '',
+		);
+	}
 }
 
-const message_parts = [`\n${rules.length}`];
+const message_parts = [`\n${counter}`];
 if (typeof filter === 'string') {
 	message_parts.push(`"${filter}"`);
 }
@@ -156,5 +166,14 @@ if (show_all) {
 	message_parts.push('be ported to oxlint.');
 }
 
-// oxlint-disable-next-line no-console
 console.log(message_parts.join(' '));
+console.log();
+
+console.log('Number of non-supported ESLint rules by category:');
+console.table(
+	Object.fromEntries(
+		[...unsupported_rules_by_categories.entries()].toSorted(
+			(a, b) => b[1] - a[1],
+		),
+	),
+);

@@ -1,10 +1,9 @@
-import { configCommon } from './configs/eslint/common.js';
-import { configNode } from './configs/eslint/node.js';
-import { configOxlint } from './configs/eslint/oxlint.js';
+import { defineConfig } from 'eslint/config';
+import { eslint } from './configs/eslint.js';
 
-export default [
-	{ ignores: ['test/'] },
-	...configCommon,
-	...configNode,
-	...configOxlint,
-];
+export default defineConfig([
+	{
+		ignores: ['test/'],
+	},
+	...eslint,
+]);

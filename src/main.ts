@@ -4,6 +4,7 @@
 
 import fs from 'node:fs/promises';
 import nodePath from 'node:path';
+import { createBiomeConfig } from './create/biome.js';
 import { createEslintConfig } from './create/eslint.js';
 import { createOxlintConfig } from './create/oxlint.js';
 import { createTsConfig } from './create/tsconfig.js';
@@ -23,30 +24,35 @@ if (!package_json_lint.dependencies) {
 	throw new TypeError('No dependencies found in @kirick/lint.');
 }
 
+if (!package_json_lint.peerDependencies) {
+	throw new TypeError('No peerDependencies found in @kirick/lint.');
+}
+
 if (!package_json_lint.devDependencies) {
 	throw new TypeError('No devDependencies found in @kirick/lint.');
 }
 
 package_json.devDependencies ??= {};
 
-const is_node =
-	(package_json.devDependencies['@types/node'] !== undefined
-		|| package_json.devDependencies['@types/bun'] !== undefined)
-	&& package_json.devDependencies['vue-tsc'] === undefined;
+// const is_node =
+// 	(package_json.devDependencies['@types/node'] !== undefined
+// 		|| package_json.devDependencies['@types/bun'] !== undefined)
+// 	&& package_json.devDependencies['vue-tsc'] === undefined;
 const is_vue = package_json.devDependencies['vue-tsc'] !== undefined;
 
 delete package_json.devDependencies['@kirick/eslint-config'];
 
-for (const name of ['@biomejs/biome', 'oxlint', 'typescript']) {
+for (const name of ['eslint', 'oxlint']) {
+	package_json.devDependencies[name] = package_json_lint.peerDependencies[name];
+}
+
+for (const name of ['@biomejs/biome', 'typescript']) {
 	package_json.devDependencies[name] = package_json_lint.devDependencies[name];
 }
 
 if (is_vue) {
-	package_json.devDependencies.prettier =
-		package_json_lint.devDependencies.prettier;
+	package_json.devDependencies.typescript = '6.0.2';
 }
-
-package_json.devDependencies.eslint = package_json_lint.dependencies.eslint;
 
 // 1.2. Scripts
 const script_lint = package_json_lint.scripts?.lint;
@@ -99,17 +105,8 @@ await Promise.all([
 		nodePath.join(DIR_LIB, '.vscode', 'settings.json'),
 		nodePath.join(PWD, '.vscode', 'settings.json'),
 	),
-	fs.copyFile(
-		nodePath.join(DIR_LIB, 'biome.json'),
-		nodePath.join(PWD, 'biome.json'),
-	),
-	// is_vue
-	// 	? fs.copyFile(
-	// 			nodePath.join(DIR_LIB, '.prettierrc.json'),
-	// 			nodePath.join(PWD, '.prettierrc.json'),
-	// 		)
-	// 	: null,
-	createEslintConfig(PWD, { is_node, is_vue }),
+	createBiomeConfig(PWD),
+	createEslintConfig(PWD),
 	createTsConfig(PWD),
 	createOxlintConfig(PWD),
 ]);
@@ -119,7 +116,7 @@ await shell(
 	'biome',
 	'format',
 	'--fix',
-	'.oxlintrc.json',
+	'oxlint.config.ts',
 	'biome.json',
 	'eslint.config.js',
 	'package.json',

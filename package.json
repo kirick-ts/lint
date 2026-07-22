@@ -7,17 +7,20 @@
 	"type": "module",
 	"bin": "dist/main.mjs",
 	"exports": {
-		"./eslint/common": "./configs/eslint/common.js",
-		"./eslint/node": "./configs/eslint/node.js",
-		"./eslint/oxlint": "./configs/eslint/oxlint.js",
-		"./eslint/vue": "./configs/eslint/vue.js"
+		"./oxlint": {
+			"types": "./configs/oxlint.d.ts",
+			"default": "./configs/oxlint.js"
+		},
+		"./eslint": {
+			"types": "./configs/eslint.d.ts",
+			"default": "./configs/eslint.js"
+		}
 	},
 	"engines": {
 		"node": ">=22.16"
 	},
 	"dependencies": {
 		"@stylistic/eslint-plugin": "5.10.0",
-		"eslint": "10.2.0",
 		"eslint-plugin-jsdoc": "62.9.0",
 		"eslint-plugin-n": "17.24.0",
 		"eslint-plugin-promise": "7.2.1",
@@ -25,10 +28,13 @@
 		"eslint-plugin-vue": "10.8.0",
 		"typescript-eslint": "8.58.0"
 	},
+	"peerDependencies": {
+		"eslint": "10.2.0",
+		"oxlint": "1.75.0"
+	},
 	"devDependencies": {
-		"@biomejs/biome": "2.4.10",
+		"@biomejs/biome": "2.5.4",
 		"@types/bun": "1.3.11",
-		"oxlint": "1.58.0",
 		"publint": "0.3.18",
 		"tsdown": "0.22.0",
 		"type-fest": "5.5.0",
