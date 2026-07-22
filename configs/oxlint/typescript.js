@@ -34,7 +34,10 @@ export const oxlintTypescriptRules = {
 	// "typescript/no-implied-eval" // type-aware; handled by "no-eval" rule
 	'typescript/no-import-type-side-effects': 'error',
 	'typescript/no-inferrable-types': 'warn',
-	'typescript/no-invalid-void-type': 'error',
+	'typescript/no-invalid-void-type': [
+		'error',
+		{ allowInGenericTypeArguments: true },
+	],
 	// "typescript/no-meaningless-void-operator" // type-aware; handled by "no-void" rule
 	'typescript/no-misused-new': 'error',
 	// TODO: "typescript/no-misused-promises": "error", // type-aware

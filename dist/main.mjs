@@ -46,7 +46,8 @@ async function readBiomeJson(path) {
 //#endregion
 //#region src/create/eslint.ts
 async function createEslintConfig(dir) {
-	await fs.writeFile(nodePath.join(dir, "eslint.config.js"), [
+	const path = nodePath.join(dir, "eslint.config.js");
+	if (await isFileExists(path) !== true) await fs.writeFile(path, [
 		`import { eslint } from '@kirick/lint/eslint';`,
 		`import { defineConfig } from 'eslint/config';`,
 		"",
@@ -177,7 +178,7 @@ await Promise.all([
 	createTsConfig(PWD),
 	createOxlintConfig(PWD)
 ]);
-await shell("bunx", "biome", "format", "--fix", "oxlint.config.ts", "biome.json", "eslint.config.js", "package.json", "tsconfig.json", ...await isFileExists(nodePath.join(PWD, "tsconfig.base.json")) ? ["tsconfig.base.json"] : [], ...is_vue ? [".prettierrc.json"] : []);
+await shell("bunx", "biome", "format", "--fix", "oxlint.config.ts", "biome.json", "eslint.config.js", "package.json", "tsconfig.json", ...await isFileExists(nodePath.join(PWD, "tsconfig.base.json")) ? ["tsconfig.base.json"] : []);
 console.log();
 console.log("To check files formatting, run:");
 console.log("  bunx biome format");

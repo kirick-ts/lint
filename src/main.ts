@@ -124,7 +124,6 @@ await shell(
 	...((await isFileExists(nodePath.join(PWD, 'tsconfig.base.json')))
 		? ['tsconfig.base.json']
 		: []),
-	...(is_vue ? ['.prettierrc.json'] : []),
 );
 
 // 3. Print note

@@ -11,7 +11,7 @@ import { configTsEslint } from './eslint/tseslint.js';
 import { configUnicorn } from './eslint/unicorn.js';
 import { configVue } from './eslint/vue.js';
 
-/** @type {Parameters<typeof import('eslint/config').defineConfig>} */
+// /** @type {Parameters<typeof import('eslint/config').defineConfig>} */
 export const eslint = [
 	// core
 	{
