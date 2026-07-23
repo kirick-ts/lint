@@ -1,8 +1,6 @@
 {
 	"extends": "./configs/tsconfig.base.json",
 	"compilerOptions": {
-		"allowJs": true,
-		"checkJs": true,
 		"types": ["node"],
 		"isolatedDeclarations": false
 	},

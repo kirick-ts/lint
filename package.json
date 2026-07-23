@@ -1,11 +1,14 @@
 {
 	"name": "@kirick/lint",
-	"version": "0.3.3",
+	"version": "0.4.0",
 	"publishConfig": {
 		"access": "public"
 	},
 	"type": "module",
-	"bin": "dist/main.mjs",
+	"bin": {
+		"lint-upgrade": "dist/main.mjs",
+		"lint": "lint.sh"
+	},
 	"exports": {
 		"./oxlint": {
 			"types": "./configs/oxlint.d.ts",
@@ -29,7 +32,7 @@
 		"typescript-eslint": "8.58.0"
 	},
 	"peerDependencies": {
-		"eslint": "10.2.0",
+		"eslint": "10.7.0",
 		"oxlint": "1.75.0"
 	},
 	"devDependencies": {

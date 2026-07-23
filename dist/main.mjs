@@ -155,16 +155,6 @@ delete package_json.devDependencies["@kirick/eslint-config"];
 for (const name of ["eslint", "oxlint"]) package_json.devDependencies[name] = package_json_lint.peerDependencies[name];
 for (const name of ["@biomejs/biome", "typescript"]) package_json.devDependencies[name] = package_json_lint.devDependencies[name];
 if (is_vue) package_json.devDependencies.typescript = "6.0.2";
-const script_lint = package_json_lint.scripts?.lint;
-if (!script_lint) throw new TypeError("No \"lint\" script found in @kirick/lint.");
-package_json.scripts ??= {};
-if (package_json.scripts.lint) {
-	const match = package_json.scripts.lint.match(/(?:vue-)?tsc/u);
-	if (match === null) {
-		console.warn("Unexpected \"lint\" script format. Update it by hand to:");
-		console.warn(">", script_lint);
-	} else package_json.scripts.lint = script_lint.replace(/tsc$/u, match[0]) + package_json.scripts.lint.slice(match.index + match[0].length);
-} else package_json.scripts.lint = script_lint;
 await writePackageJson(PWD, package_json);
 await shell("bun", "install");
 try {

@@ -54,36 +54,6 @@ if (is_vue) {
 	package_json.devDependencies.typescript = '6.0.2';
 }
 
-// 1.2. Scripts
-const script_lint = package_json_lint.scripts?.lint;
-if (!script_lint) {
-	throw new TypeError('No "lint" script found in @kirick/lint.');
-}
-
-// if (is_vue) {
-// 	const script_lint_prettier = package_json_lint.scripts?.['lint:prettier'];
-// 	if (!script_lint_prettier) {
-// 		throw new TypeError('No "lint:prettier" script found in @kirick/lint.');
-// 	}
-
-// 	script_lint = `${script_lint_prettier} && ${script_lint}`;
-// }
-
-package_json.scripts ??= {};
-if (package_json.scripts.lint) {
-	const match = package_json.scripts.lint.match(/(?:vue-)?tsc/u);
-	if (match === null) {
-		console.warn('Unexpected "lint" script format. Update it by hand to:');
-		console.warn('>', script_lint);
-	} else {
-		package_json.scripts.lint =
-			script_lint.replace(/tsc$/u, match[0])
-			+ package_json.scripts.lint.slice(match.index! + match[0].length);
-	}
-} else {
-	package_json.scripts.lint = script_lint;
-}
-
 await writePackageJson(PWD, package_json);
 
 await shell('bun', 'install');
