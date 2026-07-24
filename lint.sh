@@ -1,4 +1,5 @@
-#!/bin/sh -eo pipefail
+#!/usr/bin/env bash
+set -euo pipefail
 
 PREFIX="⟫"
 # PREFIX="▶"
