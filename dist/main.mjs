@@ -150,11 +150,9 @@ if (!package_json_lint.dependencies) throw new TypeError("No dependencies found 
 if (!package_json_lint.peerDependencies) throw new TypeError("No peerDependencies found in @kirick/lint.");
 if (!package_json_lint.devDependencies) throw new TypeError("No devDependencies found in @kirick/lint.");
 package_json.devDependencies ??= {};
-const is_vue = package_json.devDependencies["vue-tsc"] !== void 0;
 delete package_json.devDependencies["@kirick/eslint-config"];
 for (const name of ["eslint", "oxlint"]) package_json.devDependencies[name] = package_json_lint.peerDependencies[name];
 for (const name of ["@biomejs/biome", "typescript"]) package_json.devDependencies[name] = package_json_lint.devDependencies[name];
-if (is_vue) package_json.devDependencies.typescript = "6.0.2";
 await writePackageJson(PWD, package_json);
 await shell("bun", "install");
 try {

@@ -38,7 +38,7 @@ package_json.devDependencies ??= {};
 // 	(package_json.devDependencies['@types/node'] !== undefined
 // 		|| package_json.devDependencies['@types/bun'] !== undefined)
 // 	&& package_json.devDependencies['vue-tsc'] === undefined;
-const is_vue = package_json.devDependencies['vue-tsc'] !== undefined;
+// const is_vue = package_json.devDependencies['vue-tsc'] !== undefined;
 
 delete package_json.devDependencies['@kirick/eslint-config'];
 
@@ -48,10 +48,6 @@ for (const name of ['eslint', 'oxlint']) {
 
 for (const name of ['@biomejs/biome', 'typescript']) {
 	package_json.devDependencies[name] = package_json_lint.devDependencies[name];
-}
-
-if (is_vue) {
-	package_json.devDependencies.typescript = '6.0.2';
 }
 
 await writePackageJson(PWD, package_json);
