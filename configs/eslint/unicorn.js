@@ -14,6 +14,7 @@ export const configUnicorn = [
 			'unicorn/no-unreadable-for-of-expression': 'off', // Reason: Wasting time naming extra variables takes more time than reading the code.
 			'unicorn/no-useless-recursion': 'off', // Reason: I love to use recursions with async functions. Change my mind
 			'unicorn/prefer-await': 'off', // Reason: Some calls should not be awaited to avoid errors leaking to the current stack.
+			'unicorn/prefer-continue': ['warn', { maximumStatements: 5 }], // Reason: the same as "prefer-early-return".
 			'unicorn/prefer-early-return': ['warn', { maximumStatements: 5 }], // Reason: It is much clearer to stay in paradigm "if A, then do B" instead of "If not A, exit early; do B". However, long conditionals are hard to read and should be flagged by this rule.
 			'unicorn/prefer-observer-apis': 'off', // Reason: Observer APIs are good, but listen to "resize" looks more readable.
 			'unicorn/prefer-simple-condition-first': 'off', // Reason: It hurts DX much more than it helps with runtime performance.
