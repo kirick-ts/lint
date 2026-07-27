@@ -122,7 +122,7 @@ const rules = v.parse(
 let counter = 0;
 const unsupported_rules_by_categories = new Map<string, number>();
 for (const rule of rules) {
-	const category = rule.oxlint_rule.split('/')[0];
+	const category = rule.oxlint_rule.split('/')[0]!;
 	if (!unsupported_rules_by_categories.has(category)) {
 		unsupported_rules_by_categories.set(category, 0);
 	}

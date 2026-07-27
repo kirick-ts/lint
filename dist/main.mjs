@@ -47,7 +47,11 @@ async function readBiomeJson(path) {
 //#region src/create/eslint.ts
 async function createEslintConfig(dir) {
 	const path = nodePath.join(dir, "eslint.config.js");
-	if (await isFileExists(path) !== true) await fs.writeFile(path, [
+	if (await isFileExists(path)) {
+		if (!(await fs.readFile(path, "utf8")).includes(`from '@kirick/lint/eslint/common';`)) return;
+		await fs.rename(path, nodePath.join(dir, "_MIGRATE_OLD_eslint.config.js"));
+	}
+	await fs.writeFile(path, [
 		`import { eslint } from '@kirick/lint/eslint';`,
 		`import { defineConfig } from 'eslint/config';`,
 		"",

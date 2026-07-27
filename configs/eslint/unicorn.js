@@ -7,6 +7,7 @@ export const configUnicorn = [
 			'unicorn/better-dom-traversing': 'off', // Reason: dear diary, I have not enough words to describe stupidity of these suggested fixes...
 			'unicorn/consistent-class-member-order': 'off', // Reason: If you want to be enforced to use specific order of code members, use Pascal
 			'unicorn/name-replacements': 'off', // Reason: I know better how i want to name my variables.
+			'unicorn/no-break-in-nested-loop': 'off', // Reason: breaks are ok, even inside nested loops
 			'unicorn/no-computed-property-existence-check': 'off', // Reason: I use `in` operator to narrow type. `Object.hasOwn()` returns just boolean and does not narrow type, so it can not be used as a replacement.
 			'unicorn/no-global-object-property-assignment': 'off', // Handled by TypeScript.
 			'unicorn/no-top-level-assignment-in-function': 'off', // Reason: oh my god, what if I WANT to create shared state, mhm?
