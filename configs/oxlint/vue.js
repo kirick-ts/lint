@@ -1,5 +1,7 @@
 /** @type {import('oxlint').DummyRuleMap} */
 export const oxlintVueRules = {
+	// Assume that entire Vue ruleset is broken in oxlint — at least, vue/return-in-computed-property does not work.
+	// ----------
 	'vue/component-definition-name-casing': ['warn', 'kebab-case'],
 	'vue/no-arrow-functions-in-watch': 'error',
 	'vue/no-async-in-computed-properties': 'error',
@@ -24,13 +26,13 @@ export const oxlintVueRules = {
 	'vue/no-side-effects-in-computed-properties': 'error',
 	'vue/no-watch-after-await': 'error',
 	'vue/prefer-import-from-vue': 'error',
-	'vue/prop-name-casing': 'error',
+	'vue/prop-name-casing': ['error', 'snake_case'],
 	'vue/require-default-prop': 'error',
 	'vue/require-prop-type-constructor': 'error',
 	'vue/require-prop-types': 'error',
 	'vue/require-slots-as-functions': 'error',
 	'vue/require-render-return': 'error',
-	'vue/return-in-computed-property': 'error',
+	'vue/return-in-computed-property': 'off', // Reason: if we dont return from a computed property, we have `void`. If we dont want `void`, we patch types.
 	'vue/return-in-emits-validator': 'error',
 	'vue/valid-define-emits': 'error',
 	'vue/valid-define-options': 'error',

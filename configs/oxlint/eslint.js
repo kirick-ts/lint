@@ -29,13 +29,14 @@ export const oxlintEslintRules = {
 	'eslint/eqeqeq': ['error', 'always'],
 	'eslint/for-direction': 'error',
 	'eslint/func-name-matching': ['error', { considerPropertyDescriptor: true }],
-	'eslint/func-names': 'off', // ["error", "never"], // FIXME: bugged in oxlint: triggers on typescript overloads
+	// 'eslint/func-names': ['error', 'as-needed'], // bugged in oxlint: triggers on typescript overloads
 	'eslint/func-style': ['error', 'declaration'],
-	'eslint/getter-return': 'off', // ["error", { "allowImplicit": false }] // TODO: nursery
+	'eslint/getter-return': ['error', { allowImplicit: false }],
 	'eslint/grouped-accessor-pairs': ['error', 'getBeforeSet'],
 	'eslint/guard-for-in': 'error',
 	'eslint/id-length': 'off',
 	'eslint/init-declarations': 'off', // WHY: u mad? handled by typescript
+	'eslint/logical-assignment-operators': 'error',
 	'eslint/max-classes-per-file': 'off',
 	'eslint/max-depth': 'warn',
 	'eslint/max-lines': [
@@ -101,6 +102,8 @@ export const oxlintEslintRules = {
 	'eslint/no-func-assign': 'off', // WHY: handled by typescript
 	'eslint/no-global-assign': 'error',
 	'eslint/no-implicit-coercion': 'warn', // TODO: change to "error"
+	// 'eslint/no-implicit-globals': 'error', // FIXME: oxlint reports all globals, even in es modules
+	'eslint/no-implied-eval': 'error',
 	'eslint/no-import-assign': 'off', // WHY: handled by typescript
 	'eslint/no-inline-comments': 'off', // WHY: sometimes we need to ose eslint/oxlint comments at the same time; TODO: change to "error"
 	'eslint/no-inner-declarations': 'error',
@@ -133,6 +136,7 @@ export const oxlintEslintRules = {
 	'eslint/no-prototype-builtins': 'error',
 	'eslint/no-redeclare': 'off', // WHY: we don't use var, handled by typescript
 	'eslint/no-regex-spaces': 'error',
+	// 'eslint/no-restricted-exports': 'error', // nursery, check options
 	'eslint/no-restricted-globals': 'off', // WHY: we don't have any restricted globals now
 	'eslint/no-restricted-imports': 'error',
 	'eslint/no-return-assign': 'error',
@@ -155,6 +159,7 @@ export const oxlintEslintRules = {
 	'eslint/no-unmodified-loop-condition': 'error',
 	'eslint/no-unneeded-ternary': 'error',
 	'eslint/no-unreachable': 'error', // nursery; handled by typescript with "allowUnreachableCode: false"
+	// 'eslint/no-unreachable-loop': 'error', // nursery
 	'eslint/no-unsafe-finally': 'error',
 	'eslint/no-unsafe-negation': 'error',
 	'eslint/no-unsafe-optional-chaining': 'error',
@@ -163,6 +168,7 @@ export const oxlintEslintRules = {
 	'eslint/no-unused-private-class-members': 'warn',
 	'eslint/no-unused-vars': 'warn',
 	'eslint/no-use-before-define': 'off', // WHY: it is convenient to define functions at the end of the file
+	// 'eslint/no-useless-assignment': 'warn', // nursery
 	'eslint/no-useless-backreference': 'error',
 	'eslint/no-useless-call': 'error',
 	'eslint/no-useless-catch': 'error',
@@ -176,7 +182,9 @@ export const oxlintEslintRules = {
 	'eslint/no-void': 'error',
 	'eslint/no-warning-comments': 'warn',
 	'eslint/no-with': 'error',
+	'eslint/object-shorthand': ['error', 'always'],
 	'eslint/operator-assignment': ['error', 'always'],
+	'eslint/prefer-arrow-callback': 'error',
 	'eslint/prefer-const': [
 		'error',
 		{ destructuring: 'all', ignoreReadBeforeAssign: false },
@@ -201,16 +209,19 @@ export const oxlintEslintRules = {
 		},
 	],
 	'eslint/prefer-exponentiation-operator': 'error',
+	'eslint/prefer-named-capture-group': 'error',
 	'eslint/prefer-numeric-literals': 'error',
 	'eslint/prefer-object-has-own': 'error',
 	'eslint/prefer-object-spread': 'error',
 	'eslint/prefer-promise-reject-errors': 'error',
+	'eslint/prefer-regex-literals': 'error',
 	'eslint/prefer-rest-params': 'error',
 	'eslint/prefer-spread': 'error',
 	'eslint/prefer-template': 'off', // WHY: too annoying
 	'eslint/preserve-caught-error': 'off', // WHY: I will throw any shit I want as long as it's an instance of Error
 	'eslint/radix': 'error',
 	'eslint/require-await': 'error',
+	'eslint/require-unicode-regexp': 'error',
 	'eslint/require-yield': 'error',
 	'eslint/sort-imports': 'off', // WHY: handled by biome
 	'eslint/sort-keys': 'off', // WHY: I prefer to sort keys by mean, not alphabetically

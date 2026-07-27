@@ -9,7 +9,7 @@ onexit() {
     status=$?
     if [ "$status" -ne 0 ]; then
         echo
-        echo $PREFIX' \033[1;38;2;255;255;255;48;2;220;38;38m ✕ '$COLOR_RESET' Lint failed.' >&2
+        printf $PREFIX' \033[1;38;2;255;255;255;48;2;220;38;38m ✕ '$COLOR_RESET' Lint failed.\n' >&2
     fi
     exit "$status"
 }

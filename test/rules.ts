@@ -26,7 +26,7 @@ const github_response = await fetch(
 					? `Bearer ${process.env.GITHUB_TOKEN}`
 					: '',
 		},
-		cache: 'force-cache',
+		// cache: 'force-cache',
 	},
 );
 
@@ -51,7 +51,7 @@ const rules_supported = v.parse(
 				) {
 					const [namespace, rule] = path
 						.slice(GITHUB_FILE_PREFIX.length)
-						.replace(/\.rs$/, '')
+						.replace(/\.rs$/u, '')
 						.replaceAll('_', '-')
 						.split('/');
 

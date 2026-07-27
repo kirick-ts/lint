@@ -7,6 +7,19 @@ import { oxlintOxcRules } from './oxlint/oxc.js';
 import { oxlintPromiseRules } from './oxlint/promise.js';
 import { oxlintTypescriptRules } from './oxlint/typescript.js';
 import { oxlintUnicornRules } from './oxlint/unicorn.js';
+import { oxlintVueRules } from './oxlint/vue.js';
+
+/** @type {Exclude<import('oxlint').OxlintConfig['plugins'], undefined>} */
+export const plugins = [
+	'eslint',
+	'jsdoc',
+	'node',
+	'oxc',
+	'promise',
+	'typescript',
+	'unicorn',
+	'vue',
+];
 
 /** @type {import('oxlint').DummyRuleMap} */
 export const rules = {
@@ -17,4 +30,5 @@ export const rules = {
 	...oxlintPromiseRules,
 	...oxlintTypescriptRules,
 	...oxlintUnicornRules,
+	...oxlintVueRules,
 };

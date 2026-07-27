@@ -10,10 +10,11 @@ export async function createOxlintConfig(dir: string) {
 		await fs.writeFile(
 			nodePath.join(dir, 'oxlint.config.ts'),
 			[
-				`import { rules } from '@kirick/lint/oxlint';`,
+				`import { plugins, rules } from '@kirick/lint/oxlint';`,
 				`import { defineConfig } from 'oxlint';`,
 				'',
 				'export default defineConfig({',
+				'\tplugins,',
 				'\trules,',
 				`\tignorePatterns: ['dist'],`,
 				'});',

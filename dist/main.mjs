@@ -58,10 +58,11 @@ async function createEslintConfig(dir) {
 //#region src/create/oxlint.ts
 async function createOxlintConfig(dir) {
 	if (await isFileExists(nodePath.join(dir, "oxlint.config.ts")) !== true) await fs.writeFile(nodePath.join(dir, "oxlint.config.ts"), [
-		`import { rules } from '@kirick/lint/oxlint';`,
+		`import { plugins, rules } from '@kirick/lint/oxlint';`,
 		`import { defineConfig } from 'oxlint';`,
 		"",
 		"export default defineConfig({",
+		"	plugins,",
 		"	rules,",
 		`\tignorePatterns: ['dist'],`,
 		"});"
@@ -125,7 +126,8 @@ async function writePackageJson(dir, package_json) {
 }
 function sortObjectKeys(obj) {
 	const object_sorted = {};
-	for (const key of Object.keys(obj).toSorted()) object_sorted[key] = obj[key];
+	const keys = Object.keys(obj).toSorted((a, b) => a.localeCompare(b));
+	for (const key of keys) object_sorted[key] = obj[key];
 	return object_sorted;
 }
 //#endregion
