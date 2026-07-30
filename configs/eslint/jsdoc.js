@@ -4,6 +4,7 @@ export const configJsdoc = [
 	pluginJsdoc.configs['flat/recommended-typescript'],
 	{
 		rules: {
+			'jsdoc/check-param-names': 'error',
 			'jsdoc/check-tag-names': 'error',
 			'jsdoc/require-jsdoc': 'error',
 		},

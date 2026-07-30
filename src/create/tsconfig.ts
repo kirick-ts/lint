@@ -6,79 +6,44 @@ import nodePath from 'node:path';
 import type { TsConfigJson } from 'type-fest';
 import { isFileExists, PATH } from '../utils.js';
 
-// Special handling for options that should be overridden from user config if available
-const PRESERVE_USER_OPTIONS = [
-	'importHelpers',
-	'isolatedDeclarations',
-	'lib',
-	'paths',
-	'tsBuildInfoFile',
-	'types',
-] as const;
+const TSCONFIG_INCLUDE = ['src/'];
+const TSCONFIG_EXCLUDE = ['dist/', 'node_modules/'];
 
 export async function createTsConfig(dir: string) {
-	const tsconfig_lint = await readTsconfigJson(
-		nodePath.join(PATH, 'configs', 'tsconfig.example.json'),
-	);
-	if (!tsconfig_lint) {
-		throw new TypeError(
-			'@kirick/lint: configs/tsconfig.example.json not found.',
+	const tsconfig_extends =
+		'./'
+		+ nodePath.relative(
+			dir,
+			nodePath.join(PATH, 'configs', 'tsconfig.base.json'),
 		);
-	}
 
-	if (!tsconfig_lint.compilerOptions) {
-		throw new TypeError(
-			'@kirick/lint: configs/tsconfig.example.json does not contain compilerOptions.',
-		);
-	}
-
-	// Start with a copy of the lint tsconfig compiler options
-	const compiler_options_new = { ...tsconfig_lint.compilerOptions };
-
-	let tsconfig_pwd_path = nodePath.join(dir, 'tsconfig.base.json');
-	let tsconfig_pwd = await readTsconfigJson(tsconfig_pwd_path);
-
+	const tsconfig_pwd_path = nodePath.join(dir, 'tsconfig.json');
+	const tsconfig_pwd = await readTsconfigJson(tsconfig_pwd_path);
 	if (tsconfig_pwd === null) {
-		tsconfig_pwd_path = nodePath.join(dir, 'tsconfig.json');
-		tsconfig_pwd = await readTsconfigJson(tsconfig_pwd_path);
-
-		if (tsconfig_pwd === null) {
-			// TODO: create tsconfig.json with default values
-			throw new TypeError('Project: tsconfig.json not found.');
-		}
+		await writeTsconfigJson(tsconfig_pwd_path, {
+			extends: tsconfig_extends,
+			include: TSCONFIG_INCLUDE,
+			exclude: TSCONFIG_EXCLUDE,
+		});
 	}
-
-	for (const key of PRESERVE_USER_OPTIONS) {
-		switch (key) {
-			case 'lib':
-				compiler_options_new[key] =
-					tsconfig_pwd.compilerOptions?.[key]
-					?? tsconfig_lint.compilerOptions[key];
-				break;
-			case 'isolatedDeclarations':
-				compiler_options_new[key] =
-					tsconfig_pwd.compilerOptions?.[key]
-					?? tsconfig_lint.compilerOptions[key];
-				break;
-			case 'paths':
-				compiler_options_new[key] = tsconfig_pwd.compilerOptions?.[key];
-				break;
-			case 'importHelpers':
-				compiler_options_new[key] = tsconfig_pwd.compilerOptions?.[key];
-				break;
-			case 'tsBuildInfoFile':
-				compiler_options_new[key] = tsconfig_pwd.compilerOptions?.[key];
-				break;
-			case 'types':
-				compiler_options_new[key] = tsconfig_pwd.compilerOptions?.[key];
-				break;
-			// no default
-		}
+	// do not touch configs that already extends something
+	else if (typeof tsconfig_pwd.extends !== 'string') {
+		// migrate from old configs
+		await writeTsconfigJson(tsconfig_pwd_path, {
+			extends: tsconfig_extends,
+			compilerOptions: {
+				lib: tsconfig_pwd.compilerOptions?.lib,
+				isolatedDeclarations:
+					tsconfig_pwd.compilerOptions?.isolatedDeclarations,
+				paths: tsconfig_pwd.compilerOptions?.paths,
+				importHelpers: tsconfig_pwd.compilerOptions?.importHelpers,
+				tsBuildInfoFile: tsconfig_pwd.compilerOptions?.tsBuildInfoFile,
+				types: tsconfig_pwd.compilerOptions?.types,
+			},
+			include: tsconfig_pwd.include ?? TSCONFIG_INCLUDE,
+			exclude: tsconfig_pwd.exclude ?? TSCONFIG_EXCLUDE,
+		});
 	}
-
-	tsconfig_pwd.compilerOptions = compiler_options_new;
-
-	await writeTsconfigJson(tsconfig_pwd_path, tsconfig_pwd);
 }
 
 async function readTsconfigJson(path: string): Promise<TsConfigJson | null> {

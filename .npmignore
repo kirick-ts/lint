@@ -3,6 +3,7 @@ src/
 
 # ignore configs
 tsconfig.json
+oxlint.config.ts
 
 # ignore lockfiles
 bun.lock
@@ -16,4 +17,5 @@ yarn.lock
 .gitea/
 
 # ignore packed files
+*.tar.gz
 *.tgz

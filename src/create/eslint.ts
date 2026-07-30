@@ -2,45 +2,29 @@
 
 import fs from 'node:fs/promises';
 import nodePath from 'node:path';
+import { isFileExists } from '../utils.js';
 
-export async function createEslintConfig(
-	dir: string,
-	options: { is_node: boolean; is_vue: boolean },
-) {
-	const lines: string[] = [
-		"import { configCommon } from '@kirick/lint/eslint/common';",
-	];
+export async function createEslintConfig(dir: string) {
+	const path = nodePath.join(dir, 'eslint.config.js');
 
-	if (options.is_node) {
-		lines.push("import { configNode } from '@kirick/lint/eslint/node';");
+	if (await isFileExists(path)) {
+		const content = await fs.readFile(path, 'utf8');
+		// we should not write a new config if the old one is already migrated
+		if (!content.includes(`from '@kirick/lint/eslint/common';`)) {
+			return;
+		}
+
+		await fs.rename(path, nodePath.join(dir, '_MIGRATE_OLD_eslint.config.js'));
 	}
-
-	lines.push("import { configOxlint } from '@kirick/lint/eslint/oxlint';");
-
-	if (options.is_vue) {
-		lines.push("import { configVue } from '@kirick/lint/eslint/vue';");
-	}
-
-	lines.push(
-		"import { defineConfig } from 'eslint/config';",
-		'',
-		'export default defineConfig([',
-		'\t...configCommon,',
-	);
-
-	if (options.is_node) {
-		lines.push('\t...configNode,');
-	}
-
-	if (options.is_vue) {
-		lines.push('\t...configVue,');
-	}
-
-	lines.push('\t...configOxlint,', ']);', '');
 
 	await fs.writeFile(
-		nodePath.join(dir, 'eslint.config.js'),
-		lines.join('\n'),
+		path,
+		[
+			`import { eslint } from '@kirick/lint/eslint';`,
+			`import { defineConfig } from 'eslint/config';`,
+			'',
+			'export default defineConfig(eslint);',
+		].join('\n'),
 		'utf8',
 	);
 }

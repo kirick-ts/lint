@@ -1,3 +1,6 @@
+// @ts-check
+
+/** @type {Parameters<typeof import('eslint/config').defineConfig>} */
 export const configEslintProblems = [
 	{
 		rules: {

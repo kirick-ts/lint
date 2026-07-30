@@ -16,3 +16,12 @@ export async function isFileExists(path: string): Promise<boolean> {
 		return false;
 	}
 }
+
+/**
+ * Check if a file exists at the given path.
+ * @param path - The path to check.
+ * @returns A promise that resolves to true if the file exists, false otherwise.
+ */
+export async function writeJson(path: string, data: unknown): Promise<void> {
+	await fs.writeFile(path, JSON.stringify(data, null, '\t'), 'utf8');
+}
