@@ -1,6 +1,6 @@
 {
 	"name": "@kirick/lint",
-	"version": "0.4.0",
+	"version": "0.4.1",
 	"publishConfig": {
 		"access": "public"
 	},
@@ -41,7 +41,7 @@
 		"publint": "0.3.21",
 		"tsdown": "0.22.9",
 		"type-fest": "5.8.0",
-		"typescript": "npm:typescript-native-bridge@6.0.3-bridge.6.tsgo.7.0.2",
+		"typescript": "6.0.3",
 		"valibot": "1.4.2"
 	},
 	"scripts": {
