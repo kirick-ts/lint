@@ -75,17 +75,30 @@ time_eslint=$(timer_end "$start_tool")
 echo
 
 COLOR_TYPESCRIPT='49;120;198'
-printf $PREFIX' \033[1;38;2;255;255;255;48;2;'$COLOR_TYPESCRIPT'm TypeScript '$COLOR_RESET''
-start_tool=$(timer_start)
 if npm ls vue-tsc --depth=0 >/dev/null 2>&1; then
-    printf ' + \033[1;38;2;255;255;255;48;2;66;208;144m Vue '$COLOR_RESET'\n'
-    npx vue-tsc
+    tsc_bin='vue-tsc'
 else
-    echo
-    npx tsc
+    tsc_bin='tsc'
 fi
+shopt -s nullglob
+start_tool=$(timer_start)
+for tsconfig in tsconfig.json tsconfig.*.json; do
+    [ -f "$tsconfig" ] || continue
+
+    printf $PREFIX' \033[1;38;2;255;255;255;48;2;'$COLOR_TYPESCRIPT'm TypeScript '$COLOR_RESET''
+    if [ "$tsc_bin" = 'vue-tsc' ]; then
+        printf ' + \033[1;38;2;255;255;255;48;2;66;208;144m Vue '$COLOR_RESET''
+    fi
+    if [ "$tsconfig" != 'tsconfig.json' ]; then
+        printf ' %s' "$tsconfig"
+    fi
+    echo
+
+    npx "$tsc_bin" -p "$tsconfig"
+    echo
+done
 time_typescript=$(timer_end "$start_tool")
-echo
+shopt -u nullglob
 
 printf $PREFIX' \033[1;38;2;255;255;255;48;2;22;163;74m ✓ '$COLOR_RESET' Lint succeeded!\n'
 echo

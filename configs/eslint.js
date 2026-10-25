@@ -22,7 +22,7 @@ export const eslint = [
 	...configEslintSuggestions,
 	// exceptions
 	{
-		files: ['**/eslint.config.{,m,c}{js,ts}', '**/oxlint.config.ts'],
+		files: ['**/*.config.{,m,c}{j,t}s'],
 		rules: {
 			'no-restricted-exports': 'off',
 		},

@@ -1,6 +1,6 @@
 {
 	"name": "@kirick/lint",
-	"version": "0.4.1",
+	"version": "0.4.2",
 	"publishConfig": {
 		"access": "public"
 	},
@@ -9,6 +9,15 @@
 		"lint-upgrade": "dist/main.mjs",
 		"lint": "lint.sh"
 	},
+	"files": [
+		".vscode/",
+		".zed/",
+		"configs/",
+		"dist/",
+		"biome.json",
+		"eslint.config.js",
+		"lint.sh"
+	],
 	"exports": {
 		"./oxlint": {
 			"types": "./configs/oxlint.d.ts",
@@ -48,7 +57,6 @@
 		"build": "tsdown src/main.ts --dts=false --format esm",
 		"check": "bun run lint && bun run build",
 		"lint": "biome format && oxlint && eslint . && tsc",
-		"# lint:prettier": "prettier --check **/*.vue",
 		"# postinstall": "bun run --bun dist/main.mjs",
 		"rules": "bun test/rules.ts"
 	},

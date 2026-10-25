@@ -103,7 +103,7 @@ const rules = v.parse(
 						params,
 					};
 				})
-				.sort((a, b) => a.oxlint_rule.localeCompare(b.oxlint_rule)),
+				.toSorted((a, b) => a.oxlint_rule.localeCompare(b.oxlint_rule)),
 		),
 		v.transform((value) => value.filter(({ severity }) => severity !== 0)),
 		v.transform((value) => {
