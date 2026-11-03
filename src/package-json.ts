@@ -15,7 +15,9 @@ export async function readPackageJson(dir: string): Promise<PackageJson> {
 		process.exit(1);
 	}
 
-	return JSON.parse(await fs.readFile(package_json_path, 'utf8'));
+	return JSON.parse(
+		await fs.readFile(package_json_path, 'utf8'),
+	) as PackageJson;
 }
 
 export async function writePackageJson(

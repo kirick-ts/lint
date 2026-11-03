@@ -37,5 +37,5 @@ async function readBiomeJson(path: string): Promise<BiomeJson | null> {
 		return null;
 	}
 
-	return JSON.parse(await fs.readFile(path, 'utf8'));
+	return JSON.parse(await fs.readFile(path, 'utf8')) as BiomeJson;
 }

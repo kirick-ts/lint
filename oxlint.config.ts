@@ -3,5 +3,8 @@ import { rules } from './configs/oxlint.js';
 
 export default defineConfig({
 	rules,
-	ignorePatterns: ['dist'],
+	options: {
+		typeAware: true,
+	},
+	ignorePatterns: ['*.config.ts', '*.config.js', 'dist/'],
 });

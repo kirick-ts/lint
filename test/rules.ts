@@ -2,6 +2,7 @@
 
 import fs from 'node:fs';
 import { $ } from 'bun';
+import type { PackageJson } from 'type-fest';
 import * as v from 'valibot';
 
 const GITHUB_FILE_PREFIX = 'crates/oxc_linter/src/rules/';
@@ -15,8 +16,9 @@ const filter = process.argv[2]?.startsWith('--') ? undefined : process.argv[2];
 const show_all = process.argv.includes('--all');
 const show_unsupported = process.argv.includes('--unsupported');
 
-const version = JSON.parse(fs.readFileSync('./package.json', 'utf8'))
-	.peerDependencies.oxlint;
+const version = (
+	JSON.parse(fs.readFileSync('./package.json', 'utf8')) as PackageJson
+).peerDependencies!.oxlint;
 const github_response = await fetch(
 	`https://api.github.com/repos/oxc-project/oxc/git/trees/oxlint_v${version}?recursive=1`,
 	{

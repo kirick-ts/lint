@@ -9,10 +9,18 @@ export const configJsdoc = [
 			'jsdoc/require-jsdoc': 'error',
 		},
 	},
+	// javascript
+	{
+		files: ['**/*.{,m,c}js'],
+		rules: {
+			'jsdoc/no-types': 'off',
+		},
+	},
 	// typescript
 	{
-		files: ['**/*.ts'],
+		files: ['**/*.{,m,c}ts'],
 		rules: {
+			'jsdoc/no-types': 'warn',
 			// 'jsdoc/require-param-type': 'off',
 			// 'jsdoc/require-returns-type': 'off',
 			'jsdoc/require-yields-type': 'off',
