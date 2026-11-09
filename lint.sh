@@ -75,11 +75,13 @@ time_eslint=$(timer_end "$start_tool")
 echo
 
 COLOR_TYPESCRIPT='49;120;198'
-if npm ls vue-tsc --depth=0 >/dev/null 2>&1; then
-    tsc_bin='vue-tsc'
-else
-    tsc_bin='tsc'
-fi
+tsc_bin="$(node --input-type=commonjs -e '
+    const pkg = require("./package.json");
+    const has_vue_tsc =
+        Object.hasOwn(pkg.dependencies ?? {}, "vue-tsc") ||
+        Object.hasOwn(pkg.devDependencies ?? {}, "vue-tsc");
+    process.stdout.write(has_vue_tsc ? "vue-tsc" : "tsc");
+')"
 shopt -s nullglob
 start_tool=$(timer_start)
 for tsconfig in tsconfig.json tsconfig.*.json; do
