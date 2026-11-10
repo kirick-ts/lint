@@ -52,7 +52,7 @@ async function readTsconfigJson(path: string): Promise<TsConfigJson | null> {
 		return null;
 	}
 
-	return JSON.parse(await fs.readFile(path, 'utf8'));
+	return JSON.parse(await fs.readFile(path, 'utf8')) as TsConfigJson;
 }
 
 async function writeTsconfigJson(path: string, data: TsConfigJson) {

@@ -1,10 +1,11 @@
-// @ts-expect-error No declaration given.
+/// <reference types="./eslint-plugin-promise" />
+
 import pluginPromise from 'eslint-plugin-promise';
 
 export const configPromise = [
 	pluginPromise.configs['flat/recommended'],
 	{
-		files: ['**/*.ts'],
+		files: ['**/*.{,m,c}ts'],
 		rules: {
 			'promise/no-return-in-finally': 'error',
 		},

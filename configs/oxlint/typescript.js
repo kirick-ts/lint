@@ -61,14 +61,14 @@ export const oxlintTypescriptRules = {
 	'typescript/no-unnecessary-type-constraint': 'error',
 	// TODO: "typescript/no-unnecessary-type-conversion": "error", // type-aware
 	// TODO: "typescript/no-unnecessary-type-parameters": "error", // type-aware
-	// TODO: "typescript/no-unsafe-argument": "error", // type-aware
-	// TODO: "typescript/no-unsafe-assignment": "error", // type-aware
-	// TODO: "typescript/no-unsafe-call": "error", // type-aware
+	'typescript/no-unsafe-argument': 'error', // type-aware
+	'typescript/no-unsafe-assignment': 'error', // type-aware
+	'typescript/no-unsafe-call': 'error', // type-aware
 	'typescript/no-unsafe-declaration-merging': 'error',
 	// TODO: "typescript/no-unsafe-enum-comparison": "error", // type-aware
 	'typescript/no-unsafe-function-type': 'error',
-	// TODO: "typescript/no-unsafe-member-access": "error", // type-aware
-	// TODO: "typescript/no-unsafe-return": "error", // type-aware
+	'typescript/no-unsafe-member-access': 'error', // type-aware
+	'typescript/no-unsafe-return': 'error', // type-aware
 	// TODO: "typescript/no-unsafe-type-assertion": "error", // type-aware
 	// TODO: "typescript/no-unsafe-unary-minus": "error", // type-aware
 	// TODO: "typescript/no-useless-default-assignment": "error", // type-aware

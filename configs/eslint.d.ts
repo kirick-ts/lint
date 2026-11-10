@@ -1,3 +1,3 @@
 import { defineConfig } from 'eslint/config';
 
-export const configCommon: Parameters<typeof defineConfig>;
+export const eslint: ReturnType<typeof defineConfig>;

@@ -38,7 +38,7 @@ export const eslint = [
 		},
 	},
 	{
-		files: ['**/*.ts'],
+		files: ['**/*.{,m,c}ts'],
 		rules: {
 			'max-params': 'off',
 			'no-dupe-class-members': 'off',

@@ -17,6 +17,7 @@ export const configUnicorn = [
 			'unicorn/prefer-await': 'off', // Reason: Some calls should not be awaited to avoid errors leaking to the current stack.
 			'unicorn/prefer-continue': ['warn', { maximumStatements: 5 }], // Reason: the same as "prefer-early-return".
 			'unicorn/prefer-early-return': ['warn', { maximumStatements: 5 }], // Reason: It is much clearer to stay in paradigm "if A, then do B" instead of "If not A, exit early; do B". However, long conditionals are hard to read and should be flagged by this rule.
+			'unicorn/prefer-includes-over-repeated-comparisons': 'off', // Reason: creating an array and iterating over it instead of some comparisons is stupid.
 			'unicorn/prefer-observer-apis': 'off', // Reason: Observer APIs are good, but listen to "resize" looks more readable.
 			'unicorn/prefer-simple-condition-first': 'off', // Reason: It hurts DX much more than it helps with runtime performance.
 		},

@@ -1,6 +1,6 @@
 {
 	"name": "@kirick/lint",
-	"version": "0.4.2",
+	"version": "0.4.3",
 	"publishConfig": {
 		"access": "public"
 	},
@@ -38,14 +38,16 @@
 		"eslint-plugin-promise": "7.3.0",
 		"eslint-plugin-unicorn": "72.0.0",
 		"eslint-plugin-vue": "10.9.2",
+		"oxlint-tsgolint": "7.0.2005",
 		"typescript-eslint": "8.64.0"
 	},
 	"peerDependencies": {
 		"eslint": "10.7.0",
-		"oxlint": "1.74.0"
+		"oxlint": "1.90.0"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.5.4",
+		"@types/bun": "1.4.4",
 		"@types/node": "22.16.5",
 		"publint": "0.3.21",
 		"tsdown": "0.22.9",
